@@ -1,0 +1,58 @@
+# robots.txt — https://visioncontable.co
+# Katerinn Romero · Visión Contable
+# Asesoría contable, tributaria y financiera en Colombia
+#
+# Política: rastreo abierto para buscadores y para agentes de IA (GEO/AEO).
+# Solo se cierran el panel de Ghost, las previsualizaciones de borradores,
+# las rutas de autor (redirigidas 301 a /katerinn-romero/) y la búsqueda interna.
+#
+# Ghost sirve este archivo desde la raíz del tema y sustituye al robots.txt
+# por defecto. Spec: kb/docs/sitemap-and-seo-master.md §7
+#
+# Recursos para modelos de lenguaje:
+#   https://visioncontable.co/llms.txt       Manifiesto resumido (Markdown)
+#   https://visioncontable.co/llms-full.txt  Base de conocimiento completa (Markdown)
+#   https://visioncontable.co/ai.txt         Términos de uso y atribución para IA
+#
+# Nota: un rastreador que encuentra un grupo con su nombre IGNORA el grupo "*".
+# Por eso cada grupo repite los mismos bloqueos.
+
+# --- Buscadores tradicionales ----------------------------------------------
+User-agent: Googlebot
+User-agent: Bingbot
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /author/
+Disallow: /search/
+Allow: /
+
+# --- Motores de respuesta y asistentes de IA ---------------------------------
+# Búsqueda y citación en respuestas generativas: OpenAI (ChatGPT Search),
+# Perplexity, Anthropic (Claude), Apple. Google-Extended y Applebot-Extended
+# son tokens de control de uso (Gemini / Apple Intelligence), no rastreadores
+# propios: declararlos aquí autoriza ese uso de forma explícita.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Google-Extended
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /author/
+Disallow: /search/
+Allow: /
+
+# --- Resto de agentes --------------------------------------------------------
+User-agent: *
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /author/
+Disallow: /search/
+Allow: /
+
+Sitemap: https://visioncontable.co/sitemap.xml

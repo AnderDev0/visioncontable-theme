@@ -1,0 +1,283 @@
+{{!< default}}
+{{!--
+  PAGE-POLITICA-DE-COOKIES.HBS — /politica-de-cookies/
+  Fuente del texto: kb/docs/cookies-policy.md
+  Schema: WebPage (NO Article ni BlogPosting)
+
+  El texto pasó del editor de Ghost a la plantilla, como en Privacidad y
+  Términos: garantiza que se publique exactamente el texto aprobado y permite
+  el índice lateral, las secciones numeradas y la tabla responsiva, que el
+  editor de Koenig no puede reproducir.
+  Los datos de contacto SÍ salen de los ajustes del tema (legal_email /
+  legal_phone) para no dejar datos legales incrustados en el código.
+
+  OJO al mantenerla: las cookies declaradas abajo son las que el sitio instala
+  de verdad (inventario en kb/docs/cookies-policy.md §2). Si se activa GTM, se
+  desactivan los miembros o se retira el gtag.js de la inyección de código,
+  esta tabla queda desactualizada y hay que corregirla.
+--}}
+
+<article class="legal-page">
+  <div class="container">
+
+    <header class="legal-page__header">
+      <h1 class="legal-page__title">Política de cookies</h1>
+      <p class="legal-page__intro">
+        Esta política explica qué cookies y tecnologías similares utiliza el sitio visioncontable.co, con qué finalidad, cuánto tiempo permanecen en tu dispositivo y cómo puedes revisarlas, bloquearlas o eliminarlas en cualquier momento.
+      </p>
+      <dl class="legal-dates">
+        <div class="legal-dates__pair">
+          <dt>Entrada en vigor</dt>
+          <dd><time datetime="2026-09-24">24 de septiembre de 2026</time></dd>
+        </div>
+        <div class="legal-dates__pair">
+          <dt>Última actualización</dt>
+          <dd><time datetime="2026-09-24">24 de septiembre de 2026</time></dd>
+        </div>
+      </dl>
+    </header>
+
+    <div class="legal-layout">
+
+      {{!-- Índice: mismo patrón que Privacidad y Términos. Fijo en escritorio,
+           plegable en móvil con legal-toc.js. --}}
+      <nav class="legal-toc" aria-labelledby="legal-toc-title">
+        <p class="legal-toc__title" id="legal-toc-title">Contenido</p>
+        {{!-- Solo móvil: legal-toc.js lo activa y pliega el índice para no empujar el contenido. --}}
+        <button type="button" class="legal-toc__toggle" aria-expanded="true" aria-controls="legal-toc-list">Contenido</button>
+        <ol class="legal-toc__list" id="legal-toc-list">
+          <li><a href="#que-son">Qué son las cookies</a></li>
+          <li><a href="#responsable">Quién es el responsable</a></li>
+          <li><a href="#cookies">Cookies que utiliza este sitio</a></li>
+          <li><a href="#externos">Servicios externos sin cookies</a></li>
+          <li><a href="#procesamiento">Dónde se procesan tus datos</a></li>
+          <li><a href="#control">Tu control sobre las cookies</a></li>
+          <li><a href="#navegadores">Cómo gestionarlas en cada navegador</a></li>
+          <li><a href="#desactivar">Qué ocurre si las desactivas</a></li>
+          <li><a href="#enlaces">Enlaces a otras plataformas</a></li>
+          <li><a href="#privacidad">Relación con la política de privacidad</a></li>
+          <li><a href="#cambios">Cambios en esta política</a></li>
+          <li><a href="#normativa">Marco normativo y contacto</a></li>
+        </ol>
+      </nav>
+
+      <div class="legal-body">
+
+        <section class="legal-section" id="que-son">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">1</span>Qué son las cookies</h2>
+          <p>Una cookie es un archivo pequeño que un sitio web guarda en tu navegador cuando lo visitas. Sirve, por ejemplo, para recordar que iniciaste sesión o para contar cuántas personas leyeron un artículo.</p>
+          <p>Junto a las cookies existen otras tecnologías con funciones parecidas: el almacenamiento local del navegador, los identificadores de dispositivo o los píxeles de seguimiento. Cuando esta política habla de cookies, se refiere a todas ellas.</p>
+          <p>Este sitio no utiliza almacenamiento local ni píxeles de seguimiento. Solo cookies, y únicamente las que se describen más abajo.</p>
+        </section>
+
+        <section class="legal-section" id="responsable">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">2</span>Quién es el responsable</h2>
+          <dl class="legal-data">
+            <div class="legal-data__row">
+              <dt>Nombre</dt>
+              <dd>Katerinn Romero</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Actividad profesional</dt>
+              <dd>Asesoría contable, tributaria y financiera</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Domicilio</dt>
+              <dd>Bogotá D. C., Colombia</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Sitio web</dt>
+              <dd>visioncontable.co</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Correo electrónico</dt>
+              <dd>
+                {{> legal-email}}
+              </dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Teléfono comercial</dt>
+              <dd>
+                {{> legal-phone}}
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="legal-section" id="cookies">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">3</span>Cookies que utiliza este sitio</h2>
+
+          <h3 class="legal-subtitle">Cookies propias</h3>
+          <p>Las instala directamente visioncontable.co.</p>
+          {{!-- data-label alimenta el ::before de cada celda en móvil, donde la
+               tabla se apila como fichas y desaparecen los encabezados. --}}
+          <div class="legal-table-wrap">
+            <table class="legal-table">
+              <caption class="legal-table__caption">Cookies propias del sitio</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Cookie</th>
+                  <th scope="col">Finalidad</th>
+                  <th scope="col">Duración</th>
+                  <th scope="col">Tipo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Cookie"><code>ghost-members-ssr</code></td>
+                  <td data-label="Finalidad">Mantiene la sesión iniciada de quien se registre para comentar. Solo se crea si decides registrarte.</td>
+                  <td data-label="Duración">6 meses</td>
+                  <td data-label="Tipo">Técnica</td>
+                </tr>
+                <tr>
+                  <td data-label="Cookie"><code>ghost-members-ssr.sig</code></td>
+                  <td data-label="Finalidad">Firma de seguridad de la cookie anterior: impide que se altere su contenido.</td>
+                  <td data-label="Duración">6 meses</td>
+                  <td data-label="Tipo">Técnica</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Si no te registras, la navegación por el sitio no crea ninguna cookie propia.</p>
+
+          <h3 class="legal-subtitle">Cookies de terceros</h3>
+          <p>Las instala Google LLC a través de Google Analytics.</p>
+          <div class="legal-table-wrap">
+            <table class="legal-table">
+              <caption class="legal-table__caption">Cookies de terceros</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Cookie</th>
+                  <th scope="col">Finalidad</th>
+                  <th scope="col">Duración</th>
+                  <th scope="col">Tipo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Cookie"><code>_ga</code></td>
+                  <td data-label="Finalidad">Asigna un identificador aleatorio al navegador para distinguir visitantes y saber cuántas personas llegan al sitio.</td>
+                  <td data-label="Duración">2 años</td>
+                  <td data-label="Tipo">Analítica</td>
+                </tr>
+                <tr>
+                  <td data-label="Cookie"><code>_ga_HECBD0XEDJ</code></td>
+                  <td data-label="Finalidad">Mantiene el estado de la sesión de medición de esta propiedad concreta de Google Analytics.</td>
+                  <td data-label="Duración">2 años</td>
+                  <td data-label="Tipo">Analítica</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Google Analytics indica cuántas personas visitan el sitio, qué páginas leen y desde dónde llegan. No indica quién eres: por esa vía no se recibe tu nombre, tu correo ni tu teléfono, y no se utiliza para publicidad ni para elaborar perfiles comerciales.</p>
+        </section>
+
+        <section class="legal-section" id="externos">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">4</span>Servicios externos sin cookies</h2>
+          <p><strong>Google Fonts.</strong> Las tipografías del sitio, Newsreader e Inter, se cargan desde los servidores de Google. No instalan cookies, pero para entregar el archivo Google recibe tu dirección IP y los datos básicos de tu navegador.</p>
+          <p><strong>Google Tag Manager.</strong> El sitio tiene preparada una integración que hoy está apagada. Si se activa, esta política se actualizará antes de que empiece a funcionar.</p>
+          <p><strong>Eventos de clic.</strong> El sitio registra qué botones se pulsan, por ejemplo el de WhatsApp, para saber qué contenidos resultan útiles. Mientras Tag Manager esté apagado esos eventos permanecen en la memoria de la pestaña, no se envían a ningún servidor y desaparecen al cerrarla.</p>
+        </section>
+
+        <section class="legal-section" id="procesamiento">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">5</span>Dónde se procesan tus datos</h2>
+          <p>Google LLC procesa la información de Analytics y de Fonts en servidores ubicados fuera de Colombia, principalmente en Estados Unidos. Esas transferencias se rigen por las condiciones contractuales y las políticas de privacidad del propio proveedor, disponibles en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a> (abre en nueva pestaña).</p>
+        </section>
+
+        <section class="legal-section" id="control">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">6</span>Tu control sobre las cookies</h2>
+          <p>Las cookies técnicas son necesarias para que funcione el registro y no pueden desactivarse sin impedir esa función. Las cookies analíticas sí puedes rechazarlas en cualquier momento, por tres vías:</p>
+          <ul class="legal-list">
+            <li><strong>Desde tu navegador:</strong> todos permiten bloquear o borrar cookies, en general y sitio por sitio. Las instrucciones están en el apartado siguiente.</li>
+            <li><strong>Con el complemento oficial de Google:</strong> la extensión de inhabilitación, disponible en <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">tools.google.com/dlpage/gaoptout</a> (abre en nueva pestaña), desactiva Google Analytics en todos los sitios que visites.</li>
+            <li><strong>Con la navegación privada:</strong> las cookies se eliminan al cerrar la ventana.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section" id="navegadores">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">7</span>Cómo gestionarlas en cada navegador</h2>
+          <ul class="legal-list">
+            <li><strong>Google Chrome:</strong> Configuración → Privacidad y seguridad → Cookies y otros datos de sitios.</li>
+            <li><strong>Mozilla Firefox:</strong> Ajustes → Privacidad y seguridad → Cookies y datos del sitio.</li>
+            <li><strong>Safari:</strong> Preferencias → Privacidad → Gestionar datos de sitios web.</li>
+            <li><strong>Microsoft Edge:</strong> Configuración → Cookies y permisos del sitio.</li>
+            <li><strong>Navegadores móviles:</strong> normalmente en Ajustes → Privacidad.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section" id="desactivar">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">8</span>Qué ocurre si las desactivas</h2>
+          <p>Puedes bloquear todas las cookies y seguir leyendo el sitio con normalidad: los artículos, las páginas de servicios y el botón de WhatsApp funcionan igual. Lo único que dejará de estar disponible es el registro para comentar, que necesita la cookie de sesión.</p>
+        </section>
+
+        <section class="legal-section" id="enlaces">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">9</span>Enlaces a otras plataformas</h2>
+          <p>El sitio enlaza a WhatsApp, Facebook e Instagram. Esos enlaces no instalan cookies desde visioncontable.co, pero en cuanto abres la plataforma se aplican sus propias políticas de cookies y privacidad, sobre las que Katerinn Romero no tiene control.</p>
+        </section>
+
+        <section class="legal-section" id="privacidad">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">10</span>Relación con la política de privacidad</h2>
+          <p>Cuando una cookie permite reconocer un navegador de forma diferenciada, la información asociada se considera un dato personal y se trata conforme a la <a href="{{@site.url}}/politica-de-privacidad/">Política de privacidad</a>, donde se explican los derechos del titular y el procedimiento para ejercerlos.</p>
+        </section>
+
+        <section class="legal-section" id="cambios">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">11</span>Cambios en esta política</h2>
+          <p>Esta política se actualizará cuando cambien las herramientas del sitio, la normativa aplicable o las finalidades del tratamiento. La versión vigente estará siempre en esta página, con su fecha de actualización visible en la cabecera.</p>
+        </section>
+
+        <section class="legal-section" id="normativa">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">12</span>Marco normativo y contacto</h2>
+          <p>Esta política se rige por la Ley 1581 de 2012, el Decreto 1074 de 2015 y las demás normas colombianas aplicables al tratamiento de datos personales.</p>
+          <div class="legal-callout">
+            <p class="legal-callout__lead">Para cualquier consulta sobre el uso de cookies puedes escribir a:</p>
+            <dl class="legal-data legal-data--tight">
+              <div class="legal-data__row">
+                <dt>Correo</dt>
+                <dd>
+                  {{> legal-email subject="Consulta%20sobre%20cookies"}}
+                </dd>
+              </div>
+              <div class="legal-data__row">
+                <dt>Asunto</dt>
+                <dd>Consulta sobre cookies</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</article>
+
+{{!-- JSON-LD: WebPage + BreadcrumbList.
+     La miga visual se retiró por diseño, pero los documentos legales la
+     exigen ("Inicio > ..."), así que la ruta se conserva aquí para Google. --}}
+{{!-- title y url del JSON-LD vienen de la página de Ghost ("page"). --}}
+{{#page}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{url absolute="true"}}#webpage",
+      "url": "{{url absolute="true"}}",
+      "name": {{json title}},
+      "isPartOf": { "@id": "{{@site.url}}/#website" },
+      "breadcrumb": { "@id": "{{url absolute="true"}}#breadcrumb" },
+      "inLanguage": "es-CO"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{url absolute="true"}}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "{{@site.url}}/" },
+        { "@type": "ListItem", "position": 2, "name": {{json title}} }
+      ]
+    }
+  ]
+}
+</script>
+{{/page}}

@@ -1,0 +1,9 @@
+{{!--
+  LEGAL-PHONE — Teléfono comercial de las páginas legales
+
+  Sale del panel de Ghost (Diseño → Custom → legal_phone) y cae al número
+  oficial (el mismo de WhatsApp) cuando el campo está vacío.
+
+  Uso: {{> legal-phone}}
+--}}
+{{#if @custom.legal_phone}}{{@custom.legal_phone}}{{else}}+57 323 832 5800{{/if}}

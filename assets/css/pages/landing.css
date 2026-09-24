@@ -1,0 +1,1057 @@
+/* ==========================================================================
+   LANDING — CSS compartido entre las 3 páginas de servicio
+   ========================================================================== */
+
+/* --- CTA de servicio — oculto globalmente --- */
+
+.service-cta {
+  display: none;
+}
+
+/* --- Hero de landing --- */
+
+.landing-hero {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid rgba(78, 110, 106, 0.1);
+}
+
+/* --- Hero con imagen de fondo (opt-in con .landing-hero--media) ---
+   La imagen llega por la variable --landing-hero-image desde la plantilla, para
+   poder resolver la ruta con el helper {{asset}} de Ghost.
+   El velo va como primera capa de background-image (se pinta encima de la foto)
+   y es opaco sobre la mitad izquierda: el H1 y el párrafo se leen sobre fondo
+   plano —no sobre la foto— y así se cumple el contraste 4.5:1 de WCAG. */
+
+/* Dos fotos en fundido cruzado. Van como <img> apilados y no como
+   background-image porque los fondos CSS no se pueden fundir entre sí: la
+   propiedad no interpola. Además así se controla la carga de cada una. */
+.landing-hero--media {
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.landing-hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  animation: hero-photo-cycle 14s linear infinite both;
+}
+
+/* Retardo negativo: el ciclo arranca ya en curso, si no habría un instante
+   inicial sin ninguna foto visible. */
+.landing-hero__photo:nth-child(2) {
+  animation-delay: -7s;
+}
+
+@keyframes hero-photo-cycle {
+  0%, 42%  { opacity: 1; }
+  50%, 92% { opacity: 0; }
+  100%     { opacity: 1; }
+}
+
+/* El velo va sobre las fotos y bajo el texto: opaco en la mitad izquierda para
+   garantizar el contraste 4.5:1 del H1 y transparentándose hacia la derecha. */
+/* El velo se mantiene opaco hasta donde llega el texto y a partir de ahí cae
+   rápido, para que la franja derecha de la foto se vea de verdad. Antes se
+   quedaba en 0.34 hasta el borde y la imagen se leía lavada.
+   Los cortes van por ancho: el texto ocupa un porcentaje MAYOR de la pantalla
+   en un portátil que en un monitor grande, así que un solo degradado o deja la
+   foto tapada en grande o rompe el contraste en chico. */
+.landing-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    100deg,
+    var(--color-surface) 0%,
+    var(--color-surface) 46%,
+    rgba(255, 255, 255, 0.90) 60%,
+    rgba(255, 255, 255, 0.34) 80%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+/* Monitores anchos: el contenido queda centrado y sobra espacio a los lados,
+   así que la foto puede tomarse casi la mitad derecha. */
+@media (min-width: 1500px) {
+  .landing-hero__media::after {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-surface) 0%,
+      var(--color-surface) 38%,
+      rgba(255, 255, 255, 0.88) 50%,
+      rgba(255, 255, 255, 0.28) 72%,
+      rgba(255, 255, 255, 0.02) 92%
+    );
+  }
+}
+
+.landing-hero--media > .container {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-hero__photo {
+    animation: none !important;
+    opacity: 0;
+  }
+
+  .landing-hero__photo:first-child {
+    opacity: 1;
+  }
+}
+
+.landing-hero__inner {
+  max-width: var(--container-narrow);
+  position: relative;
+}
+
+/* Con foto detrás, el texto se acota a una columna más angosta. No es estética:
+   es lo que permite aclarar el velo sin que el H1 invada la zona donde la foto
+   ya se ve, que es donde se perdería el contraste.
+   El protagonismo de la imagen se gana en horizontal, NO subiendo la altura del
+   hero: alargarlo empuja el contenido hacia abajo y obliga a más scroll para
+   llegar a lo que convierte. */
+.landing-hero--media .landing-hero__inner {
+  max-width: 38rem;
+}
+
+/* Móvil y tablet: la foto queda detrás del texto, así que el velo pasa a ser
+   casi opaco y vertical. La legibilidad manda sobre el efecto. */
+@media (max-width: 1023px) {
+  /* Aquí la foto queda detrás del texto, así que el velo pasa a ser casi
+     opaco y vertical. La legibilidad manda sobre el efecto. */
+  /* Se mantiene opaco arriba, donde va el texto, y se abre hacia abajo: ahí
+     sólo queda el botón, que es sólido y no depende del velo. */
+  .landing-hero__media::after {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(255, 255, 255, 0.90) 48%,
+      rgba(255, 255, 255, 0.58) 100%
+    );
+  }
+
+  .landing-hero--media .landing-hero__inner {
+    max-width: none;
+  }
+
+  .landing-hero__photo {
+    object-position: center 35%;
+  }
+}
+
+/* Móvil: el velo casi opaco dejaba la foto imperceptible. Se mantiene alto
+   donde van el H1 y el párrafo (contraste) y se abre antes, en la franja del
+   botón, que es sólido. Menos padding vertical sube el botón al primer
+   pantallazo sin tocar la escala tipográfica. */
+@media (max-width: 767px) {
+  .landing-hero--media.section--lg {
+    padding-block: var(--space-12) var(--space-16);
+  }
+
+  .landing-hero__media::after {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.90) 0%,
+      rgba(255, 255, 255, 0.88) 58%,
+      rgba(255, 255, 255, 0.40) 86%,
+      rgba(255, 255, 255, 0.22) 100%
+    );
+  }
+}
+
+.landing-hero__title {
+  font-size: clamp(var(--text-h1-mobile), 4vw, var(--text-h1-desktop));
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-6);
+}
+
+.landing-hero__subtitle {
+  margin-bottom: var(--space-8);
+  max-width: 640px;
+}
+
+/* --- Intro de landing --- */
+
+.landing-intro__title {
+  text-align: center;
+  text-wrap: balance;
+  margin-bottom: var(--space-5);
+}
+
+.landing-intro__text {
+  font-size: var(--text-highlight-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-relaxed);
+  text-align: center;
+}
+
+/* ==========================================================================
+   ÍNDICE DE SERVICIOS — agrupado por intención del cliente
+   Sustituye la rejilla de 7 tarjetas iguales por 3 columnas temáticas. Cada
+   columna es un riel vertical: filete gris de base y un segmento terracota que
+   se llena a medida que baja el scroll, con las filas apareciendo por barrido
+   lateral. El vocabulario de movimiento es distinto al del resto del sitio
+   (allí se usa fundido + subida) para que esta parte se sienta propia.
+   ========================================================================== */
+
+.service-index {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(var(--space-8), 4vw, var(--space-12));
+  align-items: start;
+}
+
+.service-index__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-action-web);
+}
+
+/* Punto terracota de marca como marca de grupo (brand-identity §7). */
+.service-index__eyebrow::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-accent-warm);
+}
+
+.service-index__list {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 var(--space-5);
+  list-style: none;
+  border-left: 1px solid rgba(107, 124, 133, 0.22);
+}
+
+/* Segmento de color que recorre el riel. Vive sobre el filete base. */
+.service-index__list::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--color-accent-warm);
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+
+.service-index__item + .service-index__item {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(107, 124, 133, 0.16);
+}
+
+.service-index__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+  text-wrap: balance;
+}
+
+.service-index__desc {
+  font-size: var(--text-body-mobile);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+  margin: 0;
+}
+
+/* --- Capa nativa atada al scroll ---
+   Sin JS ni librerías: el progreso lo marca la posición real en pantalla, así
+   que al subir se deshace igual. Donde no haya soporte, el revelado por
+   IntersectionObserver (data-reveal) sigue haciendo su trabajo. */
+@supports (animation-timeline: view()) {
+  [data-reveal-ready] .service-index[data-reveal] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .service-index__list::before {
+    animation: service-rail-fill linear both;
+    animation-timeline: view();
+    animation-range: cover 14% cover 52%;
+  }
+
+  .service-index__item {
+    animation: service-item-wipe linear both;
+    animation-timeline: view();
+  }
+
+  .service-index__item:nth-child(1) { animation-range: cover 16% cover 34%; }
+  .service-index__item:nth-child(2) { animation-range: cover 24% cover 42%; }
+  .service-index__item:nth-child(3) { animation-range: cover 32% cover 50%; }
+}
+
+@keyframes service-rail-fill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* Barrido lateral: la fila se descubre de izquierda a derecha. */
+@keyframes service-item-wipe {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  to   { opacity: 1; clip-path: inset(0); }
+}
+
+/* Con movimiento reducido todo queda visible y quieto. Hace falta declararlo:
+   con animation-timeline el avance lo marca el scroll, así que neutralizar la
+   duración no basta. */
+@media (prefers-reduced-motion: reduce) {
+  .service-index__item,
+  .service-index__list::before {
+    animation: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: scaleY(1) !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .service-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 767px) {
+  .service-index {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   INCLUIDOS — Checklist del plan mensual, agrupado por ritmo
+   A diferencia del índice de servicios especializados (donde el cliente ELIGE
+   uno y por eso se agrupa por intención), aquí contrata un único plan: el
+   bloque no debe ayudar a decidir sino a percibir todo lo que recibe.
+   De ahí la palomita por línea y el fraccionar 8 ítems en 3 grupos.
+   ========================================================================== */
+
+.includes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(var(--space-6), 3vw, var(--space-10));
+  align-items: start;
+}
+
+/* Etiqueta de ritmo: dice CUÁNDO ocurre, que es la información que ordena
+   el grupo. Se apoya en el filete para no competir con los títulos. */
+.includes__rhythm {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-action-web);
+}
+
+.includes__rhythm::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: rgba(47, 93, 90, 0.22);
+}
+
+.includes__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.includes__item {
+  position: relative;
+  padding-left: calc(22px + var(--space-4));
+}
+
+/* Palomita en verde de marca: comunica "esto ya está incluido". Se dibuja en
+   CSS (rotando un cuadro sin dos lados) para no cargar un SVG por ítem. */
+.includes__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(47, 93, 90, 0.10);
+}
+
+.includes__item::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: calc(0.15em + 7px);
+  width: 8px;
+  height: 4px;
+  border-left: 1.5px solid var(--color-action-web);
+  border-bottom: 1.5px solid var(--color-action-web);
+  transform: rotate(-45deg);
+}
+
+.includes__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+}
+
+.includes__desc {
+  font-size: var(--text-body-mobile);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+  margin: 0;
+}
+
+@media (max-width: 1023px) {
+  .includes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .includes {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* --- Tarjetas de servicio (no clicables en fase 1) --- */
+
+.landing-service-item {
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-base);
+  border: 1px solid rgba(78, 110, 106, 0.12);
+  border-top: 3px solid var(--color-accent-warm);
+}
+
+.landing-service-item__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-3);
+}
+
+.landing-service-item__desc {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-normal);
+}
+
+/* --- Grid de servicios de landing --- */
+
+.landing-services__grid {
+  gap: var(--space-5);
+}
+
+/* --- Propuesta de valor de landing --- */
+
+.landing-value__grid {
+  gap: var(--space-5);
+}
+
+.landing-value__item {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-base);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+/* Filete de acento que se traza al pasar el mouse: da la respuesta sin recurrir
+   al levante con sombra fuerte, que es el gesto de una tarjeta clicable.
+   Estas NO son clicables — por eso tampoco llevan cursor: pointer. */
+.landing-value__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-accent-warm);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--transition-slow);
+}
+
+.landing-value__item:hover::before {
+  transform: scaleX(1);
+}
+
+.landing-value__item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover-warm);
+}
+
+.landing-value__item:hover .landing-value__icon {
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* El icono hereda el color por currentColor, así que basta cambiar `color`
+   para recolorearlo según el contexto (brand-identity §6). */
+.landing-value__icon {
+  display: flex;
+  margin-bottom: var(--space-4);
+  color: var(--color-accent-warm);
+  transition: transform var(--transition-base);
+}
+
+.landing-value__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Título de tarjeta, no encabezado de documento: usa el token --text-title-*
+   (brand-identity §5 los define justo para esto, fuera de la tabla H1–H4).
+   Antes tomaba --text-h3-desktop (34px) contra un párrafo de 18px, así que el
+   subtítulo pesaba casi el doble que su propio contenido. Además, al estar
+   fuera de media query, ese valor también se aplicaba en móvil, donde la
+   escala base del h3 es de 26px. */
+.landing-value__item h3 {
+  font-size: var(--text-title-lg);
+  font-family: var(--font-headings);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-3);
+}
+
+.landing-value__item p {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+}
+
+/* Móvil: en una columna el título de tarjeta (25px) quedaba por encima del de
+   las demás tarjetas equivalentes (20px). Se unifica la escala. */
+@media (max-width: 767px) {
+  .landing-value__item h3 {
+    font-size: var(--text-title-md);
+  }
+}
+
+/* --- Proceso de landing --- */
+
+/* :not(.roadmap) porque landing.css se importa DESPUÉS de pages/home.css: sin
+   esto, con la misma especificidad, esta rejilla pisaría al grid del roadmap. */
+.landing-process__steps:not(.roadmap) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-5);
+}
+
+/* --- Tabla de responsabilidades (Pymes) --- */
+
+.landing-responsibilities__table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--border-radius-base);
+  border: 1px solid rgba(78, 110, 106, 0.15);
+}
+
+.landing-responsibilities__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+.landing-responsibilities__table th {
+  background-color: var(--color-action-web);
+  color: var(--color-surface);
+  padding: var(--space-4) var(--space-6);
+  text-align: left;
+  font-size: var(--text-table);
+  font-weight: var(--font-weight-semibold);
+}
+
+.landing-responsibilities__table td {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-table);
+  color: var(--color-text-main);
+  border-bottom: 1px solid rgba(78, 110, 106, 0.1);
+  vertical-align: top;
+}
+
+.landing-responsibilities__table tr:last-child td {
+  border-bottom: none;
+}
+
+.landing-responsibilities__table tr:nth-child(even) td {
+  background-color: var(--color-bg-light);
+}
+
+/* Móvil: con min-width 500px la columna "Tu empresa" quedaba cortada y había
+   que desplazar la tabla de lado. Cada fila pasa a ser un bloque apilado con la
+   etiqueta de su columna encima. El encabezado se oculta sólo visualmente y el
+   caption sr-only se mantiene para lectores de pantalla. */
+@media (max-width: 767px) {
+  .landing-responsibilities__table-wrapper {
+    overflow-x: visible;
+  }
+
+  .landing-responsibilities__table,
+  .landing-responsibilities__table tbody,
+  .landing-responsibilities__table tr,
+  .landing-responsibilities__table td {
+    display: block;
+    width: 100%;
+  }
+
+  .landing-responsibilities__table {
+    min-width: 0;
+  }
+
+  .landing-responsibilities__table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .landing-responsibilities__table tr {
+    padding: var(--space-5);
+    border-bottom: 1px solid rgba(78, 110, 106, 0.12);
+  }
+
+  .landing-responsibilities__table tr:last-child {
+    border-bottom: none;
+  }
+
+  .landing-responsibilities__table tr:nth-child(even) {
+    background-color: var(--color-bg-light);
+  }
+
+  .landing-responsibilities__table td,
+  .landing-responsibilities__table tr:nth-child(even) td {
+    padding: 0;
+    border-bottom: none;
+    background-color: transparent;
+    font-size: var(--text-body-mobile);
+    line-height: var(--leading-normal);
+  }
+
+  .landing-responsibilities__table td + td {
+    margin-top: var(--space-4);
+  }
+
+  .landing-responsibilities__table td::before {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--text-aux-mobile);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-action-web);
+  }
+
+  .landing-responsibilities__table td:nth-child(1)::before { content: 'Katerinn'; }
+  .landing-responsibilities__table td:nth-child(2)::before { content: 'Tu empresa'; }
+}
+
+/* --- Checklist de onboarding (Emprendedores) --- */
+
+.landing-checklist__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.landing-checklist__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-main);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-sm);
+}
+
+.landing-checklist__icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* --- Límites del servicio (Emprendedores) --- */
+
+.landing-scope__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.landing-scope__item {
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--border-radius-base);
+}
+
+.landing-scope__item--excluded {
+  background-color: var(--color-bg-light);
+  border-left: 3px solid var(--color-structural-gray);
+}
+
+/* Título de tarjeta, no encabezado de documento: --text-h3-desktop son 34px
+   contra un párrafo de 18px, o sea el subtítulo pesaba casi el doble que su
+   propio contenido. brand-identity §5 define --text-title-* justo para esto. */
+.landing-scope__item h3 {
+  font-size: var(--text-title-lg);
+  font-family: var(--font-headings);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-2);
+}
+
+/* --- Nota de alcance (Emprendedores) ---
+   Un solo contenedor con borde lateral institucional, como pide el doc §3.5,
+   en vez de tarjetas con encabezado propio: el límite se lee como una
+   aclaración honesta y no como una lista de rechazos. */
+
+.scope-note {
+  padding: var(--space-6) var(--space-8);
+  background-color: var(--color-bg-light);
+  border-left: 3px solid var(--color-primary-brand);
+  border-radius: 0 var(--border-radius-base) var(--border-radius-base) 0;
+}
+
+.scope-note__label {
+  font-family: var(--font-body);
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-action-web);
+  margin-bottom: var(--space-4);
+}
+
+.scope-note__list {
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.scope-note__list li {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-normal);
+}
+
+/* Guion corto en vez de equis: marca el límite sin leerse como rechazo. */
+.scope-note__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 10px;
+  height: 1px;
+  background-color: var(--color-structural-gray);
+}
+
+.scope-note__route {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+/* --- Checklist (info inicial recomendada) ---
+   La palomita se dibuja en CSS: antes se repetía el mismo SVG en cada ítem,
+   con el color escrito a mano, así que no se podía recolorear por CSS como
+   pide brand-identity §6. */
+
+.checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-8);
+}
+
+.checklist__item {
+  position: relative;
+  padding-left: calc(22px + var(--space-4));
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-main);
+  line-height: var(--leading-normal);
+}
+
+.checklist__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(47, 93, 90, 0.10);
+}
+
+.checklist__item::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: calc(0.1em + 7px);
+  width: 8px;
+  height: 4px;
+  border-left: 1.5px solid var(--color-action-web);
+  border-bottom: 1.5px solid var(--color-action-web);
+  transform: rotate(-45deg);
+}
+
+/* --- Señales de necesidad ---
+   Viñeta de punto terracota (brand-identity §7): son situaciones en las que el
+   usuario se reconoce, no cosas que deba preparar — de ahí que no lleve
+   palomita, que significaría otra cosa. */
+
+.signals {
+  margin: 0 0 var(--space-8);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-10);
+}
+
+.signals__item {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-main);
+  line-height: var(--leading-normal);
+}
+
+.signals__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-accent-warm);
+}
+
+/* El párrafo de cierre sale del cuerpo corrido y se compone como cita
+   destacada: es el criterio que ordena toda la sección, no una nota al pie.
+   Sigue siendo <p> y no <blockquote> a propósito — no cita a nadie, es la voz
+   de la marca, y marcarlo como cita ajena engañaría a un lector de pantalla.
+   El protagonismo lo dan la serif, el aire y el filete; nada de recuadros. */
+.signals__closing {
+  position: relative;
+  max-width: 44rem;
+  margin: var(--space-12) auto 0;
+  padding-top: var(--space-10);
+  text-align: center;
+  font-family: var(--font-headings);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  line-height: var(--leading-snug);
+  color: var(--color-text-main);
+  text-wrap: balance;
+}
+
+/* Filete con punto terracota, el mismo motivo del hero pero simétrico: los dos
+   segmentos se desvanecen hacia afuera y el punto queda en el centro. */
+.signals__closing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 124px;
+  height: 1px;
+  background-image:
+    linear-gradient(to right, rgba(107, 124, 133, 0), rgba(107, 124, 133, 0.55)),
+    linear-gradient(to right, rgba(107, 124, 133, 0.55), rgba(107, 124, 133, 0));
+  background-size: 48px 1px, 48px 1px;
+  background-position: 0 50%, 76px 50%;
+  background-repeat: no-repeat;
+}
+
+.signals__closing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-accent-warm);
+}
+
+/* --- Agenda de la sesión (temas iniciales) ---
+   Los 8 temas como el temario de la videollamada. La numeración es discreta a
+   propósito: sugiere un orden de revisión sin volverlo obligatorio, que es lo
+   que pide el doc §3.3 al exigir expresiones condicionales. */
+
+/* Flujo por COLUMNAS (1-4 izquierda, 5-8 derecha), no por filas: así se lee
+   cada columna de corrido y los ítems 1 y 5 encabezan cada una. */
+.agenda {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
+  column-gap: clamp(var(--space-8), 5vw, var(--space-16));
+}
+
+.agenda__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: baseline;
+  padding-block: var(--space-5);
+  border-top: 1px solid rgba(107, 124, 133, 0.18);
+}
+
+/* En dos columnas, los ítems 1 y 5 abren cada columna: sin filete arriba. */
+.agenda__item:nth-child(1),
+.agenda__item:nth-child(5) {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.agenda__num {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent-warm);
+  line-height: 1;
+}
+
+.agenda__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+}
+
+.agenda__desc {
+  font-size: var(--text-body-mobile);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .agenda,
+  .checklist,
+  .signals {
+    grid-template-columns: 1fr;
+  }
+
+  .signals__closing {
+    margin-top: var(--space-10);
+    padding-top: var(--space-8);
+  }
+
+  .agenda {
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+
+  /* En una sola columna sólo el primero abre la lista. */
+  .agenda__item:nth-child(5) {
+    border-top: 1px solid rgba(107, 124, 133, 0.18);
+    padding-top: var(--space-5);
+  }
+
+  .scope-note {
+    padding: var(--space-5) var(--space-6);
+  }
+}
+
+.landing-scope__item p {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+}
+
+/* --- CTA de cierre del servicio --- */
+
+.service-cta__inner {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+  padding: var(--space-12);
+  background-color: var(--color-action-web);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-surface);
+}
+
+.service-cta__title {
+  font-size: var(--text-h2-desktop);
+  color: var(--color-surface);
+  margin-bottom: var(--space-4);
+}
+
+.service-cta__desc {
+  color: rgba(255,255,255,.85);
+  margin-bottom: var(--space-8);
+  font-size: var(--text-highlight-desktop);
+}
+
+.service-cta__inner .btn--primary {
+  background-color: var(--color-surface);
+  color: var(--color-action-web);
+  border-color: var(--color-surface);
+}
+
+.service-cta__inner .btn--primary:hover {
+  background-color: var(--color-bg-light);
+}
+
+/* --- Cross-links --- */
+
+.landing-crosslinks .grid-2 {
+  gap: var(--space-6);
+}
+
+/* --- FAQs en landing --- */
+
+.landing-faqs {
+  background-color: var(--color-surface);
+}

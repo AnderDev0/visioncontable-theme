@@ -1,0 +1,100 @@
+{{!< default}}
+{{!--
+  TAG.HBS — Archivo de categoría (/blog/{tag-slug}/)
+  Spec: kb/docs/category-*.md
+  REGLA CRÍTICA: Inyectar noindex si hay menos de 3 posts publicados
+  4 categorías aprobadas:
+    - /blog/contabilidad-pymes/
+    - /blog/impuestos-obligaciones/
+    - /blog/emprendimiento/
+    - /blog/finanzas-negocios/
+--}}
+
+{{!-- Noindex condicional para categorías con menos de 3 artículos.
+     Va al <head> por el bloque "head" de default.hbs: un meta robots dentro
+     del <body> es HTML inválido y los rastreadores no están obligados a leerlo. --}}
+{{#contentFor "head"}}
+  {{#if pagination}}
+    {{#match pagination.total "<" 3}}
+      <meta name="robots" content="noindex, follow">
+    {{/match}}
+  {{/if}}
+{{/contentFor}}
+
+{{!-- La etiqueta llega dentro de "tag" (name, slug, description); el listado
+     "posts" y "pagination" siguen en la raíz, por eso el grid queda fuera
+     de este bloque. --}}
+{{#tag}}
+{{!-- Breadcrumbs --}}
+<div class="container">
+  {{> breadcrumbs}}
+</div>
+
+{{!-- Header de categoría --}}
+<header class="tag-header section--sm">
+  <div class="container container--narrow">
+    <h1 class="tag-header__title">{{name}}</h1>
+    {{#if description}}
+      <p class="tag-header__desc text-lead">{{description}}</p>
+    {{else}}
+      {{!-- Descripciones por defecto: texto introductorio de kb/docs/category-*.md §4.1 --}}
+      {{#match slug "=" "contabilidad-pymes"}}
+        <p class="tag-header__desc text-lead">
+          Encuentra orientaciones prácticas para organizar la información contable de tu empresa, mantener tus registros al día y comprender mejor los datos que necesitas para tomar decisiones.
+        </p>
+      {{/match}}
+      {{#match slug "=" "impuestos-obligaciones"}}
+        <p class="tag-header__desc text-lead">
+          Consulta contenidos prácticos para comprender tus responsabilidades tributarias, anticipar fechas importantes y cumplir tus obligaciones con mayor claridad.
+        </p>
+      {{/match}}
+      {{#match slug "=" "emprendimiento"}}
+        <p class="tag-header__desc text-lead">
+          Encuentra orientaciones para organizar los aspectos contables y tributarios de tu emprendimiento, comprender tus obligaciones y tomar decisiones con mayor claridad desde el inicio.
+        </p>
+      {{/match}}
+      {{#match slug "=" "finanzas-negocios"}}
+        <p class="tag-header__desc text-lead">
+          Encuentra contenidos prácticos para comprender la situación financiera de tu negocio, organizar sus recursos y tomar decisiones con información más clara.
+        </p>
+      {{/match}}
+    {{/if}}
+  </div>
+</header>
+{{/tag}}
+
+{{!-- Grid de artículos de la categoría --}}
+<section class="tag-grid section">
+  <div class="container">
+    {{#if posts}}
+      <div class="grid-3 tag-grid__posts">
+        {{#foreach posts}}
+          {{> post-card}}
+        {{/foreach}}
+      </div>
+      {{!-- Paginación tradicional --}}
+      {{> pagination}}
+    {{else}}
+      <div class="tag-empty">
+        <p class="tag-empty__text">Próximamente publicaremos artículos en esta categoría.</p>
+        <a href="/blog/" class="btn btn--outline">Ver todos los artículos</a>
+      </div>
+    {{/if}}
+  </div>
+</section>
+
+{{!-- CTA al final (sin invadir el grid) --}}
+{{#if posts}}
+  <div class="section--bg-warm section--sm">
+    <div class="container">
+      <div class="blog-cta">
+        <p class="blog-cta__text">¿Tienes preguntas sobre este tema? Consúltame directamente.</p>
+        {{> whatsapp-link
+            message="Hola%2C%20Katerinn.%20Estuve%20revisando%20el%20blog%20y%20quiero%20recibir%20orientaci%C3%B3n%20sobre..."
+            class="btn btn--primary"
+            text="Hablemos por WhatsApp"
+            gtm="blog_whatsapp_click"}}
+      </div>
+    </div>
+  </div>
+{{/if}}

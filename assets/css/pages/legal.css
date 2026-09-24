@@ -1,0 +1,492 @@
+/* ==========================================================================
+   LEGAL — Documentos extensos (política de privacidad, términos)
+   Prioridad de diseño: que un documento de 12 apartados se pueda recorrer sin
+   scroll a ciegas. De ahí el índice fijo y la numeración visible de cada
+   apartado, que dan ubicación permanente dentro del texto.
+   ========================================================================== */
+
+.legal-page__header {
+  max-width: 46rem;
+}
+
+.legal-page__intro {
+  font-size: var(--text-highlight-desktop);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-6);
+}
+
+/* --- Fechas de vigencia --- */
+
+.legal-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin: 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(107, 124, 133, 0.20);
+}
+
+.legal-dates__pair dt {
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-action-web);
+  margin-bottom: var(--space-1);
+}
+
+.legal-dates__pair dd {
+  margin: 0;
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-main);
+}
+
+/* --- Layout con índice lateral --- */
+
+.legal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: clamp(var(--space-8), 5vw, var(--space-16));
+  align-items: start;
+  margin-top: var(--space-12);
+}
+
+.legal-toc {
+  position: sticky;
+  /* Se descuenta el header pegajoso para que el índice no quede debajo de él. */
+  top: calc(var(--header-height) + var(--space-6));
+  padding: var(--space-6);
+  background-color: var(--color-bg-light);
+  border-radius: var(--border-radius-base);
+}
+
+.legal-toc__title {
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-action-web);
+  margin-bottom: var(--space-4);
+}
+
+.legal-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.legal-toc__list li {
+  counter-increment: toc;
+}
+
+.legal-toc__list a {
+  display: flex;
+  gap: var(--space-3);
+  font-size: var(--text-aux-desktop);
+  line-height: var(--leading-snug);
+  color: var(--color-text-sub);
+  text-decoration: none;
+  padding: var(--space-1) 0;
+  transition: color var(--transition-base);
+}
+
+.legal-toc__list a::before {
+  content: counter(toc);
+  flex: none;
+  width: 1.5em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent-warm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.legal-toc__list a:hover {
+  color: var(--color-action-web);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- Apartados --- */
+
+.legal-section {
+  /* Compensa el header pegajoso al saltar desde el índice: sin esto el título
+     del apartado queda tapado por la barra superior. */
+  scroll-margin-top: calc(var(--header-height) + var(--space-6));
+}
+
+.legal-section + .legal-section {
+  margin-top: var(--space-10);
+  padding-top: var(--space-10);
+  border-top: 1px solid rgba(107, 124, 133, 0.16);
+}
+
+.legal-section__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-size: var(--text-title-lg);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-5);
+}
+
+.legal-section__num {
+  flex: none;
+  font-family: var(--font-body);
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent-warm);
+}
+
+.legal-section p {
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-sub);
+  max-width: 44rem;
+}
+
+.legal-section p + p {
+  margin-top: var(--space-4);
+}
+
+.legal-list {
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+  max-width: 44rem;
+}
+
+.legal-list li {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+}
+
+.legal-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent-warm);
+}
+
+/* --- Bloques de datos (responsable, contacto) --- */
+
+.legal-data {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+  max-width: 40rem;
+}
+
+.legal-data__row {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(107, 124, 133, 0.14);
+}
+
+.legal-data--tight .legal-data__row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.legal-data dt {
+  font-size: var(--text-body-desktop);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+}
+
+.legal-data dd {
+  margin: 0;
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+}
+
+/* Marca visible mientras el dato no se haya cargado en los ajustes del tema:
+   es preferible que se note a que quede un dato legal inventado. */
+.legal-pending {
+  font-style: italic;
+  color: var(--color-structural-gray);
+}
+
+/* --- Bloque destacado (consultas y reclamos) --- */
+
+.legal-callout {
+  padding: var(--space-6);
+  margin-bottom: var(--space-5);
+  background-color: var(--color-bg-warm);
+  border-left: 3px solid var(--color-action-web);
+  border-radius: 0 var(--border-radius-base) var(--border-radius-base) 0;
+}
+
+.legal-callout__lead {
+  margin-bottom: var(--space-4);
+}
+
+.legal-callout .legal-data__row {
+  border-bottom-color: rgba(107, 124, 133, 0.22);
+}
+
+@media (max-width: 1023px) {
+  .legal-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  /* En una sola columna el índice deja de tener sentido pegajoso: ocuparía
+     pantalla útil mientras se lee. */
+  .legal-toc {
+    position: static;
+  }
+
+  .legal-toc__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Botón del índice plegable: sólo existe visualmente en móvil. */
+.legal-toc__toggle {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .legal-toc__list {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-toc.has-toggle {
+    padding: var(--space-2) var(--space-4);
+  }
+
+  /* El título queda para lectores de pantalla (etiqueta el <nav>); a la vista
+     lo reemplaza el botón. */
+  .legal-toc.has-toggle .legal-toc__title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .legal-toc.has-toggle .legal-toc__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 48px;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-aux-mobile);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-action-web);
+    cursor: pointer;
+  }
+
+  /* Chevron en CSS: gira al abrir. */
+  .legal-toc__toggle::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform var(--transition-base);
+  }
+
+  .legal-toc__toggle[aria-expanded="true"]::after {
+    transform: translateY(2px) rotate(-135deg);
+  }
+
+  .legal-toc.has-toggle .legal-toc__list {
+    padding-bottom: var(--space-4);
+  }
+
+  .legal-toc.is-collapsed .legal-toc__list {
+    display: none;
+  }
+
+  /* Enlaces del índice con altura táctil suficiente. */
+  .legal-toc__list a {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .legal-data__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+
+  .legal-dates {
+    gap: var(--space-5);
+  }
+}
+
+/* --- Subtítulo dentro de un apartado ---
+   La Política de cookies separa cookies propias de cookies de terceros dentro
+   del mismo apartado; es el primer documento legal que necesita un nivel H3. */
+.legal-subtitle {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-h4-mobile);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-text-main);
+}
+
+.legal-subtitle:first-of-type {
+  margin-top: var(--space-6);
+}
+
+/* --- Nombres de cookie y otros literales técnicos --- */
+.legal-section code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-bg-warm);
+  color: var(--color-action-web);
+  overflow-wrap: break-word;
+}
+
+/* --- Tabla de cookies ---
+   El wrapper permite scroll horizontal como último recurso en tablets
+   estrechas; en móvil no se usa porque la tabla se apila. */
+.legal-table-wrap {
+  margin: var(--space-4) 0 var(--space-6);
+  max-width: 44rem;
+  overflow-x: auto;
+}
+
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* El caption etiqueta la tabla para lectores de pantalla. No se pinta: el
+   contexto visual ya lo da el H3 que va justo encima. */
+.legal-table__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.legal-table th {
+  padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  border-bottom: 2px solid var(--color-action-web);
+  vertical-align: bottom;
+}
+
+.legal-table td {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  font-size: var(--text-aux-desktop);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+  border-bottom: 1px solid rgba(107, 124, 133, 0.16);
+  vertical-align: top;
+}
+
+.legal-table th:last-child,
+.legal-table td:last-child {
+  padding-right: 0;
+}
+
+/* Duración y tipo son datos cortos: no deben partirse ni robar ancho a la
+   columna de finalidad, que es la que lleva el texto. */
+.legal-table td:nth-child(3),
+.legal-table td:nth-child(4) {
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  /* Cada fila pasa a ser una ficha y el encabezado de columna se reconstruye
+     con data-label. Se usa el atributo y no un content: fijo por nth-child
+     para que la regla sirva a cualquier tabla legal futura. */
+  .legal-table-wrap {
+    overflow-x: visible;
+  }
+
+  .legal-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .legal-table,
+  .legal-table tbody,
+  .legal-table tr,
+  .legal-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .legal-table tr {
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    background-color: var(--color-surface);
+    border: 1px solid rgba(107, 124, 133, 0.18);
+    border-radius: var(--border-radius-base);
+  }
+
+  .legal-table tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-table td {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .legal-table td + td {
+    margin-top: var(--space-3);
+  }
+
+  .legal-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: var(--space-1);
+    /* 0.75rem y no --text-badge (0.64rem ≈ 10px): es la etiqueta que sustituye
+       al encabezado de columna, tiene que leerse. Y --color-text-sub y no
+       --color-structural-gray, que sobre blanco da 4.40:1 y no pasa AA. */
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-sub);
+  }
+
+  /* En ficha ya no compiten por ancho, así que pueden volver a fluir. */
+  .legal-table td:nth-child(3),
+  .legal-table td:nth-child(4) {
+    white-space: normal;
+  }
+}

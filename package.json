@@ -1,0 +1,92 @@
+{
+  "name": "visioncontable",
+  "description": "Tema Ghost personalizado para Visión Contable (Katerinn Romero). Marca personal de asesoría contable, tributaria y financiera.",
+  "version": "1.0.0",
+  "engines": {
+    "ghost": ">=6.0.0"
+  },
+  "author": {
+    "email": "dvancortes12julio2001@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ghost-theme"
+  ],
+  "config": {
+    "posts_per_page": 6,
+    "image_sizes": {
+      "xxs": {
+        "width": 30
+      },
+      "xs": {
+        "width": 100
+      },
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1000
+      },
+      "xl": {
+        "width": 2000
+      }
+    },
+    "card_assets": true,
+    "custom": {
+      "whatsapp_number": {
+        "type": "text",
+        "default": "573238325800",
+        "description": "Número de WhatsApp Business sin signos ni espacios, con indicativo de país (ej: 573001234567)"
+      },
+      "linkedin_url": {
+        "type": "text",
+        "default": "",
+        "description": "URL completa del perfil de LinkedIn de Katerinn. Déjalo vacío si aún no hay perfil oficial."
+      },
+      "instagram_url": {
+        "type": "text",
+        "default": "https://www.instagram.com/visioncontablekr/",
+        "description": "URL completa del perfil oficial de Instagram"
+      },
+      "facebook_url": {
+        "type": "text",
+        "default": "https://www.facebook.com/visioncontablekr/",
+        "description": "URL completa de la página oficial de Facebook"
+      },
+      "legal_email": {
+        "type": "text",
+        "default": "soporte@visioncontable.com",
+        "description": "Correo oficial para consultas y reclamos sobre datos personales (Política de privacidad y Términos)"
+      },
+      "legal_phone": {
+        "type": "text",
+        "default": "+57 323 832 5800",
+        "description": "Teléfono comercial que aparece en la Política de privacidad y en los Términos"
+      },
+      "gtm_id": {
+        "type": "text",
+        "default": "GTM-XXXXXX",
+        "description": "ID del contenedor de Google Tag Manager (ej: GTM-AB12CD3). Mientras sea GTM-XXXXXX o esté vacío, GTM no se carga."
+      }
+    }
+  },
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build",
+    "zip": "npm run build && bestzip $npm_package_name.zip assets/ partials/ locales/ *.hbs *.yaml *.json *.txt package.json",
+    "test": "gscan ."
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "bestzip": "^2.2.0",
+    "cssnano": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^9.0.0",
+    "gscan": "^4.43.0",
+    "postcss": "^8.4.0",
+    "postcss-import": "^15.0.0"
+  }
+}

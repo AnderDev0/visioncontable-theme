@@ -1,0 +1,34 @@
+/* ==========================================================================
+   SCREEN.CSS — Entry point del tema visioncontable
+   Orden de importación: variables → reset → typography → layout → accessibility
+                         → components → pages
+   ========================================================================== */
+
+/* Fundamentos */
+@import "variables.css";
+@import "reset.css";
+@import "typography.css";
+@import "layout.css";
+@import "accessibility.css";
+
+/* Componentes globales */
+@import "components/buttons.css";
+@import "components/header.css";
+@import "components/footer.css";
+@import "components/cards.css";
+@import "components/badge.css";
+@import "components/accordion.css";
+@import "components/breadcrumbs.css";
+@import "components/pagination.css";
+@import "components/reveal.css";
+
+/* Páginas */
+@import "pages/home.css";
+@import "pages/landing.css";
+@import "pages/blog-index.css";
+@import "pages/post.css";
+@import "pages/tag.css";
+@import "pages/about.css";
+@import "pages/about-katerinn.css";
+@import "pages/legal.css";
+@import "pages/error-404.css";

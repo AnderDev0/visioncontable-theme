@@ -1,0 +1,196 @@
+/* ==========================================================================
+   TYPOGRAPHY — Escala tipográfica, Google Fonts, estilos base de prosa
+   Spec: kb/docs/brand-identity.md
+   ========================================================================== */
+
+/* Google Fonts se cargan en default.hbs via <link preconnect + preload> */
+
+/* --- Encabezados --- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headings);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+}
+
+/* Mobile-first: tamaño base = móvil, se escala en desktop vía min-width */
+h1 {
+  font-size: var(--text-h1-mobile);
+  line-height: var(--leading-h1);
+  letter-spacing: -0.025em;
+}
+h2 { font-size: var(--text-h2-mobile); line-height: var(--leading-h2); }
+h3 { font-size: var(--text-h3-mobile); line-height: var(--leading-h3); }
+h4 { font-size: var(--text-h4-mobile); line-height: var(--leading-h4); letter-spacing: -0.015em; }
+h5 { font-size: var(--text-h4-mobile); line-height: var(--leading-h4); letter-spacing: -0.01em; }
+h6 { font-size: var(--text-body-desktop); line-height: var(--leading-body); letter-spacing: 0; }
+
+@media (min-width: 768px) {
+  h1 { font-size: var(--text-h1-desktop); }
+  h2 { font-size: var(--text-h2-desktop); }
+  h3 { font-size: var(--text-h3-desktop); }
+  h4 { font-size: var(--text-h4-desktop); }
+  h5 { font-size: var(--text-h4-desktop); }
+}
+
+/* --- Párrafos y texto base --- */
+
+p {
+  font-size: var(--text-body-mobile);
+  line-height: var(--leading-body);
+  color: var(--color-text-main);
+}
+
+@media (min-width: 768px) {
+  p { font-size: var(--text-body-desktop); }
+}
+
+.text-sub {
+  color: var(--color-text-sub);
+  font-size: var(--text-aux-mobile);
+  line-height: var(--leading-aux);
+}
+
+@media (min-width: 768px) {
+  .text-sub { font-size: var(--text-aux-desktop); }
+}
+
+.text-lead {
+  font-size: var(--text-highlight-mobile);
+  line-height: var(--leading-highlight);
+  color: var(--color-text-sub);
+}
+
+@media (min-width: 768px) {
+  .text-lead { font-size: var(--text-highlight-desktop); }
+}
+
+/* --- Enlaces --- */
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-base);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-link-hover);
+}
+
+/* Enlaces en contextos oscuros (footer) */
+.bg-dark a {
+  color: var(--color-bg-light);
+}
+.bg-dark a:hover {
+  color: var(--color-surface);
+}
+
+/* --- Contenido de prosa (artículos de blog) --- */
+
+.gh-content {
+  font-size: var(--text-body-mobile);
+  line-height: var(--leading-body);
+}
+
+@media (min-width: 768px) {
+  .gh-content { font-size: var(--text-body-desktop); }
+}
+
+.gh-content > * + * {
+  margin-top: var(--space-6);
+}
+
+.gh-content h2 {
+  font-size: var(--text-h2-mobile);
+  margin-top: var(--space-12);
+}
+
+.gh-content h3 {
+  font-size: var(--text-h3-mobile);
+  margin-top: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .gh-content h2 { font-size: var(--text-h2-desktop); }
+  .gh-content h3 { font-size: var(--text-h3-desktop); }
+}
+
+.gh-content ul,
+.gh-content ol {
+  list-style: revert;
+  padding-left: var(--space-6);
+}
+
+.gh-content li + li {
+  margin-top: var(--space-2);
+}
+
+.gh-content blockquote {
+  border-left: 4px solid var(--color-accent-warm);
+  padding-left: var(--space-6);
+  margin-left: 0;
+  font-style: italic;
+  color: var(--color-text-sub);
+}
+
+.gh-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-table);
+  overflow-x: auto;
+  display: block;
+}
+
+.gh-content table th,
+.gh-content table td {
+  border: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+}
+
+.gh-content table th {
+  background-color: var(--color-bg-warm);
+  font-weight: var(--font-weight-semibold);
+  scope: col; /* accesibilidad: definir en HTML con atributo scope */
+}
+
+.gh-content table tr:nth-child(even) td {
+  background-color: var(--color-bg-light);
+}
+
+.gh-content strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.gh-content hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-12) 0;
+}
+
+.gh-content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Código inline */
+.gh-content code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  background-color: var(--color-bg-warm);
+  padding: 0.1em 0.4em;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Aviso tributario contextual en artículos */
+.gh-content .aviso-tributario {
+  background-color: var(--color-bg-warm);
+  border-left: 3px solid var(--color-accent-warm);
+  padding: var(--space-4) var(--space-6);
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  font-size: var(--text-aux-desktop);
+  color: var(--color-text-sub);
+}

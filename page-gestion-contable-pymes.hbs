@@ -1,0 +1,317 @@
+{{!< default}}
+{{!--
+  PAGE-GESTION-CONTABLE-PYMES.HBS — /gestion-contable-pymes/
+  Spec: kb/docs/services-pymes.md
+  H1: "Contabilidad al día para que tu empresa no se detenga"
+  8 componentes | proceso 5 pasos | tabla responsabilidades | FAQs | CTA
+--}}
+
+{{!--
+  Migas de pan retiradas por decisión de diseño.
+  El JSON-LD de BreadcrumbList sigue vigente en {{> structured-data-service}},
+  así que Google conserva la ruta en resultados.
+--}}
+
+{{!-- HERO — con imagen de fondo.
+     La imagen se pasa por variable CSS para poder usar el helper {{asset}};
+     cambiar la foto definitiva es cambiar sólo el nombre del archivo aquí. --}}
+<section class="landing-hero landing-hero--media section--lg">
+  {{!-- Dos fotos en fundido cruzado, decorativas: el significado lo carga el
+       H1, por eso van con alt vacio y el bloque aria-hidden. Solo la primera
+       se carga de inmediato; la segunda va diferida. --}}
+  <div class="landing-hero__media" aria-hidden="true">
+    <img class="landing-hero__photo" src="{{asset "images/Gestion_pymes.webp"}}"
+         srcset="{{asset "images/Gestion_pymes-1200.webp"}} 1200w, {{asset "images/Gestion_pymes.webp"}} 2000w"
+         sizes="(max-width: 767px) 400px, 2000px" alt=""
+         width="2000" height="1333" loading="eager" fetchpriority="high">
+    <img class="landing-hero__photo" src="{{asset "images/Contabilidad_pymes.webp"}}"
+         srcset="{{asset "images/Contabilidad_pymes-1200.webp"}} 1200w, {{asset "images/Contabilidad_pymes.webp"}} 2000w"
+         sizes="(max-width: 767px) 400px, 2000px" alt=""
+         width="2000" height="1125" loading="lazy" decoding="async">
+  </div>
+  <div class="container">
+    <div class="landing-hero__inner">
+      <div class="landing-hero__text">
+        <h1 class="landing-hero__title">Contabilidad al día para que tu empresa no se detenga</h1>
+        <p class="landing-hero__subtitle text-lead">
+          Gestión contable mensual para empresas activas. Me encargo de que tus registros estén al día, tus impuestos presentados y tus estados financieros listos cuando los necesites.
+        </p>
+        {{> whatsapp-link
+            message="Hola%2C%20Katerinn.%20Quiero%20consultar%20el%20servicio%20de%20gesti%C3%B3n%20contable%20para%20mi%20empresa..."
+            class="btn btn--primary btn--lg"
+            label="Consultar gestión contable con Katerinn por WhatsApp (abre en nueva pestaña)"
+            gtm="click_whatsapp_hero"}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- 8 COMPONENTES DEL SERVICIO --}}
+<section class="landing-services section">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Qué incluye la gestión contable mensual?</h2>
+    </div>
+    {{!--
+      Checklist de inclusiones agrupado por RITMO (cada mes / por período /
+      cuando se necesita), no por tema. Aquí el cliente no elige un servicio
+      —contrata un solo plan mensual—, así que el trabajo del bloque no es
+      ayudarlo a decidir sino que perciba todo lo que recibe. De ahí la
+      palomita en cada línea ("esto ya está incluido") y el fraccionar 8 ítems
+      en 3 grupos, que es lo que los vuelve abarcables de una sola lectura.
+    --}}
+    <div class="includes" data-reveal>
+
+      <div class="includes__group">
+        <p class="includes__rhythm">Cada mes</p>
+        <ul class="includes__list" role="list">
+          <li class="includes__item">
+            <h3 class="includes__title">Registro contable mensual</h3>
+            <p class="includes__desc">Clasificación y registro de todas las transacciones del período en el sistema contable.</p>
+          </li>
+          <li class="includes__item">
+            <h3 class="includes__title">Conciliaciones bancarias</h3>
+            <p class="includes__desc">Verificación de que los movimientos bancarios coincidan con los registros contables.</p>
+          </li>
+          <li class="includes__item">
+            <h3 class="includes__title">Seguimiento de obligaciones</h3>
+            <p class="includes__desc">Control de fechas de vencimiento para que no haya sanciones por presentación tardía.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="includes__group">
+        <p class="includes__rhythm">Cada período</p>
+        <ul class="includes__list" role="list">
+          <li class="includes__item">
+            <h3 class="includes__title">Liquidación de impuestos</h3>
+            <p class="includes__desc">Cálculo y elaboración de declaraciones de IVA, retención en la fuente e ICA según periodicidad.</p>
+          </li>
+          <li class="includes__item">
+            <h3 class="includes__title">Estados financieros</h3>
+            <p class="includes__desc">Balance general, estado de resultados y estado de flujo de caja con periodicidad acordada.</p>
+          </li>
+          <li class="includes__item">
+            <h3 class="includes__title">Indicadores financieros básicos</h3>
+            <p class="includes__desc">Análisis de indicadores clave para que puedas leer la salud financiera de tu empresa.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="includes__group">
+        <p class="includes__rhythm">Cuando lo necesitas</p>
+        <ul class="includes__list" role="list">
+          <li class="includes__item">
+            <h3 class="includes__title">Soporte para declaración de renta</h3>
+            <p class="includes__desc">Preparación de la información necesaria para la declaración de renta anual de la empresa.</p>
+          </li>
+          <li class="includes__item">
+            <h3 class="includes__title">Soporte ante requerimientos</h3>
+            <p class="includes__desc">Acompañamiento ante solicitudes de información de la DIAN o auditorías relacionadas con períodos gestionados.</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- PROCESO MENSUAL (5 pasos) --}}
+<section class="landing-process section section--bg-warm roadmap-pin">
+  <div class="container">
+    <div class="section-header">
+      <h2>Cómo funciona mes a mes</h2>
+    </div>
+    <ol class="landing-process__steps roadmap roadmap--5" role="list" data-reveal>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">01</span>
+        <h3 class="home-process__step-title">Recopilación de documentos</h3>
+        <p class="home-process__step-desc">Al inicio del mes me compartes facturas, extractos y demás soporte del período anterior.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">02</span>
+        <h3 class="home-process__step-title">Registro y clasificación</h3>
+        <p class="home-process__step-desc">Proceso todos los movimientos y los registro en el sistema contable de la empresa.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">03</span>
+        <h3 class="home-process__step-title">Liquidación de impuestos</h3>
+        <p class="home-process__step-desc">Calculo los impuestos del período y elaboro las declaraciones correspondientes.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">04</span>
+        <h3 class="home-process__step-title">Entrega de reportes</h3>
+        <p class="home-process__step-desc">Te envío los estados financieros e indicadores del período de forma clara y organizada.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">05</span>
+        <h3 class="home-process__step-title">Revisión y consultas</h3>
+        <p class="home-process__step-desc">Resolvemos juntos cualquier duda sobre los reportes o la situación financiera del mes.</p>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+{{!-- TABLA DE RESPONSABILIDADES COMPARTIDAS --}}
+<section class="landing-responsibilities section">
+  <div class="container container--narrow">
+    <div class="section-header">
+      <h2>¿Qué hace cada parte?</h2>
+      <p>Para que el servicio funcione bien, trabajamos juntos.</p>
+    </div>
+    <div class="landing-responsibilities__table-wrapper">
+      <table class="landing-responsibilities__table">
+        <caption class="sr-only">Tabla de responsabilidades: qué hace Katerinn y qué hace la empresa</caption>
+        <thead>
+          <tr>
+            <th scope="col">Katerinn</th>
+            <th scope="col">Tu empresa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Registra y clasifica todas las transacciones</td>
+            <td>Comparte documentos completos y a tiempo</td>
+          </tr>
+          <tr>
+            <td>Elabora y programa las declaraciones tributarias</td>
+            <td>Paga los impuestos en los plazos establecidos</td>
+          </tr>
+          <tr>
+            <td>Genera los estados financieros periódicos</td>
+            <td>Revisa y aprueba los reportes compartidos</td>
+          </tr>
+          <tr>
+            <td>Alerta sobre obligaciones y vencimientos</td>
+            <td>Responde oportunamente a las solicitudes de información</td>
+          </tr>
+          <tr>
+            <td>Acompaña ante requerimientos de la DIAN</td>
+            <td>Informa sobre cambios en el negocio que afecten la contabilidad</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{{!-- CROSS-LINKS --}}
+<section class="landing-crosslinks section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>También podría interesarte</h2>
+    </div>
+    <div class="grid-2">
+      <a href="/servicios-contables-tributarios/" class="service-route-card" data-gtm="click_desvio_especializados">
+        <h3 class="service-route-card__title">Servicios Especializados</h3>
+        <p class="service-route-card__desc">Para trámites y consultas puntuales sin compromiso mensual.</p>
+        <span class="service-route-card__cta">Ver servicios</span>
+      </a>
+      <a href="/asesoria-contable-emprendedores/" class="service-route-card" data-gtm="click_desvio_emprendedores">
+        <h3 class="service-route-card__title">Asesoría para Emprendedores</h3>
+        <p class="service-route-card__desc">Orientación inicial para quienes están comenzando su negocio.</p>
+        <span class="service-route-card__cta">Ver asesoría</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{!-- FAQs --}}
+<section class="landing-faqs section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-accordion" data-gtm-category="faq_open">
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-pymes-1" id="faq-pymes-btn-1">
+            ¿Desde qué tamaño de empresa puedo contratar este servicio?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-pymes-1" role="region" aria-labelledby="faq-pymes-btn-1" aria-hidden="true">
+          <div class="accordion__body">Trabajo con pequeñas y medianas empresas de cualquier actividad económica. No hay un tamaño mínimo: lo que importa es que tu empresa esté activa y necesite llevar la contabilidad al día.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-pymes-2" id="faq-pymes-btn-2">
+            ¿Trabajo con algún software contable específico?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-pymes-2" role="region" aria-labelledby="faq-pymes-btn-2" aria-hidden="true">
+          <div class="accordion__body">Esto lo definimos al inicio del servicio según las necesidades de tu empresa. Conversamos qué herramienta se adapta mejor a tu operación y presupuesto.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-pymes-3" id="faq-pymes-btn-3">
+            ¿Puedo cambiar de contador y empezar contigo?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-pymes-3" role="region" aria-labelledby="faq-pymes-btn-3" aria-hidden="true">
+          <div class="accordion__body">Sí. Si estás cambiando de contador, puedo hacer una revisión de diagnóstico inicial para entender el estado actual de tu contabilidad y continuar desde ahí.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-pymes-4" id="faq-pymes-btn-4">
+            ¿Los estados financieros que generas son válidos ante bancos o entidades?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-pymes-4" role="region" aria-labelledby="faq-pymes-btn-4" aria-hidden="true">
+          <div class="accordion__body">Los estados financieros que genero son documentos contables preparados profesionalmente. Si tu empresa requiere dictamen de revisor fiscal u opinión de auditor externo, eso corresponde a un proceso distinto que te puedo orientar.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-pymes-5" id="faq-pymes-btn-5">
+            ¿Qué pasa si un mes tengo pocos movimientos?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-pymes-5" role="region" aria-labelledby="faq-pymes-btn-5" aria-hidden="true">
+          <div class="accordion__body">El servicio se ajusta al volumen de tu operación. Las condiciones específicas y cómo se manejan los períodos de baja actividad las definimos al iniciar el acuerdo de trabajo.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-pymes-6" id="faq-pymes-btn-6">
+            ¿Puedo cancelar el servicio mensual cuando quiera?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-pymes-6" role="region" aria-labelledby="faq-pymes-btn-6" aria-hidden="true">
+          <div class="accordion__body">Las condiciones de terminación del servicio las definimos claramente al inicio. En general, trabajo con un preaviso razonable para hacer una entrega ordenada de la información contable.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- CTA DE CIERRE --}}
+{{> service-cta whatsapp_message="Hola%2C%20Katerinn.%20Quiero%20consultar%20el%20servicio%20de%20gesti%C3%B3n%20contable%20para%20mi%20empresa..." cta_title="¿Tu empresa necesita contabilidad al día?" cta_desc="Cuéntame el tamaño de tu operación y revisamos cómo podemos trabajar juntos."}}
+
+{{!-- JSON-LD del servicio, al <head> vía el bloque "head" de default.hbs.
+     Nombre y migas según kb/docs/structured-data-master.md §5.2. --}}
+{{#contentFor "head"}}
+  {{> structured-data-service
+      service_name="Gestión contable para pymes"
+      service_type="Gestión contable mensual"
+      service_description="Gestión contable mensual para empresas activas en Colombia: registro contable, conciliaciones bancarias, liquidación de IVA, retención en la fuente e ICA, estados financieros, indicadores financieros básicos, soporte para la declaración de renta y acompañamiento ante requerimientos de la DIAN."
+      audience="Pequeñas y medianas empresas en Colombia"
+      crumb_name="Gestión contable para pymes"
+      crumb_path="/gestion-contable-pymes/"}}
+{{/contentFor}}

@@ -1,0 +1,1228 @@
+/* ==========================================================================
+   HOME — Estilos de la página principal (/)
+   ========================================================================== */
+
+/* --- Hero ---
+   Split editorial asimétrico. La foto ocupa toda la altura de su columna y se
+   disuelve hacia el texto con una máscara en degradado (nunca un borde duro).
+   Queda ligeramente separada del borde derecho para tener un canto real que
+   enmarcar: ese marco es un corchete de línea fina abierto hacia el
+   difuminado, y rima con el divisor "línea + punto terracota" del manual
+   de marca (§7). Secuencia de entrada: título → divisor → párrafo → CTA,
+   con la foto asentándose lentamente y el corchete trazándose al final. */
+
+.home-hero {
+  background-color: var(--color-bg-light);
+  overflow: hidden;
+}
+
+.home-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 48%) minmax(0, 52%);
+  align-items: stretch;
+  /* El hero debe caber en la ventana sin obligar a hacer scroll, descontando
+     el header sticky. svh evita que la barra del navegador móvil lo infle.
+     El tope evita que se estire de más en pantallas muy altas. */
+  min-height: min(calc(100vh - var(--header-height)), 660px);
+  min-height: min(calc(100svh - var(--header-height)), 660px);
+  /* Alinea el inicio del texto con el borde izquierdo real del .container del
+     resto del sitio, aunque el hero no viva dentro de un .container (para
+     poder sangrar la foto hasta el borde derecho de la ventana).
+     Se usa 100% —no 100vw— porque 100vw incluye el ancho de la barra de
+     desplazamiento vertical y eso provoca scroll horizontal. */
+  padding-left: max(var(--container-padding), calc((100% - var(--container-max)) / 2 + var(--container-padding)));
+}
+
+/* Grid (no flex): así el título, el divisor, el párrafo y el CTA se apilan
+   en vertical tanto si vienen envueltos en .home-hero__text-inner como si
+   son hijos directos de .home-hero__text. */
+.home-hero__text {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  min-width: 0;
+  padding-right: var(--space-5);
+  padding-block: clamp(1.25rem, 3.5vw, 2.25rem);
+}
+
+/* Medidas en rem, no en ch: `ch` se resuelve contra el font-size del PROPIO
+   elemento, y este contenedor hereda 16px, así que 34ch daba ~300px y
+   estrangulaba la columna en vez de aprovecharla. */
+.home-hero__text-inner {
+  width: 100%;
+  max-width: 38rem;
+}
+
+.home-hero__title {
+  font-size: clamp(2.5rem, 3.6vw + 0.5rem, 3.75rem);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.06;
+  color: var(--color-action-web);
+  margin-bottom: var(--space-6);
+  text-wrap: balance;
+}
+
+/* Divisor de marca: línea fina interrumpida por el punto terracota
+   (§ brand-identity §7). Es el mismo gesto gráfico que el corchete de la
+   foto, en horizontal. */
+.home-hero__rule {
+  display: block;
+  position: relative;
+  width: 124px;
+  height: 1px;
+  margin-bottom: var(--space-6);
+  background-image:
+    linear-gradient(to right, rgba(107, 124, 133, 0.55), rgba(107, 124, 133, 0.55)),
+    linear-gradient(to right, rgba(107, 124, 133, 0.55), rgba(107, 124, 133, 0));
+  background-size: 40px 1px, 66px 1px;
+  background-position: 0 50%, 58px 50%;
+  background-repeat: no-repeat;
+}
+
+.home-hero__rule::after {
+  content: '';
+  position: absolute;
+  left: 46px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background-color: var(--color-accent-warm);
+}
+
+.home-hero__subtitle {
+  margin-bottom: var(--space-8);
+  max-width: 34rem;
+  color: var(--color-text-sub);
+}
+
+.home-hero__image-wrapper {
+  --hero-inset-x: clamp(0px, 1.4vw, 22px);
+  --hero-inset-y: clamp(0px, 2vw, 26px);
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Corchete de línea fina: enmarca la parte derecha y queda abierto hacia el
+   difuminado, para no cerrar la foto en una caja. Todos los offsets son
+   positivos: así nunca puede salirse del contenedor ni generar scroll. */
+.home-hero__image-wrapper::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--hero-inset-y) / 2);
+  right: calc(var(--hero-inset-x) / 2);
+  bottom: calc(var(--hero-inset-y) / 2);
+  left: 46%;
+  border: 1px solid rgba(206, 127, 103, 0.5);
+  border-left: 0;
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  pointer-events: none;
+  animation: home-hero-bracket-in 800ms 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* El canto de la foto se define con offsets explícitos (no con padding del
+   contenedor: los hijos absolutos se posicionan contra la caja de padding,
+   así que el padding no los desplazaría). */
+.home-hero__photo {
+  position: absolute;
+  top: var(--hero-inset-y);
+  right: var(--hero-inset-x);
+  bottom: var(--hero-inset-y);
+  left: 0;
+  overflow: hidden;
+  background-color: var(--color-bg-warm);
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  /* Se desvanece hacia la izquierda (el título): reemplaza cualquier borde
+     duro entre la foto y el texto por una transición suave. */
+  mask-image: linear-gradient(to right, transparent 0%, black 26%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 26%);
+  animation: home-hero-fade 900ms 100ms ease-out both;
+}
+
+.home-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Anclada al borde derecho: el recorte nunca le come el costado derecho, así
+     que Katerinn se ve completa. Lo que se recorta es el lado izquierdo, que
+     es justo donde vive el difuminado. */
+  object-position: 100% 28%;
+  display: block;
+  /* La escala va en la imagen, no en el contenedor: si se animara el
+     contenedor, la máscara escalaría con él y el difuminado se movería.
+     El origen a la derecha mantiene su posición fija durante la entrada. */
+  transform-origin: right center;
+  animation: home-hero-settle 1400ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes home-hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes home-hero-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes home-hero-settle {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1); }
+}
+
+@keyframes home-hero-bracket-in {
+  from { opacity: 0; transform: translateX(14px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.home-hero__text-inner > *,
+.home-hero__text > * {
+  animation: home-hero-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.home-hero__text-inner > *:nth-child(2),
+.home-hero__text > *:nth-child(2) { animation-delay: 120ms; }
+
+.home-hero__text-inner > *:nth-child(3),
+.home-hero__text > *:nth-child(3) { animation-delay: 200ms; }
+
+.home-hero__text-inner > *:nth-child(4),
+.home-hero__text > *:nth-child(4) { animation-delay: 300ms; }
+
+/* El envoltorio no debe animarse dos veces cuando sí está presente. */
+.home-hero__text > .home-hero__text-inner {
+  animation: none;
+}
+
+@media (max-width: 1023px) {
+  .home-hero__inner {
+    grid-template-columns: minmax(0, 52%) minmax(0, 48%);
+  }
+}
+
+@media (max-width: 767px) {
+  .home-hero__inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    /* En móvil la foto va a sangre completa: el margen del texto vuelve al
+       propio bloque de texto, no al contenedor. */
+    padding-left: 0;
+  }
+
+  .home-hero__text {
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    padding-block: clamp(1.5rem, 7vw, 2.25rem) var(--space-8);
+  }
+
+  .home-hero__image-wrapper {
+    --hero-inset-x: 0px;
+    --hero-inset-y: 0px;
+    aspect-ratio: 4 / 5;
+  }
+
+  /* El corchete es un gesto de escritorio: en móvil la foto va a sangre. */
+  .home-hero__image-wrapper::after {
+    content: none;
+  }
+
+  .home-hero__photo {
+    border-radius: 0;
+    /* En móvil la foto queda debajo del texto: se desvanece hacia arriba,
+       hacia el párrafo, en vez de hacia un lado. */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 16%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 16%);
+  }
+
+  .home-hero__image {
+    object-position: 100% 24%;
+  }
+}
+
+/* --- Intro Katerinn --- */
+
+.home-intro__inner {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.home-intro__name {
+  font-size: var(--text-h2-desktop);
+  margin-bottom: var(--space-4);
+}
+
+.home-intro__bio {
+  color: var(--color-text-sub);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.home-intro__link {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-action-web);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.home-intro__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Móvil: el nombre usaba la escala H2 de escritorio (48px) y superaba al H1 del
+   hero (40px). Vuelve a la escala H2 móvil para respetar la jerarquía. */
+@media (max-width: 767px) {
+  .home-intro__name {
+    font-size: var(--text-h2-mobile);
+  }
+}
+
+/* --- Rutas de servicio --- */
+
+.home-services {
+  background: linear-gradient(160deg, var(--color-bg-warm) 0%, var(--color-bg-light) 100%);
+}
+
+.home-services__grid {
+  gap: var(--space-6);
+}
+
+/* Tablet: son 3 tarjetas, así que con 2 columnas quedaba una huérfana y medio
+   ancho vacío. Se mantienen las 3 en fila y se compacta la tarjeta (padding,
+   icono y escala), lo que además baja bastante la altura de la sección.
+   Gana a .grid-3 por orden de importación: layout.css entra antes que esta hoja. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-services__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .home-services__grid .service-route-card {
+    padding: var(--space-5);
+  }
+
+  .home-services__grid .service-route-card__icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: var(--space-3);
+  }
+
+  .home-services__grid .service-route-card__title {
+    font-size: 1.1875rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .home-services__grid .service-route-card__desc {
+    font-size: 0.9375rem;
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-5);
+  }
+}
+
+/* --- Propuesta de valor — columnas editoriales sin cajas --- */
+
+.home-value__grid {
+  gap: var(--space-6);
+}
+
+.home-value__pillar {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: var(--space-4) var(--space-6);
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.home-value__pillar:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Separador vertical entre columnas */
+.home-value__pillar + .home-value__pillar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(107, 124, 133, 0.25) 25%,
+    rgba(107, 124, 133, 0.25) 75%,
+    transparent 100%
+  );
+}
+
+.home-value__icon {
+  display: flex;
+  justify-content: center;
+  color: var(--color-accent-warm);
+  margin-bottom: var(--space-2);
+}
+
+.home-value__icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.home-value__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--color-text-main);
+}
+
+.home-value__desc {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-relaxed);
+}
+
+@media (max-width: 767px) {
+  .home-value__pillar + .home-value__pillar::before {
+    display: none;
+  }
+
+  .home-value__pillar {
+    text-align: left;
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid rgba(107, 124, 133, 0.15);
+  }
+
+  /* El icono seguía centrado mientras título y texto van a la izquierda. */
+  .home-value__icon {
+    justify-content: flex-start;
+  }
+}
+
+/* --- Proceso — timeline editorial numerado --- */
+
+.home-process__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+  counter-reset: process-step;
+}
+
+.home-process__step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  /* El borde se mantiene transparente para conservar exactamente la misma caja,
+     pero la línea visible la pinta ::before: así se puede trazar. */
+  border-top: 2px solid transparent;
+  padding: var(--space-6) 0 0 0;
+  position: relative;
+}
+
+.home-process__step::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-accent-warm);
+  transform-origin: left center;
+}
+
+.home-process__number {
+  font-family: var(--font-headings);
+  font-size: clamp(3rem, 4vw, 5rem);
+  font-weight: 700;
+  color: var(--color-accent-warm);
+  opacity: 0.22;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* El título del paso iba en --text-title-sm (16px) contra una descripción de
+   18px: la jerarquía quedaba invertida, el subtítulo pesaba menos que su propio
+   contenido. Sube a --text-title-md (20px) para quedar por encima del cuerpo
+   sin competir con el H2 de la sección. */
+.home-process__step-title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  line-height: var(--leading-tight);
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.home-process__step-desc {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-normal);
+}
+
+/* ==========================================================================
+   ROADMAP — Proceso como hitos sobre un riel horizontal
+   Mismo lenguaje que la línea de formación de "Sobre Katerinn" (.timeline en
+   about-katerinn.css): riel gris siempre completo, tramo terracota que lo va
+   llenando con el scroll, e hitos en anillo que se encienden cuando la línea
+   los alcanza. Cada paso aporta su propio tramo, así la línea avanza de un
+   hito al siguiente.
+   Se descartó la carretera serpenteante (asfalto, bordes, eje intermitente):
+   esa estética de infografía choca con brand-identity §6 y las anti-personas
+   §2. La numeración se justifica porque el orden ES información.
+   ========================================================================== */
+
+.roadmap {
+  --roadmap-node: clamp(44px, 4.4vw, 56px);
+  --roadmap-gap: var(--space-5);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--roadmap-gap);
+  /* El hito va a caballo sobre la línea: la mitad que sobresale por arriba
+     necesita este sitio para no quedar cortada contra la sección. */
+  padding-top: calc(var(--roadmap-node) / 2);
+}
+
+/* Variante de 5 hitos (procesos de Pymes y Emprendedores). */
+.roadmap--5 {
+  --roadmap-gap: var(--space-4);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* Con 5 columnas la caja es más angosta, así que se aprieta la escala. */
+.roadmap--5 .home-process__step-title {
+  font-size: var(--text-title-sm);
+}
+
+.roadmap--5 .home-process__step-desc {
+  font-size: var(--text-body-mobile);
+}
+
+.roadmap > .home-process__step {
+  position: relative;
+  z-index: 1;
+  border-top: 0;
+  padding: calc(var(--roadmap-node) / 2 + var(--space-4)) 0 0 0;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+/* Riel (::before, gris) y tramo de color (::after, terracota): la misma caja,
+   uno sobre otro. Se estiran medio hueco a cada lado para que los tramos se
+   toquen y el conjunto se lea como una sola línea; el primero y el último se
+   recortan al borde de la rejilla. Colores y grosor, los de .timeline. */
+.roadmap > .home-process__step::before,
+.roadmap > .home-process__step::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: calc(-1 * var(--roadmap-gap) / 2);
+  right: calc(-1 * var(--roadmap-gap) / 2);
+  height: 1px;
+}
+
+.roadmap > .home-process__step::before {
+  background-color: rgba(107, 124, 133, 0.28);
+}
+
+.roadmap > .home-process__step::after {
+  background-color: var(--color-accent-warm);
+  transform-origin: left center;
+}
+
+.roadmap > .home-process__step:first-child::before,
+.roadmap > .home-process__step:first-child::after {
+  left: 0;
+}
+
+.roadmap > .home-process__step:last-child::before,
+.roadmap > .home-process__step:last-child::after {
+  right: 0;
+}
+
+/* Hito en anillo, como .timeline__marker: fondo sólido para tapar la línea.
+   z-index 1 porque ::after se pinta DESPUÉS del contenido por orden de árbol:
+   sin esto el tramo terracota cruzaría por encima del círculo.
+   Se coloca con `left` y no con translateX: transform queda para la animación. */
+.roadmap .home-process__number {
+  position: absolute;
+  z-index: 1;
+  top: calc(-1 * var(--roadmap-node) / 2);
+  left: calc(50% - var(--roadmap-node) / 2);
+  margin: 0;
+  width: var(--roadmap-node);
+  height: var(--roadmap-node);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-accent-warm);
+  font-size: var(--text-title-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0;
+  color: var(--color-action-web);
+  opacity: 1;
+}
+
+/* --- Móvil: el mismo recorrido, en vertical --- */
+@media (max-width: 767px) {
+  /* El padding izquierdo de medio hito evita que el círculo, montado sobre el
+     filete con left negativo, quede pegado o cortado contra el borde. */
+  .roadmap {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    row-gap: var(--space-8);
+    padding-top: 0;
+    padding-left: calc(var(--roadmap-node) / 2 + 2px);
+  }
+
+  /* En vertical la línea la pinta el border-left de cada paso: el riel y el
+     tramo horizontales de escritorio se apagan. */
+  .roadmap > .home-process__step::before,
+  .roadmap > .home-process__step::after {
+    content: none;
+  }
+
+  /* Incluye el 5.º hito: sin él, la variante de 5 pasos lo dejaba en la
+     columna 5 y abría una rejilla implícita que desbordaba la pantalla. */
+  .roadmap > .home-process__step:nth-child(1),
+  .roadmap > .home-process__step:nth-child(2),
+  .roadmap > .home-process__step:nth-child(3),
+  .roadmap > .home-process__step:nth-child(4),
+  .roadmap > .home-process__step:nth-child(5) {
+    grid-column: 1;
+    grid-row: auto;
+    align-self: stretch;
+    margin: 0;
+    text-align: left;
+    padding: 0 0 var(--space-8) calc(var(--roadmap-node) + var(--space-5));
+    /* El filete vertical hace de línea; el hito lo tapa con su fondo sólido. */
+    border-left: 1px solid rgba(47, 93, 90, 0.35);
+  }
+
+  .roadmap > .home-process__step:last-child {
+    border-left-color: transparent;
+    padding-bottom: 0;
+  }
+
+  /* En una sola columna ya no hace falta la escala apretada de 5 hitos. */
+  .roadmap--5 .home-process__step-title {
+    font-size: var(--text-title-md);
+  }
+
+  .roadmap--5 .home-process__step-desc {
+    font-size: var(--text-body-desktop);
+  }
+
+  /* En vertical el hito se saca al filete, montado sobre la línea. */
+  .roadmap .home-process__number {
+    position: absolute;
+    left: calc(-1 * var(--roadmap-node) / 2);
+    top: 0;
+    margin: 0;
+  }
+}
+
+/* --- Despliegue atado al scroll ---
+   Dos modos, ambos sin JS:
+   1. Libre (móvil y pantallas bajas): cada pieza anima con su propia view(),
+      escalonada por paso.
+   2. Anclado (escritorio con alto suficiente): la sección se vuelve un
+      escenario alto y su contenido queda fijo (sticky) mientras la línea
+      recorre los hitos; al terminar, la página sigue. Es el "pin" de
+      ScrollTrigger hecho con CSS, la misma técnica del escenario de la foto
+      en about-katerinn.css. Sin él, una fila horizontal cruza la pantalla en
+      dos ruedas del mouse y la animación no alcanza a verse.
+   Sin soporte de animation-timeline no hay anclaje y la línea se ve llena. */
+@supports (animation-timeline: view()) {
+  /* reveal.js y la animación genérica del proceso mueven el bloque entero —y
+     con él su riel, que se desvanecería—. Aquí se apagan y se anima sólo lo
+     de dentro: el tramo, el hito y el texto. */
+  [data-reveal-ready] .roadmap[data-reveal] > *,
+  .roadmap > .home-process__step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  .roadmap > .home-process__step::before {
+    animation: none;
+  }
+
+  .roadmap > .home-process__step::after {
+    animation: process-rule-draw linear both;
+    animation-timeline: view();
+    animation-range: cover var(--step-from) cover var(--step-to);
+  }
+
+  .roadmap .home-process__number {
+    animation: roadmap-node-on linear both;
+    animation-timeline: view();
+    animation-range: cover var(--step-from) cover var(--step-to);
+  }
+
+  .roadmap .home-process__step-title,
+  .roadmap .home-process__step-desc {
+    animation: roadmap-text-on linear both;
+    animation-timeline: view();
+    animation-range: cover var(--step-from) cover var(--step-to);
+  }
+
+  /* Modo libre: ventanas escalonadas por paso. */
+  .roadmap > .home-process__step:nth-child(1) { --step-from: 16%; --step-to: 34%; }
+  .roadmap > .home-process__step:nth-child(2) { --step-from: 24%; --step-to: 42%; }
+  .roadmap > .home-process__step:nth-child(3) { --step-from: 32%; --step-to: 50%; }
+  .roadmap > .home-process__step:nth-child(4) { --step-from: 40%; --step-to: 58%; }
+  .roadmap > .home-process__step:nth-child(5) { --step-from: 48%; --step-to: 66%; }
+
+  /* Móvil: cada paso es su propia fila con su propio recorrido, así que el
+     desfase sobra y todos comparten ventana. Se repiten los :nth-child para
+     igualar la especificidad de las reglas de arriba. */
+  @media (max-width: 767px) {
+    .roadmap > .home-process__step:nth-child(1),
+    .roadmap > .home-process__step:nth-child(2),
+    .roadmap > .home-process__step:nth-child(3),
+    .roadmap > .home-process__step:nth-child(4),
+    .roadmap > .home-process__step:nth-child(5) {
+      --step-from: 10%;
+      --step-to: 34%;
+    }
+  }
+
+  /* Modo anclado. Sólo desde 1024px de ancho y 700px de alto: por debajo de
+     eso (tablet, portátiles bajos) las columnas se estrechan, la fila crece y
+     el encabezado más los pasos ya no caben en la pantalla fija; quedarían
+     cortados. Ahí rige el modo libre. */
+  @media (min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+    /* El alto extra es el recorrido del ancla: ~160vh de scroll con la
+       sección quieta, unos 30vh por hito. */
+    .roadmap-pin {
+      height: 260vh;
+      view-timeline-name: --roadmap;
+    }
+
+    .roadmap-pin > .container {
+      position: sticky;
+      top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+      min-height: calc(100svh - var(--header-height));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Todas las piezas pasan a la línea de tiempo del escenario. `contain` es
+       el tramo en que la sección cubre la pantalla entera, o sea mientras
+       dura el ancla. */
+    .roadmap-pin .roadmap > .home-process__step::after,
+    .roadmap-pin .roadmap .home-process__number,
+    .roadmap-pin .roadmap .home-process__step-title,
+    .roadmap-pin .roadmap .home-process__step-desc {
+      animation-timeline: --roadmap;
+    }
+
+    .roadmap-pin .roadmap > .home-process__step::after {
+      animation-range: contain var(--seg-from) contain var(--seg-to);
+    }
+
+    .roadmap-pin .roadmap .home-process__number,
+    .roadmap-pin .roadmap .home-process__step-title,
+    .roadmap-pin .roadmap .home-process__step-desc {
+      animation-range: contain var(--node-from) contain var(--node-to);
+    }
+
+    /* Reparto: 8 % de entrada para leer el título, 12 % de salida para ver la
+       línea completa antes de soltar. Cada tramo ocupa su parte del resto, y
+       el hito se enciende a mitad de tramo, que es cuando la línea lo alcanza
+       (el círculo está en el centro de su columna). */
+    .roadmap-pin .roadmap > .home-process__step:nth-child(1) { --seg-from:  8%; --seg-to: 28%; --node-from: 14%; --node-to: 22%; }
+    .roadmap-pin .roadmap > .home-process__step:nth-child(2) { --seg-from: 28%; --seg-to: 48%; --node-from: 34%; --node-to: 42%; }
+    .roadmap-pin .roadmap > .home-process__step:nth-child(3) { --seg-from: 48%; --seg-to: 68%; --node-from: 54%; --node-to: 62%; }
+    .roadmap-pin .roadmap > .home-process__step:nth-child(4) { --seg-from: 68%; --seg-to: 88%; --node-from: 74%; --node-to: 82%; }
+
+    .roadmap-pin .roadmap--5 > .home-process__step:nth-child(1) { --seg-from:  8%; --seg-to: 24%; --node-from: 12%; --node-to: 20%; }
+    .roadmap-pin .roadmap--5 > .home-process__step:nth-child(2) { --seg-from: 24%; --seg-to: 40%; --node-from: 28%; --node-to: 36%; }
+    .roadmap-pin .roadmap--5 > .home-process__step:nth-child(3) { --seg-from: 40%; --seg-to: 56%; --node-from: 44%; --node-to: 52%; }
+    .roadmap-pin .roadmap--5 > .home-process__step:nth-child(4) { --seg-from: 56%; --seg-to: 72%; --node-from: 60%; --node-to: 68%; }
+    .roadmap-pin .roadmap--5 > .home-process__step:nth-child(5) { --seg-from: 72%; --seg-to: 88%; --node-from: 76%; --node-to: 84%; }
+  }
+}
+
+/* El hito arranca como anillo gris apagado y se enciende en terracota cuando
+   la línea lo alcanza: todo el recorrido se ve desde el principio y se va
+   completando, en vez de aparecer de la nada. */
+@keyframes roadmap-node-on {
+  from {
+    border-color: rgba(107, 124, 133, 0.35);
+    color: rgba(107, 124, 133, 0.7);
+    transform: scale(0.84);
+  }
+  to {
+    border-color: var(--color-accent-warm);
+    color: var(--color-action-web);
+    transform: scale(1);
+  }
+}
+
+/* El texto de los pasos aún no alcanzados queda atenuado, no oculto. */
+@keyframes roadmap-text-on {
+  from { opacity: 0.28; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roadmap > .home-process__step::after,
+  .roadmap .home-process__number,
+  .roadmap .home-process__step-title,
+  .roadmap .home-process__step-desc {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* --- Proceso: capa nativa atada al scroll (scroll-driven animations) ---
+   Progresa con el scroll real, en el compositor del navegador: sin listeners,
+   sin JS y sin librerías. Al ir bajando cada paso se traza y aparece en
+   secuencia; al subir, se deshace igual, porque está atado a la posición y no
+   a un disparo puntual.
+
+   Los 4 pasos están en la misma fila, así que entran a la vez: el escalonado
+   se logra desfasando el animation-range de cada uno, no con delays.
+
+   Va dentro de @supports: donde el navegador no lo soporta, sigue vigente el
+   revelado por IntersectionObserver (fallback) sin tocar nada. */
+
+@supports (animation-timeline: view()) {
+  /* La capa nativa toma el control: se anula el estado del fallback JS. */
+  [data-reveal-ready] .home-process__steps[data-reveal] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* Cada paso define su ventana de scroll con variables, y las tres piezas que
+     se animan (bloque, línea y número) la heredan: así el desfase se ajusta en
+     un solo lugar por breakpoint.
+     Se usa la fase `cover` —no `entry`— porque abarca todo el recorrido del
+     bloque por la pantalla (alto del viewport + alto del bloque). `entry` es
+     un tramo muy corto y por eso el efecto se consumía en dos dedos de scroll. */
+  .home-process__step,
+  .home-process__step::before,
+  .home-process__number {
+    animation-timeline: view();
+    animation-range: cover var(--step-from) cover var(--step-to);
+  }
+
+  .home-process__step {
+    animation-name: process-step-in;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+
+  .home-process__step::before {
+    animation-name: process-rule-draw;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+
+  .home-process__number {
+    animation-name: process-number-in;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+
+  /* Escritorio: los 4 están en la misma fila y entran a la vez, así que la
+     secuencia se logra desfasando la ventana de cada uno. Se reparte sobre
+     ~45% del recorrido para que dé tiempo a percibirla. */
+  .home-process__step:nth-child(1) { --step-from: 18%; --step-to: 38%; }
+  .home-process__step:nth-child(2) { --step-from: 26%; --step-to: 46%; }
+  .home-process__step:nth-child(3) { --step-from: 34%; --step-to: 54%; }
+  .home-process__step:nth-child(4) { --step-from: 42%; --step-to: 62%; }
+
+  /* Tablet: 2 columnas → sólo hay que desfasar de a dos por fila. */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .home-process__steps > .home-process__step:nth-child(odd)  { --step-from: 16%; --step-to: 38%; }
+    .home-process__steps > .home-process__step:nth-child(even) { --step-from: 26%; --step-to: 48%; }
+  }
+
+  /* Móvil: cada paso es su propia fila y tiene su propio recorrido, así que el
+     desfase ya no hace falta —lo da el scroll— y todos comparten la misma
+     ventana. Sin esto, el paso 4 esperaría a estar muy entrado para animarse. */
+  @media (max-width: 767px) {
+    .home-process__steps > .home-process__step {
+      --step-from: 10%;
+      --step-to: 34%;
+    }
+  }
+}
+
+@keyframes process-step-in {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes process-rule-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* El número arranca invisible y termina en su opacidad de reposo (0.22). */
+@keyframes process-number-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.94); }
+  to   { opacity: 0.22; transform: none; }
+}
+
+/* Las tres piezas quedan quietas y visibles si se pide menos movimiento.
+   Necesario explícitamente: con animation-timeline el progreso lo marca el
+   scroll, así que neutralizar la duración no basta. */
+@media (prefers-reduced-motion: reduce) {
+  .home-process__step,
+  .home-process__step::before {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .home-process__number {
+    animation: none !important;
+    opacity: 0.22 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .home-process__steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .home-process__steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Situaciones — lista horizontal minimalista interactiva --- */
+
+.home-situations__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.situation-card {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(107, 124, 133, 0.15);
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-5) var(--space-3);
+  transition:
+    padding-left var(--transition-base),
+    background var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.home-situations__grid > .situation-card:first-child {
+  border-top: 1px solid rgba(107, 124, 133, 0.15);
+}
+
+/* Barra sólida en el canto izquierdo: crece desde el centro al pasar el mouse.
+   Verde profundo de marca (#2F5D5A = rgb 47 93 90). */
+.situation-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 1;
+  width: 3px;
+  height: 0;
+  transform: translateY(-50%);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-action-web);
+  transition: height var(--transition-base);
+}
+
+/* Sombreado que nace de los bordes superior e inferior y se apaga cerca de la
+   mitad del rectángulo, sin llegar a cruzarse. Va en un pseudo-elemento —no en
+   background-image de la tarjeta— porque los degradados no interpolan en
+   transiciones y aparecerían de golpe; así se atenúa con opacity. */
+.situation-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to bottom, rgba(47, 93, 90, 0.11), rgba(47, 93, 90, 0) 46%),
+    linear-gradient(to top,    rgba(47, 93, 90, 0.11), rgba(47, 93, 90, 0) 46%);
+  transition: opacity var(--transition-base);
+}
+
+/* :has(:focus-visible) —no :focus-within— para que el teclado reciba la misma
+   respuesta SIN que el estado se quede pegado al hacer clic: al pulsar, el
+   enlace conserva el foco y :focus-within seguiría activo tras salir el mouse. */
+.situation-card:hover,
+.situation-card:has(:focus-visible) {
+  background: rgba(47, 93, 90, 0.07);
+  padding-left: var(--space-5);
+  transform: none;
+  /* Líneas nítidas de 1px en los cantos, de donde arranca el sombreado. */
+  box-shadow:
+    inset 0 1px 0 rgba(47, 93, 90, 0.28),
+    inset 0 -1px 0 rgba(47, 93, 90, 0.28);
+}
+
+.situation-card:hover::before,
+.situation-card:has(:focus-visible)::before {
+  height: 62%;
+}
+
+.situation-card:hover::after,
+.situation-card:has(:focus-visible)::after {
+  opacity: 1;
+}
+
+/* El texto se eleva sobre el sombreado del ::after. */
+.situation-card__question {
+  position: relative;
+  z-index: 1;
+  font-size: var(--text-highlight-desktop);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-main);
+  line-height: var(--leading-normal);
+  margin: 0;
+  flex: 1;
+}
+
+.situation-card__route {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  font-size: var(--text-btn-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-action-web);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.65;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  min-height: auto;
+}
+
+.situation-card:hover .situation-card__route {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+@media (max-width: 767px) {
+  .situation-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .situation-card:hover {
+    padding-left: var(--space-3);
+  }
+
+  .situation-card__route {
+    opacity: 1;
+    min-height: 44px;
+  }
+}
+
+/* --- Señales de confianza — ficha de credenciales editorial ---
+   Split asimétrico: encabezado a la izquierda, credenciales a la derecha como
+   filas de registro separadas por filetes. Reemplaza las tres tarjetas con
+   borde de acento (patrón muy visto) por el lenguaje propio de la marca:
+   filete fino + punto terracota como viñeta (brand-identity §7). */
+
+.home-trust {
+  background-color: var(--color-bg-light);
+}
+
+.home-trust__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(var(--space-10), 6vw, var(--space-20));
+  align-items: start;
+}
+
+.home-trust__title {
+  font-size: clamp(2rem, 2.6vw + 0.5rem, 2.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin-bottom: var(--space-5);
+  text-wrap: balance;
+}
+
+.home-trust__lead {
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-6);
+  max-width: 32rem;
+}
+
+.home-trust__link {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-action-web);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.home-trust__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.trust-record {
+  margin: 0;
+}
+
+.trust-record__row {
+  padding-block: var(--space-6);
+  border-top: 1px solid rgba(107, 124, 133, 0.20);
+}
+
+.trust-record__row:last-child {
+  border-bottom: 1px solid rgba(107, 124, 133, 0.20);
+}
+
+/* El punto va en el ::before del término y alineado a la línea base, así queda
+   pegado al texto sin depender de cálculos de altura de línea. */
+.trust-record__label {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  letter-spacing: -0.01em;
+}
+
+.trust-record__label::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-accent-warm);
+  transform: translateY(-0.32em);
+}
+
+.trust-record__value {
+  /* Sangra hasta la altura del texto del término, no del punto. */
+  margin: var(--space-2) 0 0;
+  padding-left: calc(7px + var(--space-3));
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+  max-width: 34rem;
+}
+
+/* Móvil y tablet: se apila y el encabezado se centra, para seguir la estética
+   del resto de las secciones (.section-header va centrado en estos anchos).
+   Se corta en 1023px —el breakpoint de tablet del tema— y no antes, para que
+   en tablet no quede un split a dos columnas con el título alineado a la
+   izquierda mientras las demás secciones lo tienen centrado.
+   Las filas del registro NO se centran: son pares etiqueta/valor con viñeta,
+   y centrarlos rompería la alineación de lectura. */
+@media (max-width: 1023px) {
+  .home-trust__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .home-trust__intro {
+    text-align: center;
+  }
+
+  .home-trust__lead {
+    margin-inline: auto;
+  }
+
+  .home-trust__lead,
+  .trust-record__value {
+    max-width: none;
+  }
+}
+
+/* Móvil: el párrafo de ~6 líneas centrado obligaba a buscar el inicio de cada
+   renglón. El título sigue centrado; el párrafo se lee alineado a la izquierda. */
+@media (max-width: 767px) {
+  .home-trust__lead {
+    text-align: left;
+  }
+}
+
+/* --- CTA cierre --- */
+
+.home-cta {
+  display: none;
+}
+
+.home-cta__inner {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+  padding: var(--space-12);
+  background-color: var(--color-action-web);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-surface);
+}
+
+.home-cta__title {
+  font-size: var(--text-h2-desktop);
+  color: var(--color-surface);
+  margin-bottom: var(--space-4);
+}
+
+.home-cta__text {
+  color: rgba(255,255,255,.85);
+  margin-bottom: var(--space-8);
+  font-size: var(--text-highlight-desktop);
+}
+
+.home-cta__inner .btn--primary {
+  background-color: var(--color-surface);
+  color: var(--color-action-web);
+  border-color: var(--color-surface);
+}
+
+.home-cta__inner .btn--primary:hover {
+  background-color: var(--color-bg-light);
+  border-color: var(--color-bg-light);
+}

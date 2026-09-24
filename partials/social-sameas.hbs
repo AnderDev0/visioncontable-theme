@@ -1,0 +1,19 @@
+{{!--
+  SOCIAL-SAMEAS — Fragmento JSON-LD con los perfiles oficiales de la marca.
+
+  Se inserta dentro de la entidad Person, siempre precedido de una coma en el
+  punto de uso. Facebook e Instagram existen siempre (con respaldo al perfil
+  oficial); LinkedIn solo entra si se diligencia en el panel de Ghost.
+
+  Los valores del panel pasan por {{json}}: una URL con comillas o caracteres
+  raros ya no puede romper el <script type="application/ld+json">.
+
+  Uso (ojo a la coma previa):
+      "contactPoint": {...},
+      {{> social-sameas}}
+--}}
+"sameAs": [
+  {{#if @custom.facebook_url}}{{json @custom.facebook_url}}{{else}}"https://www.facebook.com/visioncontablekr/"{{/if}},
+  {{#if @custom.instagram_url}}{{json @custom.instagram_url}}{{else}}"https://www.instagram.com/visioncontablekr/"{{/if}}{{#if @custom.linkedin_url}},
+  {{json @custom.linkedin_url}}{{/if}}
+]

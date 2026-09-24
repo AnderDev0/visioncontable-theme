@@ -1,0 +1,68 @@
+{{!< default}}
+{{!--
+  ERROR-404.HBS — Página de error 404
+  Spec: kb/docs/page-404.md
+  - HTTP 404 real (Ghost lo gestiona automáticamente)
+  - noindex, follow (NO indexar)
+  - Solo un H1: "No encontramos la página que buscas"
+  - Layout 2 columnas desktop | apilado mobile (foto al fondo)
+  - Sin JSON-LD
+--}}
+
+{{!-- Noindex al <head> por el bloque "head" de default.hbs (antes quedaba
+     dentro del <body>, donde el meta robots es HTML inválido). --}}
+{{#contentFor "head"}}
+  <meta name="robots" content="noindex, follow">
+{{/contentFor}}
+
+<section class="error-404 section--lg">
+  <div class="container">
+    <div class="layout-two-col error-404__inner">
+
+      {{!-- Columna izquierda: mensaje de error + CTA --}}
+      <div class="error-404__content">
+        <span class="error-404__code" aria-hidden="true">404</span>
+        <h1 class="error-404__title">No encontramos la página que buscas</h1>
+        <p class="error-404__desc">
+          Es posible que la URL haya cambiado, el contenido haya sido movido o que haya un error tipográfico en el enlace.
+        </p>
+        <div class="error-404__actions">
+          <a href="{{@site.url}}/" class="btn btn--primary">Ir al inicio</a>
+          <a href="{{@site.url}}/blog/" class="btn btn--outline">Ver el blog</a>
+        </div>
+        <div class="error-404__search">
+          <p class="text-sub">O busca lo que necesitas:</p>
+          <button class="btn btn--outline btn--sm error-404__search-btn"
+                  data-ghost-search
+                  aria-label="Buscar contenido">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Buscar en el sitio
+          </button>
+        </div>
+      </div>
+
+      {{!-- Columna derecha: foto de Katerinn (contexto humano) --}}
+      <div class="error-404__image-wrapper">
+        {{!-- Foto del tema, no @site.cover_image: esa sale del panel de Ghost y
+             hoy es la portada genérica de Ghost. Dimensiones intrínsecas del
+             archivo (el CSS la limita a 320px) para no provocar CLS. --}}
+        <img src="{{asset "images/retrato-katerinn-romero.webp"}}"
+             alt="Katerinn Romero, asesora contable, tributaria y financiera"
+             width="1080" height="1620"
+             loading="lazy" decoding="async"
+             class="error-404__image">
+        <div class="error-404__contact-hint">
+          <p>¿Buscas algo específico?</p>
+          {{> whatsapp-link
+              message="Hola%2C%20Katerinn.%20Estaba%20buscando%20informaci%C3%B3n%20y%20no%20encontr%C3%A9%20la%20p%C3%A1gina..."
+              class="btn btn--primary btn--sm"
+              text="Escríbeme por WhatsApp"
+              gtm="error_404_whatsapp_click"}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

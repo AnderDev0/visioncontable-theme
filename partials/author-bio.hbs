@@ -1,0 +1,42 @@
+{{!--
+  AUTHOR-BIO — Tarjeta de autoría de Katerinn
+  Spec: kb/docs/blog-post.md
+  Enlaza a /katerinn-romero/ (NO a /author/katerinn-romero/)
+--}}
+<div class="author-bio">
+  {{#foreach authors}}
+    <div class="author-bio__inner">
+      {{#if profile_image}}
+        <img src="{{img_url profile_image size="xs"}}"
+             alt="Foto de perfil de {{name}}"
+             width="64" height="64"
+             loading="lazy"
+             class="author-bio__avatar">
+      {{else}}
+        <div class="author-bio__avatar-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" width="64" height="64">
+            <circle cx="32" cy="32" r="32" fill="#EFE8E0"/>
+            <circle cx="32" cy="24" r="10" fill="#4E6E6A"/>
+            <path d="M8 60c0-13.255 10.745-24 24-24s24 10.745 24 24" fill="#4E6E6A"/>
+          </svg>
+        </div>
+      {{/if}}
+      <div class="author-bio__content">
+        {{!-- Enlace al perfil profesional, NO a la URL de autor de Ghost --}}
+        <a href="/katerinn-romero/" class="author-bio__name" data-gtm="blog_about_click">
+          {{name}}
+        </a>
+        {{#if bio}}
+          <p class="author-bio__text">{{bio}}</p>
+        {{else}}
+          <p class="author-bio__text">
+            Contadora pública. Asesora contable, tributaria y financiera para empresas y emprendedores en Colombia.
+          </p>
+        {{/if}}
+        <a href="/katerinn-romero/" class="author-bio__profile-link" data-gtm="blog_about_click">
+          Ver perfil profesional →
+        </a>
+      </div>
+    </div>
+  {{/foreach}}
+</div>

@@ -1,0 +1,41 @@
+{{!--
+  PAGINATION — Paginación tradicional semántica
+  Spec: kb/docs/blog-index.md — NO infinite scroll
+  Usa el helper {{pagination}} de Ghost
+--}}
+{{#if pagination}}
+  {{#match pagination.pages ">" 1}}
+    <nav class="pagination" aria-label="Paginación de artículos">
+
+      {{!-- Página anterior --}}
+      {{#if pagination.prev}}
+        <a href="{{pagination.prev}}"
+           class="pagination__link pagination__link--prev"
+           rel="prev"
+           data-gtm="blog_pagination_click">
+          ← Anterior
+        </a>
+      {{else}}
+        <span class="pagination__link pagination__link--prev" aria-disabled="true">← Anterior</span>
+      {{/if}}
+
+      {{!-- Indicador de página actual --}}
+      <span class="pagination__link pagination__link--current" aria-current="page" aria-label="Página {{pagination.page}} de {{pagination.pages}}">
+        {{pagination.page}} / {{pagination.pages}}
+      </span>
+
+      {{!-- Página siguiente --}}
+      {{#if pagination.next}}
+        <a href="{{pagination.next}}"
+           class="pagination__link pagination__link--next"
+           rel="next"
+           data-gtm="blog_pagination_click">
+          Siguiente →
+        </a>
+      {{else}}
+        <span class="pagination__link pagination__link--next" aria-disabled="true">Siguiente →</span>
+      {{/if}}
+
+    </nav>
+  {{/match}}
+{{/if}}

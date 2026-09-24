@@ -1,0 +1,267 @@
+{{!< default}}
+{{!--
+  PAGE-POLITICA-DE-PRIVACIDAD.HBS — /politica-de-privacidad/
+  Fuente del texto: kb/docs/Instrucciones página política de privacidad.md
+  Schema: WebPage (NO Article ni BlogPosting)
+
+  El texto va en la plantilla y no en el editor de Ghost para garantizar que se
+  publique exactamente el aprobado. Contrapartida: no es editable desde el admin.
+  Los datos de contacto SÍ salen de los ajustes del tema (legal_email /
+  legal_phone) para no dejar datos legales incrustados en el código.
+--}}
+
+<article class="legal-page">
+  <div class="container">
+
+    <header class="legal-page__header">
+      <h1 class="legal-page__title">Política de privacidad y tratamiento de datos personales</h1>
+      <p class="legal-page__intro">
+        Katerinn Romero protege la información personal de quienes visitan visioncontable.co, utilizan sus canales de contacto, solicitan una asesoría o contratan sus servicios. Esta política explica qué datos personales se recopilan, para qué se utilizan y cómo pueden ejercer sus derechos los titulares.
+      </p>
+      <dl class="legal-dates">
+        <div class="legal-dates__pair">
+          <dt>Entrada en vigor</dt>
+          <dd><time datetime="2026-07-21">21 de julio de 2026</time></dd>
+        </div>
+        <div class="legal-dates__pair">
+          <dt>Última actualización</dt>
+          <dd><time datetime="2026-07-21">21 de julio de 2026</time></dd>
+        </div>
+      </dl>
+    </header>
+
+    <div class="legal-layout">
+
+      {{!-- Índice: en un documento de 12 apartados es lo que evita el scroll a
+           ciegas. Se queda fijo en escritorio y colapsa arriba en móvil. --}}
+      <nav class="legal-toc" aria-labelledby="legal-toc-title">
+        <p class="legal-toc__title" id="legal-toc-title">Contenido</p>
+        {{!-- Solo móvil: legal-toc.js lo activa y pliega el índice para no empujar el contenido. --}}
+        <button type="button" class="legal-toc__toggle" aria-expanded="true" aria-controls="legal-toc-list">Contenido</button>
+        <ol class="legal-toc__list" id="legal-toc-list">
+          <li><a href="#responsable">Responsable del tratamiento</a></li>
+          <li><a href="#datos">Datos personales recopilados</a></li>
+          <li><a href="#finalidades">Finalidades del tratamiento</a></li>
+          <li><a href="#autorizacion">Autorización para el tratamiento</a></li>
+          <li><a href="#terceros">Información compartida con terceros</a></li>
+          <li><a href="#conservacion">Conservación y seguridad</a></li>
+          <li><a href="#derechos">Derechos de los titulares</a></li>
+          <li><a href="#reclamos">Consultas y reclamos</a></li>
+          <li><a href="#sensibles">Datos sensibles y de menores</a></li>
+          <li><a href="#cookies">Cookies y servicios externos</a></li>
+          <li><a href="#cambios">Cambios en esta política</a></li>
+          <li><a href="#normativa">Marco normativo</a></li>
+        </ol>
+      </nav>
+
+      <div class="legal-body">
+
+        <section class="legal-section" id="responsable">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">1</span>Responsable del tratamiento</h2>
+          <dl class="legal-data">
+            <div class="legal-data__row">
+              <dt>Nombre</dt>
+              <dd>Katerinn Romero</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Actividad profesional</dt>
+              <dd>Asesoría contable, tributaria y financiera</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Domicilio</dt>
+              <dd>Bogotá D. C., Colombia</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Sitio web</dt>
+              <dd>visioncontable.co</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Correo electrónico</dt>
+              <dd>
+                {{> legal-email}}
+              </dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Teléfono comercial</dt>
+              <dd>
+                {{> legal-phone}}
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="legal-section" id="datos">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">2</span>Datos personales recopilados</h2>
+          <p>Según el canal utilizado y la relación establecida, se podrán recopilar los siguientes datos:</p>
+          <ul class="legal-list">
+            <li>Nombre y apellidos.</li>
+            <li>Correo electrónico.</li>
+            <li>Número de teléfono.</li>
+            <li>Ciudad.</li>
+            <li>Nombre de la empresa o emprendimiento.</li>
+            <li>Actividad económica.</li>
+            <li>Información proporcionada voluntariamente en formularios, mensajes o reuniones.</li>
+            <li>Datos necesarios para preparar cotizaciones, formalizar la relación profesional y prestar los servicios contratados.</li>
+            <li>Información técnica básica de navegación, cuando las herramientas instaladas en el sitio lo permitan.</li>
+          </ul>
+          <p>Cuando se contrate un servicio, también podrá ser necesario tratar información contable, tributaria, financiera, laboral, comercial o administrativa. Esta información se utilizará exclusivamente para desarrollar las actividades acordadas con el cliente.</p>
+        </section>
+
+        <section class="legal-section" id="finalidades">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">3</span>Finalidades del tratamiento</h2>
+          <p>Los datos personales podrán utilizarse para:</p>
+          <ul class="legal-list">
+            <li>Atender consultas y solicitudes.</li>
+            <li>Contactar a quienes soliciten información o una asesoría.</li>
+            <li>Conocer las necesidades iniciales del emprendimiento o la empresa.</li>
+            <li>Programar reuniones.</li>
+            <li>Preparar diagnósticos, propuestas y cotizaciones.</li>
+            <li>Formalizar y prestar los servicios contratados.</li>
+            <li>Gestionar comunicaciones relacionadas con el servicio.</li>
+            <li>Cumplir obligaciones administrativas, contractuales, contables, tributarias y legales.</li>
+            <li>Atender consultas y reclamos relacionados con el tratamiento de datos.</li>
+            <li>Proteger la seguridad y el funcionamiento del sitio web.</li>
+            <li>Enviar información educativa o comercial cuando exista autorización previa.</li>
+          </ul>
+          <p>Los datos no se utilizarán para finalidades diferentes de las informadas sin obtener una nueva autorización cuando sea necesaria.</p>
+        </section>
+
+        <section class="legal-section" id="autorizacion">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">4</span>Autorización para el tratamiento</h2>
+          <p>Cuando la legislación lo requiera, el tratamiento de los datos se realizará con autorización previa, expresa e informada del titular.</p>
+          <p>La autorización podrá obtenerse mediante formularios, casillas de aceptación, correo electrónico, WhatsApp, contratos u otros mecanismos que permitan demostrar la decisión del titular.</p>
+        </section>
+
+        <section class="legal-section" id="terceros">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">5</span>Información compartida con terceros</h2>
+          <p>Los datos personales no serán vendidos, alquilados ni comercializados.</p>
+          <p>Podrán compartirse únicamente cuando sea necesario con:</p>
+          <ul class="legal-list">
+            <li>Proveedores tecnológicos que apoyen el funcionamiento y la seguridad del sitio.</li>
+            <li>Plataformas utilizadas para formularios, correo electrónico, almacenamiento, reuniones o comunicaciones.</li>
+            <li>Profesionales o aliados que intervengan en la prestación del servicio.</li>
+            <li>Autoridades administrativas, judiciales o tributarias cuando exista una obligación legal.</li>
+            <li>Terceros autorizados por el titular.</li>
+          </ul>
+          <p>Estos terceros deberán utilizar la información únicamente para las finalidades autorizadas y mantener su confidencialidad.</p>
+        </section>
+
+        <section class="legal-section" id="conservacion">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">6</span>Conservación y seguridad de la información</h2>
+          <p>Los datos se conservarán durante el tiempo necesario para cumplir las finalidades informadas, prestar los servicios contratados y atender las obligaciones legales, contables, tributarias o contractuales aplicables.</p>
+          <p>Se adoptarán medidas administrativas, técnicas y organizativas razonables para prevenir:</p>
+          <ul class="legal-list">
+            <li>Accesos no autorizados.</li>
+            <li>Pérdida o alteración.</li>
+            <li>Uso indebido.</li>
+            <li>Divulgación no autorizada.</li>
+            <li>Consulta o destrucción fraudulenta.</li>
+          </ul>
+          <p>Cuando la información deje de ser necesaria y no exista una obligación legal de conservarla, será eliminada, anonimizada o bloqueada de forma segura.</p>
+        </section>
+
+        <section class="legal-section" id="derechos">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">7</span>Derechos de los titulares</h2>
+          <p>Los titulares de los datos personales tienen derecho a:</p>
+          <ul class="legal-list">
+            <li>Conocer, actualizar y rectificar su información.</li>
+            <li>Solicitar prueba de la autorización otorgada, cuando corresponda.</li>
+            <li>Conocer el uso dado a sus datos.</li>
+            <li>Acceder gratuitamente a su información.</li>
+            <li>Presentar consultas y reclamos.</li>
+            <li>Solicitar la supresión de sus datos cuando proceda.</li>
+            <li>Revocar la autorización cuando no exista una obligación legal o contractual que impida hacerlo.</li>
+            <li>Presentar una queja ante la Superintendencia de Industria y Comercio después de agotar el trámite ante el responsable.</li>
+          </ul>
+        </section>
+
+        {{!-- Es el apartado accionable de toda la política: se destaca para que
+             quien viene a ejercer un derecho no tenga que rastrearlo. --}}
+        <section class="legal-section" id="reclamos">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">8</span>Consultas y reclamos</h2>
+          <div class="legal-callout">
+            <p class="legal-callout__lead">Las solicitudes relacionadas con el tratamiento de datos personales deberán enviarse a:</p>
+            <dl class="legal-data legal-data--tight">
+              <div class="legal-data__row">
+                <dt>Correo</dt>
+                <dd>
+                  {{> legal-email subject="Solicitud%20sobre%20datos%20personales"}}
+                </dd>
+              </div>
+              <div class="legal-data__row">
+                <dt>Asunto</dt>
+                <dd>Solicitud sobre datos personales</dd>
+              </div>
+            </dl>
+          </div>
+          <p>La solicitud deberá incluir:</p>
+          <ul class="legal-list">
+            <li>Nombre completo del titular.</li>
+            <li>Información que permita verificar su identidad.</li>
+            <li>Datos de contacto.</li>
+            <li>Descripción clara de la consulta, reclamo o solicitud.</li>
+            <li>Documentos de soporte, cuando sean necesarios.</li>
+          </ul>
+          <p>Las consultas se responderán dentro de los <strong>diez días hábiles</strong> siguientes a su recepción. Los reclamos completos se atenderán dentro de los <strong>quince días hábiles</strong> siguientes, de acuerdo con los términos establecidos por la legislación colombiana.</p>
+        </section>
+
+        <section class="legal-section" id="sensibles">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">9</span>Datos sensibles y datos de menores de edad</h2>
+          <p>Los formularios generales del sitio no están diseñados para solicitar datos sensibles ni información de niños, niñas o adolescentes.</p>
+          <p>Si excepcionalmente fuera necesario tratar datos sensibles para prestar un servicio, se informará previamente su finalidad y se solicitará autorización explícita cuando corresponda.</p>
+        </section>
+
+        <section class="legal-section" id="cookies">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">10</span>Cookies y servicios externos</h2>
+          <p>El sitio puede utilizar cookies técnicas necesarias para su funcionamiento.</p>
+          <p>Si se incorporan herramientas de analítica, publicidad o seguimiento que utilicen cookies no esenciales, se informará al usuario y se solicitará su consentimiento cuando corresponda.</p>
+          <p>Los enlaces a WhatsApp, redes sociales y otras plataformas externas se rigen por las políticas de privacidad de cada proveedor.</p>
+        </section>
+
+        <section class="legal-section" id="cambios">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">11</span>Cambios en esta política</h2>
+          <p>Esta política podrá actualizarse debido a cambios normativos, tecnológicos, operativos o relacionados con los servicios.</p>
+          <p>La versión vigente estará disponible en esta página junto con su fecha de actualización. Si un cambio modifica sustancialmente las finalidades autorizadas, se solicitará una nueva autorización cuando corresponda.</p>
+        </section>
+
+        <section class="legal-section" id="normativa">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">12</span>Marco normativo</h2>
+          <p>Esta política se rige por la Ley 1581 de 2012, el Decreto 1074 de 2015 y las demás normas colombianas aplicables al tratamiento de datos personales.</p>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</article>
+
+{{!-- JSON-LD: WebPage + BreadcrumbList.
+     La miga visual se retiró por diseño, pero ambos documentos legales la
+     exigen ("Inicio > ..."), así que la ruta se conserva aquí para Google. --}}
+{{!-- title y url del JSON-LD vienen de la página de Ghost ("page"). --}}
+{{#page}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{url absolute="true"}}#webpage",
+      "url": "{{url absolute="true"}}",
+      "name": {{json title}},
+      "isPartOf": { "@id": "{{@site.url}}/#website" },
+      "breadcrumb": { "@id": "{{url absolute="true"}}#breadcrumb" },
+      "inLanguage": "es-CO"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{url absolute="true"}}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "{{@site.url}}/" },
+        { "@type": "ListItem", "position": 2, "name": {{json title}} }
+      ]
+    }
+  ]
+}
+</script>
+{{/page}}

@@ -1,0 +1,56 @@
+/* ==========================================================================
+   BREADCRUMBS — Navegación de migas de pan semántica
+   ========================================================================== */
+
+/* El parcial se inserta sin envoltorio, así que la propia nav replica el
+   comportamiento de .container: sin esto las migas se pegaban al borde
+   izquierdo de la ventana y el primer ítem quedaba cortado. */
+.breadcrumbs {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-block: var(--space-4);
+  padding-inline: var(--container-padding);
+  font-size: var(--text-breadcrumbs);
+  color: var(--color-text-sub);
+}
+
+.breadcrumbs__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  content: '/';
+  opacity: 0.4;
+  font-size: var(--text-breadcrumbs);
+}
+
+.breadcrumbs__link {
+  color: var(--color-text-sub);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumbs__link:hover {
+  color: var(--color-action-web);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Último elemento: no es enlace, no clickeable */
+.breadcrumbs__current {
+  color: var(--color-text-sub);
+  font-weight: var(--font-weight-medium);
+}

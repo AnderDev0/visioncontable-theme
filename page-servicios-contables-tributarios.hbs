@@ -1,0 +1,323 @@
+{{!< default}}
+{{!--
+  PAGE-SERVICIOS-CONTABLES-TRIBUTARIOS.HBS — /servicios-contables-tributarios/
+  Spec: kb/docs/services-specialized.md
+  H1: "Trámites y asesorías en temas contables, tributarios y financieros"
+  7 servicios (NO clicables fase 1) | proceso | cross-links | 6+ FAQs | CTA
+--}}
+
+{{!--
+  Migas de pan retiradas de esta página por decisión de diseño.
+  El JSON-LD de BreadcrumbList sigue vigente en {{> structured-data-service}},
+  así que Google conserva la ruta en resultados.
+--}}
+
+{{!-- HERO — con imagen de fondo.
+     La imagen se pasa por variable CSS para poder usar el helper {{asset}};
+     cambiar la foto definitiva es cambiar sólo el nombre del archivo aquí. --}}
+<section class="landing-hero landing-hero--media section--lg">
+  {{!-- Dos fotos en fundido cruzado, decorativas: el significado lo carga el
+       H1, por eso van con alt vacio y el bloque aria-hidden. Solo la primera
+       se carga de inmediato; la segunda va diferida. --}}
+  <div class="landing-hero__media" aria-hidden="true">
+    <img class="landing-hero__photo" src="{{asset "images/Asesoria_tributaria.webp"}}"
+         srcset="{{asset "images/Asesoria_tributaria-1200.webp"}} 1200w, {{asset "images/Asesoria_tributaria.webp"}} 2000w"
+         sizes="(max-width: 767px) 400px, 2000px" alt=""
+         width="2000" height="1333" loading="eager" fetchpriority="high">
+    <img class="landing-hero__photo" src="{{asset "images/Asesoria_financiera.webp"}}"
+         srcset="{{asset "images/Asesoria_financiera-1200.webp"}} 1200w, {{asset "images/Asesoria_financiera.webp"}} 2000w"
+         sizes="(max-width: 767px) 400px, 2000px" alt=""
+         width="2000" height="1333" loading="lazy" decoding="async">
+  </div>
+  <div class="container">
+    <div class="landing-hero__inner">
+      <div class="landing-hero__text">
+        <h1 class="landing-hero__title">Trámites y asesorías en temas contables, tributarios y financieros</h1>
+        <p class="landing-hero__subtitle text-lead">
+          Resuelvo situaciones puntuales de tu negocio o empresa sin necesidad de un contrato mensual. Rápido, claro y con el resultado que necesitas.
+        </p>
+        {{> whatsapp-link
+            message="Hola%2C%20Katerinn.%20Quiero%20consultar%20un%20tr%C3%A1mite%20o%20una%20asesor%C3%ADa%20contable%20o%20tributaria..."
+            class="btn btn--primary btn--lg"
+            label="Consultar servicio especializado con Katerinn por WhatsApp (abre en nueva pestaña)"
+            gtm="click_whatsapp_hero"}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- INTRO DEL SERVICIO --}}
+<section class="landing-intro section section--bg-surface">
+  <div class="container container--narrow">
+    {{!-- H2 requerido por kb/docs/services-specialized.md §3.2: la sección no
+         tenía encabezado, quedaba como un párrafo suelto en el outline. --}}
+    <h2 class="landing-intro__title">Encuentra la orientación que necesitas para resolver tu caso</h2>
+    <p class="landing-intro__text">
+      Si tienes una situación tributaria que resolver, necesitas una consulta puntual o tienes un trámite específico, esta es la ruta adecuada. No se requiere compromiso mensual: trabajamos juntos exactamente en lo que necesitas.
+    </p>
+  </div>
+</section>
+
+{{!-- 7 SERVICIOS ESPECIALIZADOS
+     Índice editorial agrupado por el momento en que está el cliente, en vez de
+     una rejilla plana de 7 tarjetas iguales: así se lee como 3 decisiones y no
+     como 7 bloques indistintos. Copys tomados de kb/docs/services-specialized.md §3.3.
+     Regla de fase 1: bloques informativos, sin <a> ni cursor de enlace. --}}
+<section class="landing-services section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Servicios según lo que necesitas resolver</h2>
+      <p>Revisa las opciones disponibles. Si no tienes claro cuál corresponde a tu caso, puedes contarme qué necesitas y recibir orientación sobre el siguiente paso.</p>
+    </div>
+
+    <div class="service-index" data-reveal>
+
+      <div class="service-index__group">
+        <p class="service-index__eyebrow">Entender tu situación</p>
+        <ul class="service-index__list" role="list">
+          <li class="service-index__item">
+            <h3 class="service-index__title">Asesoría contable, tributaria o financiera</h3>
+            <p class="service-index__desc">Sesión de orientación para revisar una duda o situación específica, entender su alcance y definir los pasos que conviene seguir.</p>
+          </li>
+          <li class="service-index__item">
+            <h3 class="service-index__title">Diagnóstico tributario empresarial</h3>
+            <p class="service-index__desc">Revisión inicial de la situación tributaria de una empresa para identificar obligaciones, asuntos que requieren atención y prioridades de trabajo.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="service-index__group">
+        <p class="service-index__eyebrow">Cumplir tus obligaciones</p>
+        <ul class="service-index__list" role="list">
+          <li class="service-index__item">
+            <h3 class="service-index__title">Declaración de renta para personas naturales</h3>
+            <p class="service-index__desc">Acompañamiento en la revisión de la información y la preparación de la declaración de renta, de acuerdo con la situación particular de cada persona.</p>
+          </li>
+          <li class="service-index__item">
+            <h3 class="service-index__title">Implementación de facturación electrónica</h3>
+            <p class="service-index__desc">Orientación y acompañamiento para configurar la facturación electrónica y organizar los requisitos básicos del proceso.</p>
+          </li>
+          <li class="service-index__item">
+            <h3 class="service-index__title">Actualización del RUT</h3>
+            <p class="service-index__desc">Apoyo para revisar y actualizar la información registrada en el RUT de acuerdo con los cambios o necesidades de la persona o empresa.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="service-index__group">
+        <p class="service-index__eyebrow">Decidir con criterio</p>
+        <ul class="service-index__list" role="list">
+          <li class="service-index__item">
+            <h3 class="service-index__title">Planeación tributaria</h3>
+            <p class="service-index__desc">Análisis y orientación para anticipar obligaciones, organizar decisiones tributarias y reducir la improvisación dentro del marco normativo aplicable.</p>
+          </li>
+          <li class="service-index__item">
+            <h3 class="service-index__title">Gerencia financiera externa</h3>
+            <p class="service-index__desc">Acompañamiento para empresas que necesitan análisis, seguimiento y criterio profesional para tomar decisiones financieras sin incorporar una gerencia interna.</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- PROPUESTA DE VALOR --}}
+<section class="landing-value section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>Por qué elegir este servicio</h2>
+    </div>
+    {{!-- Iconografía outline según brand-identity §6: trazo uniforme, esquinas
+         redondeadas y stroke="currentColor" para recolorear desde CSS.
+         Decorativos (aria-hidden): el significado lo carga el H3. --}}
+    <div class="grid-3 landing-value__grid" data-reveal>
+      <div class="landing-value__item">
+        <div class="landing-value__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+            <circle cx="16" cy="17" r="11"/>
+            <path d="M16 11v6l4 2.5"/>
+            <path d="M12 4h8"/>
+          </svg>
+        </div>
+        <h3>Atención ágil</h3>
+        <p>Las asesorías puntuales se atienden con rapidez para que no pierdas tiempo esperando.</p>
+      </div>
+      <div class="landing-value__item">
+        <div class="landing-value__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+            <rect x="5" y="8" width="22" height="19" rx="3"/>
+            <path d="M5 14h22M11 8V5M21 8V5"/>
+            <circle cx="16" cy="20" r="1.75" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Sin compromiso mensual</h3>
+        <p>Pagas solo por lo que necesitas, cuando lo necesitas. Sin contratos de largo plazo.</p>
+      </div>
+      <div class="landing-value__item">
+        <div class="landing-value__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+            <path d="M27 19a3 3 0 01-3 3H12l-6 5V8a3 3 0 013-3h15a3 3 0 013 3z"/>
+            <path d="M11 11h11M11 16h7"/>
+          </svg>
+        </div>
+        <h3>Claridad en los resultados</h3>
+        <p>Recibes una explicación clara de lo que se hizo y qué significa para tu situación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- PROCESO --}}
+<section class="landing-process section roadmap-pin">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Cómo funciona?</h2>
+    </div>
+    <ol class="home-process__steps roadmap" role="list">
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">01</span>
+        <h3 class="home-process__step-title">Me describes tu situación</h3>
+        <p class="home-process__step-desc">Por WhatsApp, cuéntame brevemente qué necesitas resolver.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">02</span>
+        <h3 class="home-process__step-title">Defino el alcance</h3>
+        <p class="home-process__step-desc">Te confirmo si puedo ayudarte, qué implica y cuánto tiempo tomará.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">03</span>
+        <h3 class="home-process__step-title">Realizamos el trabajo</h3>
+        <p class="home-process__step-desc">Ejecuto el trámite o asesoría con la información que me facilites.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">04</span>
+        <h3 class="home-process__step-title">Recibes el resultado</h3>
+        <p class="home-process__step-desc">Te entrego el resultado con una explicación clara de lo que se realizó.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+{{!-- CROSS-LINKS A OTRAS RUTAS --}}
+<section class="landing-crosslinks section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>También podría interesarte</h2>
+    </div>
+    <div class="grid-2">
+      <a href="/gestion-contable-pymes/" class="service-route-card" data-gtm="click_desvio_pymes">
+        <h3 class="service-route-card__title">Gestión Contable para Pymes</h3>
+        <p class="service-route-card__desc">Acompañamiento mensual continuo para empresas con contabilidad activa.</p>
+        <span class="service-route-card__cta">Ver servicio</span>
+      </a>
+      <a href="/asesoria-contable-emprendedores/" class="service-route-card" data-gtm="click_desvio_emprendedores">
+        <h3 class="service-route-card__title">Asesoría para Emprendedores</h3>
+        <p class="service-route-card__desc">Orientación contable para iniciar tu negocio correctamente desde el primer paso.</p>
+        <span class="service-route-card__cta">Ver asesoría</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{!-- FAQs --}}
+<section class="landing-faqs section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-accordion" data-gtm-category="faq_open">
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-esp-1" id="faq-esp-btn-1">
+            ¿Puedo contratar una sola consulta sin compromiso mensual?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-esp-1" role="region" aria-labelledby="faq-esp-btn-1" aria-hidden="true">
+          <div class="accordion__body">Sí. Los servicios especializados están diseñados exactamente para eso: resolver necesidades puntuales sin que tengas que comprometerte con un contrato mensual.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-esp-2" id="faq-esp-btn-2">
+            ¿Cuánto tiempo tarda un trámite como la actualización del RUT?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-esp-2" role="region" aria-labelledby="faq-esp-btn-2" aria-hidden="true">
+          <div class="accordion__body">Depende de la complejidad del trámite y la disponibilidad de la documentación. En la mayoría de los casos los trámites se resuelven en días hábiles. Te indicaré el tiempo estimado antes de comenzar.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-esp-3" id="faq-esp-btn-3">
+            ¿Puedes presentar declaraciones tributarias en mi nombre?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-esp-3" role="region" aria-labelledby="faq-esp-btn-3" aria-hidden="true">
+          <div class="accordion__body">Sí. Puedo elaborar y gestionar la presentación de declaraciones tributarias (renta, IVA, ICA, retención en la fuente, entre otras) ante la DIAN y entes territoriales.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-esp-4" id="faq-esp-btn-4">
+            ¿Qué información necesito tener lista antes de solicitar el servicio?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-esp-4" role="region" aria-labelledby="faq-esp-btn-4" aria-hidden="true">
+          <div class="accordion__body">Depende del servicio. Cuando me contactes por WhatsApp, te haré saber exactamente qué documentos o información necesito. En general: identificación, RUT actualizado y los registros del período que corresponda.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-esp-5" id="faq-esp-btn-5">
+            ¿Trabajas con personas naturales y jurídicas?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-esp-5" role="region" aria-labelledby="faq-esp-btn-5" aria-hidden="true">
+          <div class="accordion__body">Sí. Atiendo tanto personas naturales (declarantes de renta, responsables de IVA, etc.) como personas jurídicas (SAS, LTDA, entre otras formas societarias).</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-esp-6" id="faq-esp-btn-6">
+            ¿Cuánto cuesta un servicio especializado?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-esp-6" role="region" aria-labelledby="faq-esp-btn-6" aria-hidden="true">
+          <div class="accordion__body">El valor varía según el tipo de servicio y su complejidad. Cuando describes tu necesidad, te doy información sobre el costo antes de iniciar. No hay cobros ocultos.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- CTA DE CIERRE --}}
+{{> service-cta whatsapp_message="Hola%2C%20Katerinn.%20Quiero%20consultar%20un%20tr%C3%A1mite%20o%20una%20asesor%C3%ADa%20contable%20o%20tributaria..." cta_title="¿Tienes un trámite o consulta pendiente?" cta_desc="Cuéntame tu situación por WhatsApp y te digo cómo puedo ayudarte."}}
+
+{{!-- JSON-LD del servicio, al <head> vía el bloque "head" de default.hbs.
+     Nombre y migas según kb/docs/structured-data-master.md §5.1. --}}
+{{#contentFor "head"}}
+  {{> structured-data-service
+      service_name="Servicios contables, tributarios y financieros especializados"
+      service_type="Asesoría y trámites contables y tributarios puntuales"
+      service_description="Trámites y asesorías puntuales en temas contables, tributarios y financieros sin contrato mensual: asesoría contable, tributaria o financiera, diagnóstico tributario empresarial, declaración de renta para personas naturales, implementación de facturación electrónica, actualización del RUT, planeación tributaria y gerencia financiera externa."
+      audience="Personas naturales, emprendedores y empresas en Colombia"
+      crumb_name="Servicios especializados"
+      crumb_path="/servicios-contables-tributarios/"}}
+{{/contentFor}}

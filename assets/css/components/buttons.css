@@ -1,0 +1,132 @@
+/* ==========================================================================
+   BUTTONS — CTAs y botones globales
+   ========================================================================== */
+
+/* --- Base --- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--text-btn);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  text-decoration: none;
+  border-radius: var(--border-radius-base);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+/* --- Variante primaria (CTA principal WhatsApp) ---
+   Terracota con texto oscuro. El texto NO puede ir blanco: #FFFFFF sobre
+   #CE7F67 da 2.9:1 y falla AA (y CLAUDE.md lo prohíbe explícitamente).
+   Con #333333 sube a 4.6:1. En hover el fondo baja a --color-accent-warm-dark,
+   que sí admite texto blanco (4.5:1). El borde va siempre un tono por debajo
+   del relleno para que el botón tenga filo y no flote sobre el fondo claro. */
+
+.btn--primary {
+  background-color: var(--color-accent-warm);
+  color: var(--color-text-main);
+  border-color: var(--color-accent-warm-dark);
+  border-radius: 9999px;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-accent-warm-dark);
+  border-color: var(--color-accent-warm-deep);
+  box-shadow: 0 8px 32px rgba(206, 127, 103, 0.20);
+  color: var(--color-surface);
+  text-decoration: none;
+  transform: scale(1.03);
+}
+
+.btn--primary:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--primary:focus-visible {
+  outline: 2px solid var(--color-action-web);
+  outline-offset: 3px;
+}
+
+/* --- Variante secundaria (acento terracota) --- */
+
+.btn--secondary {
+  background-color: var(--color-accent-warm);
+  color: var(--color-text-main);
+  border-color: var(--color-accent-warm-dark);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-accent-warm-dark);
+  border-color: var(--color-accent-warm-deep);
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+/* --- Variante outline sobre fondos claros --- */
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-action-web);
+  border-color: var(--color-action-web);
+}
+
+.btn--outline:hover {
+  background-color: var(--color-action-web);
+  color: var(--color-surface);
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(47, 93, 90, 0.18);
+}
+
+/* Sólo la variante primaria tenía respuesta a la pulsación; sin esto, en táctil
+   el resto no confirma que el toque se registró. */
+.btn--outline:active,
+.btn--secondary:active,
+.btn--outline-light:active {
+  transform: scale(0.98);
+}
+
+/* --- Variante outline sobre fondos oscuros (footer) --- */
+
+.btn--outline-light {
+  background-color: transparent;
+  color: var(--color-surface);
+  border-color: rgba(255,255,255,.6);
+}
+
+.btn--outline-light:hover {
+  background-color: rgba(255,255,255,.12);
+  border-color: var(--color-surface);
+  text-decoration: none;
+}
+
+/* --- Tamaños --- */
+
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-btn-sm);
+  min-height: 36px;
+}
+
+.btn--lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-btn-lg);
+  min-height: 52px;
+}
+
+.btn--full {
+  width: 100%;
+}

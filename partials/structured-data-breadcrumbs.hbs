@@ -1,0 +1,103 @@
+{{!--
+  STRUCTURED-DATA-BREADCRUMBS — Nodo BreadcrumbList (fragmento, sin <script>)
+  Spec: kb/docs/structured-data-master.md §5, §6.2, §6.3
+
+  Una sola fuente para las migas en JSON-LD. Se incluye como un elemento más
+  del "@graph" de cada partial de structured-data y su @id (<url>#breadcrumb)
+  es el que referencia la propiedad "breadcrumb" del WebPage correspondiente.
+
+  Jerarquías:
+    - Página estática (landings, perfil): Inicio > [Página]           (2 niveles)
+    - Categoría del blog:                 Inicio > Blog > [Categoría] (3 niveles)
+    - Artículo:                           Inicio > Blog > [Categoría] > [Artículo]
+                                          (3 niveles si el post no tiene tag primario)
+
+  Las páginas estáticas pasan nombre y ruta explícitos: así las migas no
+  dependen de que exista en Ghost una página con ese slug ni de su título
+  editable. Nombres y rutas salen de la spec §5, no del CMS.
+
+  Uso:
+      {{> structured-data-breadcrumbs crumb_name="Gestión contable para pymes" crumb_path="/gestion-contable-pymes/"}}
+      {{> structured-data-breadcrumbs}}   ← en contexto post o tag
+--}}
+{{#if crumb_path}}
+{
+  "@type": "BreadcrumbList",
+  "@id": "{{@site.url}}{{crumb_path}}#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "{{@site.url}}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{json crumb_name}},
+      "item": "{{@site.url}}{{crumb_path}}"
+    }
+  ]
+}
+{{else}}
+{{#is "post"}}
+{
+  "@type": "BreadcrumbList",
+  "@id": "{{url absolute="true"}}#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "{{@site.url}}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{@site.url}}/blog/"
+    },
+    {{#primary_tag}}
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{json name}},
+      "item": "{{url absolute="true"}}"
+    },
+    {{/primary_tag}}
+    {
+      "@type": "ListItem",
+      "position": {{#primary_tag}}4{{else}}3{{/primary_tag}},
+      "name": {{json title}},
+      "item": "{{url absolute="true"}}"
+    }
+  ]
+}
+{{/is}}
+{{#is "tag"}}
+{
+  "@type": "BreadcrumbList",
+  "@id": "{{url absolute="true"}}#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "{{@site.url}}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{@site.url}}/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{json name}},
+      "item": "{{url absolute="true"}}"
+    }
+  ]
+}
+{{/is}}
+{{/if}}

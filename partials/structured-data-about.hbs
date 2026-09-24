@@ -1,0 +1,55 @@
+{{!--
+  JSON-LD: ProfilePage + Person para /katerinn-romero/
+  Spec: kb/docs/structured-data-master.md
+  REGLA: NO Corporation, NO LocalBusiness, NO Organization separada en fase 1
+--}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "{{@site.url}}/katerinn-romero/#profilepage",
+      "url": "{{@site.url}}/katerinn-romero/",
+      "name": "Conoce a Katerinn Romero | {{@site.title}}",
+      "about": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      },
+      "isPartOf": {
+        "@id": "{{@site.url}}/#website"
+      },
+      "inLanguage": "es-CO",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "{{@site.url}}/"},
+          {"@type": "ListItem", "position": 2, "name": "Katerinn Romero", "item": "{{@site.url}}/katerinn-romero/"}
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{@site.url}}/#katerinn-romero",
+      "name": "Katerinn Romero",
+      "url": "{{@site.url}}/katerinn-romero/",
+      "jobTitle": "Asesora Contable, Tributaria y Financiera",
+      "description": "Contadora pública con experiencia en asesoría contable, tributaria y financiera para empresas y emprendedores en Colombia.",
+      "knowsAbout": [
+        "Contabilidad para pymes",
+        "Tributación colombiana",
+        "Declaraciones de renta",
+        "Facturación electrónica",
+        "Finanzas para negocios",
+        "Asesoría contable para emprendedores"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Visión Contable",
+        "url": "{{@site.url}}/"
+      },
+      "nationality": {"@type": "Country", "name": "Colombia"},
+      {{> social-sameas}}
+    }
+  ]
+}
+</script>

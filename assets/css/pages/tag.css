@@ -1,0 +1,12 @@
+/* ==========================================================================
+   TAG — Páginas de categoría del blog
+   (Estilos específicos; lo demás en post.css y blog-index.css)
+   ========================================================================== */
+
+.tag-grid {
+  padding-top: var(--space-8);
+}
+
+.tag-grid__posts {
+  gap: var(--space-6);
+}

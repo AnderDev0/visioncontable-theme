@@ -1,0 +1,40 @@
+{{!--
+  JSON-LD: ProfilePage + Person ampliada + BreadcrumbList para /katerinn-romero/
+  Spec: kb/docs/structured-data-master.md §4.3
+  Inyectado en el <head> desde page-katerinn-romero.hbs con {{#contentFor "head"}}
+
+  Reemplaza a structured-data-about.hbs, que colgaba de la Person un
+  worksFor → Organization prohibido en fase 1.
+
+  La Person es la misma entidad de todo el sitio (@id #katerinn-romero); aquí
+  se expande con la formación, que es visible en esta página.
+--}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "{{@site.url}}/katerinn-romero/#webpage",
+      "url": "{{@site.url}}/katerinn-romero/",
+      "name": "Katerinn Romero | Asesoría contable y tributaria",
+      "description": "Conoce la experiencia, la formación y la forma de trabajo de Katerinn Romero, contadora pública y especialista en Derecho Tributario, en servicios contables, tributarios y financieros para pymes y emprendedores en Colombia.",
+      "isPartOf": {
+        "@id": "{{@site.url}}/#website"
+      },
+      "mainEntity": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      },
+      "about": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      },
+      "breadcrumb": {
+        "@id": "{{@site.url}}/katerinn-romero/#breadcrumb"
+      },
+      "inLanguage": "es-CO"
+    },
+    {{> schema-person expanded=true}},
+    {{> structured-data-breadcrumbs crumb_name="Sobre Katerinn" crumb_path="/katerinn-romero/"}}
+  ]
+}
+</script>

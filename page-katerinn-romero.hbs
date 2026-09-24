@@ -1,0 +1,328 @@
+{{!< default}}
+{{!--
+  PAGE-KATERINN-ROMERO.HBS — /katerinn-romero/
+  Spec: kb/docs/Sobre_Katerinn_Ultimo.md
+  H1 único: "Katerinn Romero: experiencia contable, tributaria y financiera"
+  7 secciones: hero | trayectoria | formación | acompañamiento | principios |
+  rutas de servicio | cierre
+
+  Migas visuales retiradas por diseño; la ruta se conserva en el
+  BreadcrumbList de {{> structured-data-profile}}.
+--}}
+
+{{!--
+  SECCIONES 1 y 2 EN UN MISMO ESCENARIO
+  La foto es un elemento sticky que abarca las dos filas y cruza de derecha a
+  izquierda atada al scroll. Se hace con una view-timeline propia del escenario:
+  el progreso lo marca su paso por la pantalla, no un disparo puntual, así que
+  al subir el cruce se deshace igual.
+  Sin soporte de animation-timeline, la foto se queda en el hero (derecha) y la
+  trayectoria pasa a ancho completo: el contenido nunca depende del efecto.
+--}}
+<section class="about-stage">
+  <div class="container">
+    <div class="about-stage__grid">
+
+      <div class="about-stage__hero">
+        <p class="about-stage__eyebrow">Sobre Katerinn</p>
+        <h1 class="about-stage__title">Katerinn Romero: experiencia contable, tributaria y financiera</h1>
+        <p class="about-stage__lead">Soy contadora pública y especialista en Derecho Tributario, con más de 20 años de experiencia.</p>
+        <p class="about-stage__lead">Acompaño a emprendedores y pymes a organizar sus obligaciones y tomar decisiones con mayor claridad.</p>
+        <div class="about-stage__actions">
+          <a href="#trayectoria" class="btn btn--primary btn--lg">Ver mi trayectoria</a>
+          {{> whatsapp-link
+              message="Hola%2C%20Katerinn.%20Vi%20tu%20perfil%20profesional%20y%20quiero%20recibir%20orientaci%C3%B3n..."
+              class="btn btn--outline"
+              gtm="about_hero_whatsapp_click"}}
+        </div>
+      </div>
+
+      {{!-- Imagen principal: sin lazy load porque entra en el primer pantallazo
+           y afecta el LCP; dimensiones declaradas para evitar saltos.
+           PENDIENTE: el documento define trayectoria-katerinn-romero.webp, que
+           todavía no está en assets/images/. Al cargarlo, cambiar sólo esta
+           línea y conservar el nombre SEO del archivo. --}}
+      {{!-- Tres retratos en fundido cruzado. Separación de responsabilidades:
+           .about-stage__frame lleva el cruce de derecha a izquierda y las
+           imágenes sólo alternan su opacidad, así los dos movimientos no se
+           pisan (una animación gana sobre las declaraciones normales).
+           Sólo la primera se carga de inmediato: es la que mide el LCP; las
+           otras dos van diferidas para no triplicar el peso inicial.
+           La 2ª y 3ª van con alt vacío a propósito: comunican lo mismo que la
+           primera, y repetir la descripción sería ruido en un lector de
+           pantalla. --}}
+      <figure class="about-stage__media">
+        <div class="about-stage__frame">
+          <img src="{{asset "images/retrato-katerinn-romero.webp"}}"
+               alt="Katerinn Romero, contadora pública y especialista en Derecho Tributario"
+               width="1080" height="1620"
+               loading="eager"
+               fetchpriority="high"
+               class="about-stage__image">
+          <img src="{{asset "images/katerinn-romero-especialista-tributaria.webp"}}"
+               alt=""
+               width="1080" height="1620"
+               loading="lazy"
+               decoding="async"
+               class="about-stage__image">
+          <img src="{{asset "images/contacto-katerinn-romero.webp"}}"
+               alt=""
+               width="1080" height="1620"
+               loading="lazy"
+               decoding="async"
+               class="about-stage__image">
+        </div>
+      </figure>
+
+      <div class="about-stage__body" id="trayectoria">
+        <h2 class="about-stage__subtitle">Más de 20 años acompañando negocios</h2>
+        <p>Mi experiencia me permite analizar cada situación desde una perspectiva contable, tributaria y financiera.</p>
+        <p>Identifico los asuntos prioritarios, explico sus implicaciones y te ayudo a definir los siguientes pasos para tu negocio.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- 3. FORMACIÓN
+     El documento pide explícitamente NO usar siete tarjetas independientes:
+     va como registro académico en dos columnas, con filete y el punto de marca.
+     El título es el estudio y el pie la institución, que es la jerarquía real. --}}
+<section class="section section--bg-surface">
+  <div class="container">
+    <div class="section-header">
+      <h2>Formación contable, tributaria y financiera</h2>
+      <p>Mi formación técnica, tecnológica, profesional y especializada respalda una orientación integral y responsable.</p>
+    </div>
+
+    {{!-- Línea de tiempo, no lista: la formación cuenta una progresión por
+         niveles (técnico → tecnológico → profesional → especializado), que es
+         justo lo que dice el párrafo de entrada. La etiqueta de nivel sale del
+         propio nombre del estudio, no se inventa. El riel se llena con el
+         scroll, así el recorrido se siente avanzar. --}}
+    <ol class="timeline" role="list" data-reveal>
+      <li class="timeline__item">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        <p class="timeline__level">Especialización</p>
+        <h3 class="timeline__title">Especialización en Derecho Tributario</h3>
+        <p class="timeline__place">Universidad Externado de Colombia</p>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        <p class="timeline__level">Especialización</p>
+        <h3 class="timeline__title">Especialización Tecnológica en Planeación Tributaria</h3>
+        <p class="timeline__place">Servicio Nacional de Aprendizaje (SENA)</p>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        <p class="timeline__level">Profesional</p>
+        <h3 class="timeline__title">Contaduría Pública</h3>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        <p class="timeline__level">Diplomado</p>
+        <h3 class="timeline__title">Diplomado en NIIF para pymes</h3>
+        <p class="timeline__place">Politécnico Grancolombiano</p>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        <p class="timeline__level">Diplomado</p>
+        <h3 class="timeline__title">Diplomado en Normas Internacionales de Auditoría</h3>
+        <p class="timeline__place">Politécnico Grancolombiano</p>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        <p class="timeline__level">Tecnológico</p>
+        <h3 class="timeline__title">Tecnología en Contabilidad y Finanzas</h3>
+        <p class="timeline__place">Servicio Nacional de Aprendizaje (SENA)</p>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        <p class="timeline__level">Técnico</p>
+        <h3 class="timeline__title">Técnico Profesional en Gestión Contable y Financiera</h3>
+        <p class="timeline__place">Servicio Nacional de Aprendizaje (SENA)</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+{{!-- 4. FORMA DE ACOMPAÑAMIENTO — 4 etapas, dos columnas en escritorio --}}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Cómo acompaño a emprendedores y pymes</h2>
+      <p>Cada acompañamiento parte de la situación real del negocio y avanza mediante una ruta de trabajo clara.</p>
+    </div>
+
+    {{!-- Iconografía outline según brand-identity §6: trazo uniforme, esquinas
+         redondeadas y currentColor. Cada icono representa la acción de su etapa
+         (escuchar, jerarquizar, explicar, trazar la ruta), no adorna. --}}
+    <ol class="flow" role="list" data-reveal>
+      <li class="flow__item">
+        <div class="flow__head">
+          <span class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12a4 4 0 014-4h9a4 4 0 014 4v3a4 4 0 01-4 4h-5l-5 4v-4a4 4 0 01-3-3z"/>
+              <path d="M24 11h1a3 3 0 013 3v3a3 3 0 01-3 3v3l-3-3"/>
+            </svg>
+          </span>
+          <span class="flow__num" aria-hidden="true">01</span>
+        </div>
+        <h3 class="flow__title">Comprendo tu situación</h3>
+        <p class="flow__desc">Escucho tu necesidad y reviso la información disponible.</p>
+      </li>
+      <li class="flow__item">
+        <div class="flow__head">
+          <span class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 8h17M11 16h12M11 24h7"/>
+              <circle cx="5" cy="8" r="2"/>
+              <circle cx="5" cy="16" r="2"/>
+              <circle cx="5" cy="24" r="2"/>
+            </svg>
+          </span>
+          <span class="flow__num" aria-hidden="true">02</span>
+        </div>
+        <h3 class="flow__title">Defino prioridades</h3>
+        <p class="flow__desc">Identifico qué requiere atención inmediata y qué puede planificarse.</p>
+      </li>
+      <li class="flow__item">
+        <div class="flow__head">
+          <span class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 5h13l6 6v16a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"/>
+              <path d="M19 5v6h6M11 18h10M11 23h6"/>
+            </svg>
+          </span>
+          <span class="flow__num" aria-hidden="true">03</span>
+        </div>
+        <h3 class="flow__title">Explico las implicaciones</h3>
+        <p class="flow__desc">Te presento la información con claridad para que puedas participar en las decisiones.</p>
+      </li>
+      <li class="flow__item">
+        <div class="flow__head">
+          <span class="flow__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 24c0-6 6-6 6-12"/>
+              <path d="M20 8c0 6 6 6 6 12"/>
+              <circle cx="12" cy="8" r="3"/>
+              <circle cx="20" cy="24" r="3"/>
+              <path d="M15 8h2M15 24h2"/>
+            </svg>
+          </span>
+          <span class="flow__num" aria-hidden="true">04</span>
+        </div>
+        <h3 class="flow__title">Organizo los siguientes pasos</h3>
+        <p class="flow__desc">Definimos las acciones y responsabilidades según el alcance del servicio.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+{{!-- 5. PRINCIPIOS DE TRABAJO — 4 ejes, dos columnas en escritorio --}}
+<section class="section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>Principios de mi trabajo</h2>
+    </div>
+
+    <ul class="tenets" role="list" data-reveal>
+      <li class="tenets__item">
+        <span class="tenets__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 5v22M7 27h18"/>
+            <path d="M16 9l-9 3 3 6a4 4 0 006-2zM16 9l9 3-3 6a4 4 0 01-6-2z"/>
+          </svg>
+        </span>
+        <h3 class="tenets__title">Orientación sustentada</h3>
+        <p class="tenets__desc">Cada recomendación parte del análisis del caso y de los criterios aplicables.</p>
+      </li>
+      <li class="tenets__item">
+        <span class="tenets__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M27 19a3 3 0 01-3 3H12l-6 5V8a3 3 0 013-3h15a3 3 0 013 3z"/>
+            <path d="M11 11h11M11 16h7"/>
+          </svg>
+        </span>
+        <h3 class="tenets__title">Comunicación clara</h3>
+        <p class="tenets__desc">Explico los asuntos técnicos con precisión y en un lenguaje comprensible.</p>
+      </li>
+      <li class="tenets__item">
+        <span class="tenets__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="11" r="4"/>
+            <path d="M4 26c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+            <path d="M21 8a4 4 0 010 8M24 26c0-3.3-1.4-6.2-3.5-8"/>
+          </svg>
+        </span>
+        <h3 class="tenets__title">Acompañamiento cercano</h3>
+        <p class="tenets__desc">Te mantengo al tanto de los avances, fechas y decisiones necesarias.</p>
+      </li>
+      <li class="tenets__item">
+        <span class="tenets__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="14" width="20" height="14" rx="3"/>
+            <path d="M11 14v-3a5 5 0 0110 0v3"/>
+            <circle cx="16" cy="21" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <h3 class="tenets__title">Confidencialidad</h3>
+        <p class="tenets__desc">Manejo la información de tu negocio con reserva y responsabilidad.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{{!-- 6. RUTAS DE SERVICIO — 3 columnas, destinos definitivos --}}
+<section class="section" id="rutas">
+  <div class="container">
+    <div class="section-header">
+      <h2>Encuentra el acompañamiento que necesitas</h2>
+    </div>
+    <div class="grid-3">
+      <a href="/asesoria-contable-emprendedores/" class="service-route-card" data-gtm="click_desvio_emprendedores">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="16" r="8"/>
+          <path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16"/>
+        </svg>
+        <h3 class="service-route-card__title">Asesoría para emprendedores</h3>
+        <p class="service-route-card__desc">Organiza las bases contables y tributarias de tu emprendimiento desde el inicio.</p>
+        <span class="service-route-card__cta">Ver asesoría para emprendedores</span>
+      </a>
+      <a href="/gestion-contable-pymes/" class="service-route-card" data-gtm="click_desvio_pymes">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 40V20l16-12 16 12v20"/>
+          <rect x="18" y="28" width="12" height="12"/>
+        </svg>
+        <h3 class="service-route-card__title">Gestión contable para pymes</h3>
+        <p class="service-route-card__desc">Mantén tu contabilidad organizada y atiende oportunamente las obligaciones de tu empresa.</p>
+        <span class="service-route-card__cta">Ver gestión contable para pymes</span>
+      </a>
+      <a href="/servicios-contables-tributarios/" class="service-route-card" data-gtm="click_desvio_especializados">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="8" width="32" height="32" rx="4"/>
+          <path d="M16 24h16M16 32h10M16 16h16"/>
+        </svg>
+        <h3 class="service-route-card__title">Servicios especializados</h3>
+        <p class="service-route-card__desc">Resuelve trámites y necesidades contables, tributarias o financieras específicas.</p>
+        <span class="service-route-card__cta">Ver servicios especializados</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{!-- 7. CIERRE DE CONVERSIÓN --}}
+<section class="section section--bg-warm">
+  <div class="container container--narrow">
+    <div class="about-close">
+      <h2 class="about-close__title">Hablemos de tu negocio</h2>
+      <p class="about-close__text">Cuéntame qué necesitas resolver. Revisaremos tu situación para identificar el acompañamiento adecuado y definir el siguiente paso.</p>
+      <a href="#rutas" class="btn btn--primary btn--lg">Ver servicios</a>
+    </div>
+  </div>
+</section>
+
+{{!-- JSON-LD ProfilePage + Person, al <head> vía el bloque "head" de default.hbs --}}
+{{#contentFor "head"}}
+  {{> structured-data-profile}}
+{{/contentFor}}

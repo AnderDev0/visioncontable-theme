@@ -1,0 +1,205 @@
+/* ==========================================================================
+   REVEAL — Revelado sutil al entrar en pantalla
+   Requiere assets/js/reveal.js, que marca <html data-reveal-ready>.
+   Sin JS no se oculta nada: el contenido siempre queda visible.
+   ========================================================================== */
+
+/* Estado inicial: sólo cuando el JS confirmó que va a revelar. */
+[data-reveal-ready] [data-reveal] > * {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+[data-reveal-ready] [data-reveal].is-revealed > * {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Escalonado: el título entra primero, luego lo que le sigue. */
+[data-reveal-ready] [data-reveal].is-revealed > *:nth-child(2) { transition-delay: 150ms; }
+[data-reveal-ready] [data-reveal].is-revealed > *:nth-child(3) { transition-delay: 300ms; }
+[data-reveal-ready] [data-reveal].is-revealed > *:nth-child(4) { transition-delay: 450ms; }
+[data-reveal-ready] [data-reveal].is-revealed > *:nth-child(5) { transition-delay: 600ms; }
+
+/* ==========================================================================
+   REVELADO POR ÍTEM — listas largas
+   El escalonado de arriba sólo llega al 5º hijo, así que en listas de 8-10
+   ítems el resto entraba de golpe. Acá cada ítem se revela contra su PROPIA
+   posición en pantalla: el ritmo lo marca el scroll del usuario, así que
+   funciona con cualquier cantidad de ítems y se deshace al volver a subir.
+   No aplica al roadmap, que tiene su propia coreografía.
+   ========================================================================== */
+
+@supports (animation-timeline: view()) {
+  /* La capa nativa toma el control: se anula el estado del fallback JS para
+     estos contenedores, para que no compitan dos animaciones por lo mismo. */
+  [data-reveal-ready] .agenda[data-reveal] > *,
+  [data-reveal-ready] .signals[data-reveal] > *,
+  [data-reveal-ready] .checklist[data-reveal] > *,
+  [data-reveal-ready] .includes[data-reveal] > *,
+  [data-reveal-ready] .trust-record[data-reveal] > *,
+  [data-reveal-ready] .timeline[data-reveal] > *,
+  [data-reveal-ready] .flow[data-reveal] > *,
+  [data-reveal-ready] .tenets[data-reveal] > *,
+  [data-reveal-ready] .landing-value__grid[data-reveal] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .agenda__item,
+  .signals__item,
+  .checklist__item,
+  .includes__item,
+  .trust-record__row,
+  .timeline__item,
+  .flow__item,
+  .tenets__item {
+    animation: reveal-item-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 8% cover 24%;
+  }
+
+  /* Las tarjetas de valor están en fila, así que entran a la vez: el escalonado
+     se fabrica desfasando la ventana de cada una, no con delays (con el
+     progreso atado al scroll, un delay no significa nada). */
+  .landing-value__item {
+    animation: reveal-card-in linear both;
+    animation-timeline: view();
+  }
+
+  .landing-value__item:nth-child(1) { animation-range: entry 5%  cover 20%; }
+  .landing-value__item:nth-child(2) { animation-range: entry 12% cover 27%; }
+  .landing-value__item:nth-child(3) { animation-range: entry 19% cover 34%; }
+  .landing-value__item:nth-child(4) { animation-range: entry 26% cover 41%; }
+
+  /* Dos tiempos: primero aterriza el disco y después entra la marca. Ese
+     desfase es lo que hace que se lea como "se está marcando" y no como un
+     fundido más. */
+  .checklist__item::before,
+  .includes__item::before,
+  .signals__item::before {
+    animation: reveal-badge-pop linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 22%;
+  }
+
+  .checklist__item::after,
+  .includes__item::after {
+    animation: reveal-check-in linear both;
+    animation-timeline: view();
+    animation-range: cover 18% cover 30%;
+  }
+}
+
+@keyframes reveal-item-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Usa las propiedades independientes `translate` y `scale`, NO `transform`:
+   una animación gana sobre las declaraciones normales, así que animar
+   `transform` aquí anularía el levante del hover. Como son propiedades
+   distintas, entrada y hover se componen en vez de pisarse. */
+@keyframes reveal-card-in {
+  from { opacity: 0; translate: 0 16px; scale: 0.98; }
+  to   { opacity: 1; translate: 0 0; scale: 1; }
+}
+
+@keyframes reveal-badge-pop {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Conserva el rotate(-45deg) que forma la palomita: sin él se vería como una
+   escuadra recta a mitad de la animación. */
+@keyframes reveal-check-in {
+  from { opacity: 0; transform: rotate(-45deg) scale(0.4); }
+  to   { opacity: 1; transform: rotate(-45deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agenda__item,
+  .signals__item,
+  .checklist__item,
+  .includes__item,
+  .trust-record__row,
+  .timeline__item,
+  .flow__item,
+  .tenets__item,
+  .checklist__item::before,
+  .includes__item::before,
+  .signals__item::before {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .landing-value__item {
+    animation: none !important;
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+  }
+
+  .checklist__item::after,
+  .includes__item::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: rotate(-45deg) !important;
+  }
+}
+
+/* --- Divisor de marca centrado: línea fina interrumpida por el punto
+   terracota (§ brand-identity §7). Es el mismo gesto del hero, centrado. --- */
+
+.section-rule {
+  display: block;
+  position: relative;
+  width: 168px;
+  height: 1px;
+  margin: var(--space-5) auto 0;
+  background-image:
+    linear-gradient(to left,  rgba(107, 124, 133, 0.55), rgba(107, 124, 133, 0)),
+    linear-gradient(to right, rgba(107, 124, 133, 0.55), rgba(107, 124, 133, 0));
+  background-size: 66px 1px, 66px 1px;
+  background-position: 0 50%, 102px 50%;
+  background-repeat: no-repeat;
+}
+
+.section-rule::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 3.5px);
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background-color: var(--color-accent-warm);
+}
+
+/* Secuencia: primero aterriza el punto, luego las líneas se trazan desde él
+   hacia afuera. clip-path (no scaleX ni width) para no deformar el punto ni
+   provocar reflow. */
+[data-reveal-ready] [data-reveal] .section-rule {
+  clip-path: inset(0 50% 0 50%);
+}
+
+[data-reveal-ready] [data-reveal].is-revealed .section-rule {
+  clip-path: inset(0);
+  transition: clip-path 1200ms cubic-bezier(0.16, 1, 0.3, 1) 420ms;
+}
+
+[data-reveal-ready] [data-reveal] .section-rule::after {
+  transform: scale(0);
+}
+
+[data-reveal-ready] [data-reveal].is-revealed .section-rule::after {
+  transform: scale(1);
+  /* Leve rebase al final: el punto "cae" en su sitio. */
+  transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1) 200ms;
+}

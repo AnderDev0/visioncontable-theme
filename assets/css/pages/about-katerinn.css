@@ -1,0 +1,558 @@
+/* ==========================================================================
+   SOBRE KATERINN — /katerinn-romero/
+   Spec: kb/docs/Sobre_Katerinn_Ultimo.md
+   ========================================================================== */
+
+/* --- Escenario: hero + trayectoria comparten rejilla ---
+   La foto abarca las dos filas y cruza de derecha a izquierda con el scroll.
+   El texto alterna de columna para dejarle el sitio libre al cruzar. */
+
+.about-stage {
+  padding-block: var(--space-16) var(--space-20);
+  background-color: var(--color-bg-light);
+}
+
+.about-stage__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(var(--space-8), 5vw, var(--space-16));
+  row-gap: var(--space-16);
+  align-items: start;
+}
+
+/* El texto se centra contra el alto de la foto en vez de quedar pegado arriba:
+   sin esto la columna izquierda flotaba en la parte superior y la composición
+   del hero se veía desbalanceada antes de que empezara el cruce. */
+.about-stage__hero {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: min(70vh, 620px);
+}
+
+/* Mismo trato para la trayectoria: queda a la altura de la foto cuando ésta
+   termina su cruce. */
+.about-stage__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: min(70vh, 620px);
+}
+
+/* Por defecto la foto vive sólo en la fila del hero y la trayectoria ocupa el
+   ancho completo debajo. El cruce se activa aparte, en el @supports. */
+.about-stage__media {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+
+.about-stage__body {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  scroll-margin-top: calc(var(--header-height) + var(--space-6));
+}
+
+.about-stage__eyebrow {
+  font-size: var(--text-aux-desktop);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-action-web);
+  margin-bottom: var(--space-4);
+}
+
+.about-stage__title {
+  font-size: clamp(2.25rem, 3.2vw + 0.5rem, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--color-action-web);
+  margin-bottom: var(--space-6);
+  text-wrap: balance;
+}
+
+.about-stage__lead {
+  font-size: var(--text-highlight-desktop);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-sub);
+  max-width: 34rem;
+}
+
+.about-stage__lead + .about-stage__lead {
+  margin-top: var(--space-4);
+}
+
+.about-stage__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+/* Marco: es lo que viaja de un lado al otro. Las fotos van apiladas dentro. */
+.about-stage__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background-color: var(--color-bg-warm);
+}
+
+.about-stage__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Las fotos son 2:3 y el hueco es más ancho en proporción, así que el
+     recorte es sólo vertical: por eso lo que importa es el segundo valor.
+     22% mantiene el rostro dentro del encuadre en las tres. */
+  object-position: center 22%;
+}
+
+/* Fundido cruzado de 18s: cada retrato se ve unos 5s con transiciones de ~1s.
+   Los retardos son NEGATIVOS para que el ciclo arranque ya en curso; con
+   retardos positivos habría un instante inicial sin ninguna foto visible. */
+.about-stage__image {
+  animation: about-photo-cycle 18s linear infinite both;
+}
+
+.about-stage__image:nth-child(2) { animation-delay: -12s; }
+.about-stage__image:nth-child(3) { animation-delay: -6s; }
+
+@keyframes about-photo-cycle {
+  0%, 27%  { opacity: 1; }
+  33%, 94% { opacity: 0; }
+  100%     { opacity: 1; }
+}
+
+/* Con movimiento reducido se queda fija la primera. */
+@media (prefers-reduced-motion: reduce) {
+  .about-stage__image {
+    animation: none !important;
+    opacity: 0;
+  }
+
+  .about-stage__image:first-child {
+    opacity: 1;
+  }
+}
+
+.about-stage__subtitle {
+  font-size: clamp(1.75rem, 2.4vw + 0.5rem, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-5);
+  text-wrap: balance;
+}
+
+.about-stage__body p {
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-sub);
+  max-width: 34rem;
+}
+
+.about-stage__body p + p {
+  margin-top: var(--space-4);
+}
+
+/* --- El cruce, sólo donde hay soporte nativo ---
+   El escenario publica su propia view-timeline y la foto se engancha a ella:
+   el avance depende de la posición del bloque en pantalla, no de un disparo,
+   así que subir deshace el cruce igual que bajar lo hizo. */
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) {
+    /* timeline-scope publica el nombre a todo el subárbol: sin esto la foto no
+       “ve” la línea de tiempo, porque se declara en un hermano y no en un
+       ancestro suyo. */
+    .about-stage__grid {
+      timeline-scope: --stage-body;
+    }
+
+    /* La referencia del cruce es la ENTRADA del bloque de trayectoria, no el
+       escenario completo. Ese fue el error anterior: con el escenario como
+       referencia el cruce se completaba mientras el hero seguía en pantalla y
+       la foto terminaba encima de su texto. Atado a la entrada del segundo
+       bloque, la foto está a la derecha mientras sólo se ve el hero y llega a
+       la izquierda justo cuando la trayectoria queda a la vista. */
+    .about-stage__body {
+      grid-column: 2;
+      /* Aire extra respecto a la foto: con sólo el gap de la rejilla el texto
+         quedaba casi pegado al canto de la imagen una vez completado el cruce. */
+      padding-left: clamp(var(--space-6), 3vw, var(--space-12));
+      view-timeline-name: --stage-body;
+      view-timeline-axis: block;
+    }
+
+    /* La foto ocupa ambas filas y se fija mientras se recorren. */
+    .about-stage__media {
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      position: sticky;
+      top: calc(var(--header-height) + var(--space-8));
+      height: min(70vh, 620px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* El texto siempre por encima: red de seguridad para que un desfase de
+       cálculo no vuelva a dejar la foto tapando palabras. */
+    .about-stage__hero,
+    .about-stage__body {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* El cruce va en el MARCO, no en las imágenes: éstas ya tienen su propia
+       animación de fundido y dos animaciones sobre el mismo elemento se
+       estorbarían. */
+    .about-stage__frame {
+      /* Ancho de media columna: es el bloque que viaja de un lado al otro. */
+      width: calc(50% - clamp(var(--space-8), 5vw, var(--space-16)) / 2);
+      margin-left: auto;
+      animation: about-photo-cross linear both;
+      animation-timeline: --stage-body;
+      /* Se recorta un poco por los extremos para que el cruce no arranque ni
+         termine de golpe en el borde de la pantalla. */
+      animation-range: entry 12% entry 88%;
+      will-change: translate;
+    }
+  }
+}
+
+/* Viaja el 100% de su propio ancho: de pegado a la derecha a pegado a la
+   izquierda, porque mide exactamente media columna. */
+@keyframes about-photo-cross {
+  from { translate: 0 0; }
+  to   { translate: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-stage__image {
+    animation: none !important;
+    translate: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .about-stage__grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-10);
+  }
+
+  /* Sin cruce no hay razón para reservar el alto de la foto. */
+  .about-stage__hero,
+  .about-stage__body {
+    display: block;
+    min-height: 0;
+  }
+
+  /* Orden en móvil según el documento: el texto y los CTA antes de la imagen. */
+  .about-stage__hero { grid-column: 1; grid-row: 1; }
+  .about-stage__media { grid-column: 1; grid-row: 2; }
+  .about-stage__body { grid-column: 1; grid-row: 3; }
+
+  /* Retrato también en móvil: las fotos son 2:3 y el celular es vertical, así
+     que aquí casi no hay que recortar. Antes iba en 4/3 (apaisado) porque la
+     foto original era horizontal. */
+  .about-stage__media {
+    aspect-ratio: 4 / 5;
+    max-width: 26rem;
+    margin-inline: auto;
+  }
+}
+
+/* --- Formación — línea de tiempo de progresión académica ---
+   El riel vertical se llena con el scroll y cada hito se enciende al pasar:
+   el recorrido se siente avanzar en vez de leerse como una lista plana. */
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 0 0 var(--space-10);
+  list-style: none;
+  max-width: 46rem;
+}
+
+/* Riel base. */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0.6em;
+  bottom: 0.6em;
+  width: 1px;
+  background-color: rgba(107, 124, 133, 0.28);
+}
+
+/* Segmento de color que recorre el riel con el scroll. */
+.timeline::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0.6em;
+  bottom: 0.6em;
+  width: 1px;
+  background-color: var(--color-accent-warm);
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+
+.timeline__item {
+  position: relative;
+  padding-block: var(--space-5);
+}
+
+.timeline__item + .timeline__item {
+  border-top: 1px solid rgba(107, 124, 133, 0.14);
+}
+
+/* Hito sobre el riel: fondo sólido para que tape la línea. */
+.timeline__marker {
+  position: absolute;
+  left: calc(-1 * var(--space-10));
+  top: calc(var(--space-5) + 0.35em);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-accent-warm);
+}
+
+.timeline__level {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  padding: 2px var(--space-3);
+  border-radius: var(--border-radius-full);
+  background-color: rgba(47, 93, 90, 0.08);
+  font-size: var(--text-badge);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-action-web);
+}
+
+.timeline__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-text-main);
+}
+
+.timeline__place {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-body-mobile);
+  color: var(--color-text-sub);
+}
+
+/* --- Acompañamiento — 4 etapas con icono --- */
+
+.flow {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(var(--space-6), 3vw, var(--space-10));
+}
+
+.flow__item {
+  padding-top: var(--space-5);
+  border-top: 2px solid var(--color-accent-warm);
+}
+
+.flow__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.flow__icon {
+  display: flex;
+  color: var(--color-action-web);
+}
+
+.flow__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* El número cede protagonismo al icono: numera sin competir. */
+.flow__num {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent-warm);
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.flow__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-2);
+}
+
+.flow__desc {
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+  margin: 0;
+}
+
+/* --- Principios — 4 ejes con icono --- */
+
+.tenets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(var(--space-6), 3vw, var(--space-8));
+}
+
+.tenets__item {
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* No son clicables, así que la respuesta es de realce y sin cursor de mano. */
+.tenets__item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover-warm);
+}
+
+.tenets__icon {
+  display: flex;
+  margin-bottom: var(--space-4);
+  color: var(--color-accent-warm);
+  transition: transform var(--transition-base);
+}
+
+.tenets__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.tenets__item:hover .tenets__icon {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.tenets__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-2);
+}
+
+.tenets__desc {
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-normal);
+  color: var(--color-text-sub);
+  margin: 0;
+}
+
+/* --- Movimiento atado al scroll ---
+   El riel se llena, los hitos se encienden y los iconos entran con su bloque.
+   Sin soporte, el revelado por IntersectionObserver sigue haciendo su parte. */
+@supports (animation-timeline: view()) {
+  .timeline::after {
+    animation: timeline-fill linear both;
+    animation-timeline: view();
+    animation-range: entry 30% cover 62%;
+  }
+
+  .timeline__marker {
+    animation: marker-in linear both;
+    animation-timeline: view();
+    animation-range: entry 12% cover 26%;
+  }
+
+  .flow__icon,
+  .tenets__icon {
+    animation: icon-in linear both;
+    animation-timeline: view();
+    animation-range: entry 14% cover 28%;
+  }
+}
+
+@keyframes timeline-fill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes marker-in {
+  from { opacity: 0; scale: 0.3; }
+  to   { opacity: 1; scale: 1; }
+}
+
+@keyframes icon-in {
+  from { opacity: 0; translate: 0 8px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline::after,
+  .timeline__marker,
+  .flow__icon,
+  .tenets__icon {
+    animation: none !important;
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+    transform: none !important;
+  }
+
+  .timeline::after {
+    transform: scaleY(1) !important;
+  }
+}
+
+/* --- Cierre --- */
+
+.about-close {
+  text-align: center;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.about-close__title {
+  margin-bottom: var(--space-4);
+  text-wrap: balance;
+}
+
+.about-close__text {
+  font-size: var(--text-highlight-desktop);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-8);
+}
+
+@media (max-width: 767px) {
+  .flow,
+  .tenets {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    padding-left: var(--space-8);
+  }
+
+  .timeline__marker {
+    left: calc(-1 * var(--space-8));
+  }
+}

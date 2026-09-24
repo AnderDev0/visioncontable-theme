@@ -1,0 +1,184 @@
+/* ==========================================================================
+   VARIABLES — Custom Properties de Marca Visión Contable
+   Spec: kb/docs/brand-identity.md
+   ========================================================================== */
+
+:root {
+  /* --- Build ID — verificar en consola: getComputedStyle(document.documentElement).getPropertyValue('--build-id') --- */
+  --build-id: "v6-footer-logo-20260715";
+
+  /* --- Paleta de marca --- */
+  --color-primary-brand:   #4E6E6A;   /* Verde grisáceo — usos generales de marca */
+  --color-action-web:      #2F5D5A;   /* Verde profundo web — CTAs, header activo */
+  --color-accent-warm:     #CE7F67;   /* Terracota web — acentos, badges, iconos */
+  --color-structural-gray: #6B7C85;   /* Gris azulado — bordes, líneas, divisores */
+  --color-accent-warm-dark:#B86A50;   /* Terracota oscurecido — bordes y hover del CTA */
+  --color-accent-warm-deep:#9D5A44;   /* Terracota profundo — borde del CTA en hover */
+  --color-bg-light:        #F4F4F2;   /* Fondo claro principal */
+  --color-bg-warm:         #EFE8E0;   /* Fondo cálido secundario */
+  --color-text-main:       #333333;   /* Texto principal — contraste 9.4:1 sobre bg-light */
+  --color-text-sub:        #666666;   /* Texto secundario — metadatos, excerpts */
+  --color-surface:         #FFFFFF;   /* Blanco puro — tarjetas, modales */
+  --color-footer-bg:       #2F5D5A;   /* Fondo oscuro del footer */
+
+  /* Alias semánticos */
+  --color-cta-primary:     var(--color-action-web);
+  --color-cta-secondary:   var(--color-accent-warm);
+  --color-border:          var(--color-structural-gray);
+  --color-link:            var(--color-action-web);
+  --color-link-hover:      var(--color-primary-brand);
+
+  /* --- Tipografía --- */
+  --font-headings: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body:     'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Escala tipográfica semántica — Spec: kb/docs/brand-identity.md §5 */
+  --text-h1-mobile:  2.5rem;
+  --text-h1-desktop: 4rem;
+  --leading-h1:      1.08;
+
+  --text-h2-mobile:  2rem;
+  --text-h2-desktop: 3rem;
+  --leading-h2:      1.15;
+
+  --text-h3-mobile:  1.625rem;
+  --text-h3-desktop: 2.125rem;
+  --leading-h3:      1.22;
+
+  --text-h4-mobile:  1.375rem;
+  --text-h4-desktop: 1.625rem;
+  --leading-h4:      1.27;
+
+  --text-highlight-mobile:  1.125rem;  /* Párrafo destacado */
+  --text-highlight-desktop: 1.25rem;
+  --leading-highlight:      1.55;
+
+  --text-body-mobile:  1rem;           /* Párrafo general */
+  --text-body-desktop: 1.125rem;
+  --leading-body:       1.6;
+
+  --text-nav:     1rem;
+  --leading-nav:  1.4;
+
+  --text-btn:     1rem;
+  --leading-btn:  1.25;
+  --text-btn-sm:  0.8rem;   /* variante pequeña de botón, fuera de la tabla oficial */
+  --text-btn-lg:  1.25rem;  /* variante grande de botón, fuera de la tabla oficial */
+
+  --text-label:     1rem;
+  --leading-label:  1.4;
+
+  --text-aux-mobile:  0.875rem;        /* Texto auxiliar */
+  --text-aux-desktop: 0.875rem;        /* Ajustar a 1rem en escritorio si el diseño lo requiere */
+  --leading-aux:      1.5;
+
+  --text-breadcrumbs:    0.875rem;
+  --leading-breadcrumbs: 1.5;
+
+  /* Variables de tipografía propias del tema, fuera de la tabla oficial —
+     conservan el tamaño visual que ya tenían en la escala modular anterior */
+  --text-title-lg:          1.563rem;  /* títulos de tarjeta/sección grandes */
+  --text-title-md:          1.25rem;   /* títulos de tarjeta medianos */
+  --text-title-sm:          1rem;      /* etiquetas y títulos menores. OJO: es
+                                          más chico que el cuerpo de escritorio
+                                          (1.125rem), así que no debe usarse en
+                                          un título que encabece un párrafo */
+  --text-table:             0.8rem;    /* celdas/encabezados de tabla */
+  --text-badge:             0.64rem;   /* badges, eyebrow labels */
+  --text-pagination:        0.8rem;
+  --text-decorative-number: 1.953rem;  /* números decorativos (ej. "01") */
+
+  /* Pesos tipográficos */
+  --font-weight-regular:    400;
+  --font-weight-medium:     500;
+  --font-weight-semibold:   600;
+  --font-weight-bold:       700;
+
+  /* Interlineado genérico (aún usado por elementos fuera de la tabla oficial) */
+  --leading-tight:  1.2;
+  --leading-snug:   1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* --- Espaciado --- */
+  --space-1:  0.25rem;   /*  4px */
+  --space-2:  0.5rem;    /*  8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+
+  /* --- Layout --- */
+  --container-max:      1200px;
+  --container-narrow:   800px;
+  --container-padding:  clamp(1rem, 5vw, 2rem);
+
+  /* --- Bordes --- */
+  --border-radius-sm:   8px;
+  --border-radius-base: 14px;
+  --border-radius-lg:   20px;
+  --border-radius-full: 9999px;
+  --border-width:       1px;
+
+  /* --- Sombras --- */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:  0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg:  0 10px 15px rgba(0,0,0,.06), 0 4px 6px rgba(0,0,0,.05);
+
+  /* --- Glassmorphism --- */
+  --glass-bg:           rgba(255, 255, 255, 0.65);
+  --glass-bg-warm:      rgba(244, 244, 242, 0.80);
+  --glass-border:       rgba(107, 124, 133, 0.15);
+  --glass-blur:         blur(12px);
+  --glass-shadow-rest:  0 4px 30px rgba(0, 0, 0, 0.02);
+  --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.07);
+  /* Variante cálida: la sombra toma el tono terracota de marca en vez de un
+     gris neutro. Dos capas — un halo amplio de color y una más corta que
+     mantiene el borde definido. */
+  --glass-shadow-hover-warm:
+    0 14px 40px rgba(188, 85, 57, 0.16),
+    0 4px 12px rgba(188, 85, 57, 0.10);
+
+  /* --- Sombra CTA brand --- */
+  --shadow-brand: 0 6px 24px rgba(47, 93, 90, 0.30);
+
+  /* --- Espaciado de secciones --- */
+  --space-section-base: 6rem;    /* 96px  — default */
+  --space-section-lg:   8rem;    /* 128px — desktop */
+
+  /* --- Sizing de logos ---
+     El logotipo horizontal del header se define como una FRACCIÓN de
+     --header-height, nunca en px sueltos: así es matemáticamente imposible
+     que se desborde de la barra, sin importar qué tan grande lo subas.
+     Para agrandar/achicar el logo del header: sube/baja --logo-scale. */
+  --logo-scale: 0.80;  /* 0–1 → fracción de --header-height que ocupa el logo.
+                          0,72 deja ~13px libres arriba y abajo, que es el
+                          área de seguridad del manual (altura de la "K"). */
+  --logo-icon-height-header: calc(var(--header-height) * var(--logo-scale));
+
+  --logo-icon-height-mobile: 36px;   /* el drawer mobile no tiene una barra de altura fija a la cual anclarse */
+
+  --logo-width-footer: 340px;   /* El logo del footer se mide por ANCHO, no por
+                                   altura: el límite real es la columna de marca
+                                   (~332px). Con width:100% llena la columna y
+                                   este tope solo actúa en pantallas anchas. */
+
+  /* --- Transiciones --- */
+  --transition-base:  250ms ease-in-out;
+  --transition-slow:  400ms ease-in-out;
+
+  /* --- Z-index --- */
+  --z-header:  100;
+  --z-dropdown: 200;
+  --z-drawer:  300;
+  --z-overlay: 400;
+
+  /* --- Header --- */
+  --header-height: 112px;  /* móvil lo baja a 76px en components/header.css */
+}

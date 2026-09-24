@@ -1,0 +1,101 @@
+/* ==========================================================================
+   ACCESSIBILITY — focus-visible, prefers-reduced-motion, skip links
+   Spec: kb/docs/CLAUDE.md §3
+   ========================================================================== */
+
+/* --- Skip link (primer elemento del body) --- */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: var(--z-overlay);
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-action-web);
+  color: var(--color-surface);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-sm);
+  text-decoration: none;
+  transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* --- Focus visible global --- */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-action-web);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Foco en contextos oscuros */
+.bg-dark :focus-visible,
+footer :focus-visible {
+  outline-color: var(--color-bg-light);
+}
+
+/* --- Reducción de movimiento --- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Tamaño mínimo de área táctil (WCAG 2.2 Target Size) --- */
+
+button,
+[role="button"],
+a.btn,
+.nav-link,
+.accordion__trigger {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Indicadores visuales adicionales (no solo color) --- */
+
+/* Links activos en nav: subrayado + color, nunca solo color */
+.nav-link[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Estados de error: icono + texto, nunca solo color rojo */
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: #c0392b;
+  font-size: var(--text-label);
+}
+
+/* --- Contraste de textos sobre Terracota (WCAG AA) --- */
+/* REGLA: texto blanco pequeño NUNCA sobre #CE7F67 */
+/* Si el fondo es terracota, usar texto oscuro */
+
+.bg-accent-warm {
+  background-color: var(--color-accent-warm);
+  color: var(--color-text-main); /* #333333 — ratio 3.8:1 (solo texto grande) */
+}
+
+/* Para texto pequeño sobre terracota, usar verde oscuro o texto principal */
+.bg-accent-warm .text-small {
+  color: var(--color-action-web);
+}

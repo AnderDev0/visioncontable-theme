@@ -1,0 +1,22 @@
+{{!--
+  RELATED-POSTS — 3 artículos relacionados al final del post
+  Spec: kb/docs/blog-post.md
+  Usa el helper {{get}} de Ghost para buscar posts de la misma categoría.
+  Debe llamarse dentro de {{#post}}: el filtro resuelve {{primary_tag.slug}}
+  y {{id}} contra el contexto actual. Sin categoría pública no se consulta
+  nada (un "tags:[]" vacío es un filtro inválido y Ghost registra un error).
+--}}
+{{#if primary_tag}}
+  {{#get "posts" filter="tags:[{{primary_tag.slug}}]+id:-{{id}}" limit="3" include="tags,authors"}}
+    {{#if posts}}
+      <section class="related-posts">
+        <h2 class="related-posts__title">También puede interesarte</h2>
+        <div class="grid-3 related-posts__grid">
+          {{#foreach posts}}
+            {{> post-card}}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/if}}

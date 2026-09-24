@@ -1,0 +1,12 @@
+{{!--
+  LEGAL-EMAIL — Correo oficial para asuntos legales y de datos personales
+
+  Sale del panel de Ghost (Diseño → Custom → legal_email) y cae al correo
+  oficial cuando el campo está vacío, igual que whatsapp-link con el número.
+  Una sola fuente para la Política de privacidad y los Términos.
+
+  Uso:
+    {{> legal-email}}
+    {{> legal-email subject="Solicitud%20sobre%20datos%20personales"}}   (URL-encoded)
+--}}
+<a href="mailto:{{#if @custom.legal_email}}{{@custom.legal_email}}{{else}}soporte@visioncontable.com{{/if}}{{#if subject}}?subject={{subject}}{{/if}}">{{#if @custom.legal_email}}{{@custom.legal_email}}{{else}}soporte@visioncontable.com{{/if}}</a>

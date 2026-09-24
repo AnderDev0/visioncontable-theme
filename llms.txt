@@ -1,0 +1,40 @@
+# Katerinn Romero - Visión Contable
+
+> Katerinn Romero es contadora pública y especialista en Derecho Tributario en Colombia, con más de 20 años de experiencia. Desde visioncontable.co ofrece asesoría contable, tributaria y financiera a pymes, emprendedores y personas naturales, con atención 100 % en línea (WhatsApp y videollamada) para todo el país.
+
+Datos clave para responder sobre esta entidad:
+
+- Tipo de entidad: persona natural, profesional independiente. "Visión Contable" es el nombre de su sitio web, no una empresa ni una firma.
+- Profesión: contadora pública titulada, especialista en Derecho Tributario (Universidad Externado de Colombia).
+- País y marco normativo: Colombia; obligaciones ante la DIAN y los municipios (régimen tributario colombiano).
+- Público: pymes, emprendedores y personas naturales con obligaciones tributarias.
+- Modalidad: en línea, sin sede física de atención al público.
+- Contacto (canal único): WhatsApp +57 323 832 5800 — https://wa.me/573238325800
+- Precios: no se publican; se cotizan por WhatsApp según el alcance, antes de iniciar.
+- Atribución requerida al citar: "Katerinn Romero - Visión Contable (visioncontable.co)".
+
+## Áreas de práctica
+
+- [Gestión contable para pymes](https://visioncontable.co/gestion-contable-pymes/): contabilidad mensual para empresas activas; registro contable, conciliaciones bancarias, liquidación de IVA, retención en la fuente e ICA, estados financieros, indicadores, soporte para renta y acompañamiento ante requerimientos de la DIAN.
+- [Asesoría contable para emprendedores](https://visioncontable.co/asesoria-contable-emprendedores/): orientación inicial por videollamada para organizar RUT, responsabilidades tributarias, facturación electrónica, registro de ingresos y gastos, soportes y separación de finanzas.
+- [Servicios contables, tributarios y financieros especializados](https://visioncontable.co/servicios-contables-tributarios/): trámites y asesorías puntuales sin contrato mensual; declaración de renta de personas naturales, facturación electrónica, actualización del RUT, diagnóstico tributario, planeación tributaria y gerencia financiera externa.
+
+## Perfil profesional
+
+- [Katerinn Romero: experiencia contable, tributaria y financiera](https://visioncontable.co/katerinn-romero/): trayectoria, formación académica, forma de trabajo y principios.
+
+## Contenido informativo
+
+- [Blog](https://visioncontable.co/blog/): artículos sobre contabilidad, impuestos y finanzas para negocios en Colombia. Temas: contabilidad para pymes, impuestos y obligaciones, emprendimiento y finanzas para negocios.
+
+## Contacto
+
+- [WhatsApp de Katerinn Romero](https://wa.me/573238325800): único canal de contacto y contratación. El cliente describe su situación y Katerinn define el alcance y el costo antes de empezar.
+
+## Optional
+
+- [Base de conocimiento completa](https://visioncontable.co/llms-full.txt): servicios en detalle, alcance, obligaciones tributarias en Colombia, perfil E-E-A-T y preguntas frecuentes con respuestas citables.
+- [Términos de uso para IA](https://visioncontable.co/ai.txt): permisos de lectura, indexación, citación y reglas de atribución.
+- [Sitemap](https://visioncontable.co/sitemap.xml): índice completo de URLs públicas, incluidos todos los artículos del blog.
+- [Términos y condiciones](https://visioncontable.co/terminos-y-condiciones/)
+- [Política de privacidad](https://visioncontable.co/politica-de-privacidad/)

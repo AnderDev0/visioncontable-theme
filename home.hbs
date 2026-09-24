@@ -1,0 +1,458 @@
+{{!< default}}
+{{!--
+  HOME — Página principal (/)
+  Spec: kb/docs/home-specifications.md
+  9 secciones: Hero | Intro Katerinn | 3 Rutas de Servicio | Propuesta de valor |
+                Proceso | Situaciones | Trust signals | FAQs | CTA cierre
+--}}
+
+{{!-- 1. HERO --}}
+<section class="home-hero">
+  <div class="home-hero__inner">
+    <div class="home-hero__text">
+      <div class="home-hero__text-inner">
+        <h1 class="home-hero__title">Servicios contables, tributarios y financieros</h1>
+        {{!-- Divisor de marca: línea fina interrumpida por el punto terracota (brand-identity §7) --}}
+        <span class="home-hero__rule" aria-hidden="true"></span>
+        <p class="home-hero__subtitle text-lead">
+          Acompaño a empresas y emprendedores colombianos a mantener sus finanzas en orden, cumplir sus obligaciones y tomar decisiones con claridad.
+        </p>
+        {{> whatsapp-link class="btn btn--primary btn--lg" gtm="click_whatsapp_hero"}}
+      </div>
+    </div>
+    <div class="home-hero__image-wrapper">
+      {{!-- Foto de Katerinn a sangre completa: sin lazy load (above fold),
+           dimensiones intrínsecas para evitar CLS. Se desvanece hacia el
+           texto con una máscara en degradado (hacia arriba en móvil). --}}
+      <div class="home-hero__photo">
+        <img src="{{asset "images/katerinn-romero-asesora.webp"}}"
+             alt="Katerinn Romero, asesora contable, tributaria y financiera, en su espacio de trabajo"
+             width="1920" height="1111"
+             loading="eager"
+             fetchpriority="high"
+             class="home-hero__image">
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- 2. INTRO KATERINN --}}
+<section class="home-intro section section--bg-surface">
+  <div class="container container--narrow">
+    <div class="home-intro__inner">
+      <h2 class="home-intro__name">Katerinn Romero</h2>
+      <p class="home-intro__bio">
+        Soy contadora pública con experiencia en asesoría contable, tributaria y financiera para empresas y emprendedores en Colombia. Mi enfoque es que entiendas tu situación financiera con claridad y puedas tomar decisiones con información real.
+      </p>
+      <a href="/katerinn-romero/" class="home-intro__link">
+        Conoce mi historia y mi enfoque de trabajo →
+      </a>
+    </div>
+  </div>
+</section>
+
+{{!-- 3. RUTAS DE SERVICIO --}}
+<section class="home-services section">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Cómo puedo ayudarte?</h2>
+      <p>Tres rutas de servicio según la etapa y las necesidades de tu negocio.</p>
+    </div>
+    <div class="grid-3 home-services__grid">
+
+      <a href="/servicios-contables-tributarios/" class="service-route-card"
+         data-gtm="click_desvio_especializados">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="8" width="32" height="32" rx="4"/>
+          <path d="M16 24h16M16 32h10M16 16h16"/>
+        </svg>
+        <h3 class="service-route-card__title">Servicios<br> Especializados</h3>
+        <p class="service-route-card__desc">
+          Trámites y asesorías puntuales: declaraciones, diagnósticos, facturación electrónica, actualización de RUT y planeación tributaria.
+        </p>
+        <span class="service-route-card__cta">Ver servicios</span>
+      </a>
+
+      <a href="/gestion-contable-pymes/" class="service-route-card"
+         data-gtm="click_desvio_pymes">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 40V20l16-12 16 12v20"/>
+          <rect x="18" y="28" width="12" height="12"/>
+        </svg>
+        <h3 class="service-route-card__title">Gestión Contable para Pymes</h3>
+        <p class="service-route-card__desc">
+          Contabilidad mensual al día, liquidación de impuestos, reportes financieros y seguimiento de obligaciones para empresas activas.
+        </p>
+        <span class="service-route-card__cta">Ver servicio</span>
+      </a>
+
+      <a href="/asesoria-contable-emprendedores/" class="service-route-card"
+         data-gtm="click_desvio_emprendedores">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="16" r="8"/>
+          <path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16"/>
+        </svg>
+        <h3 class="service-route-card__title">Asesoría para Emprendedores</h3>
+        <p class="service-route-card__desc">
+          Orientación contable para iniciar tu negocio correctamente: obligaciones, RUT, facturación y primeros pasos financieros.
+        </p>
+        <span class="service-route-card__cta">Ver asesoría</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+{{!-- 4. PROPUESTA DE VALOR --}}
+<section class="home-value section section--bg-warm">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <h2>Por qué trabajar conmigo</h2>
+      {{!-- Divisor de marca: se traza desde el centro al entrar en pantalla --}}
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+    <div class="grid-4 home-value__grid">
+
+      <div class="home-value__pillar">
+        <div class="home-value__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+            <path d="M16 4l2.4 7.4H26l-6.2 4.5 2.4 7.4L16 19l-6.2 4.3 2.4-7.4L6 11.4h7.6z"/>
+          </svg>
+        </div>
+        <h3 class="home-value__title">Claridad</h3>
+        <p class="home-value__desc">Te explico tu situación financiera en lenguaje simple, sin tecnicismos innecesarios.</p>
+      </div>
+
+      <div class="home-value__pillar">
+        <div class="home-value__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+            <circle cx="16" cy="16" r="12"/>
+            <path d="M16 8v8l5 3"/>
+          </svg>
+        </div>
+        <h3 class="home-value__title">Respuesta ágil</h3>
+        <p class="home-value__desc">Atiendo tus preguntas con prontitud para que no pierdas tiempo esperando respuestas.</p>
+      </div>
+
+      <div class="home-value__pillar">
+        <div class="home-value__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+            <path d="M4 20l8-8 6 6 10-12"/>
+          </svg>
+        </div>
+        <h3 class="home-value__title">Enfoque preventivo</h3>
+        <p class="home-value__desc">Identifico riesgos tributarios antes de que se conviertan en problemas.</p>
+      </div>
+
+      <div class="home-value__pillar">
+        <div class="home-value__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+            <rect x="4" y="8" width="24" height="20" rx="2"/>
+            <path d="M20 8V6a4 4 0 00-8 0v2"/>
+          </svg>
+        </div>
+        <h3 class="home-value__title">Confidencialidad</h3>
+        <p class="home-value__desc">Tu información financiera se maneja con total discreción y profesionalismo.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- 5. PROCESO DE ACOMPAÑAMIENTO --}}
+<section class="home-process section roadmap-pin">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Cómo funciona el proceso?</h2>
+      <p>Cuatro pasos para comenzar a trabajar juntos.</p>
+    </div>
+    {{!-- data-reveal = fallback por IntersectionObserver. Donde el navegador
+         soporta animation-timeline, manda la capa nativa atada al scroll. --}}
+    <ol class="home-process__steps roadmap" role="list" data-reveal>
+
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">01</span>
+        <h3 class="home-process__step-title">Me escribes por WhatsApp</h3>
+        <p class="home-process__step-desc">Cuéntame brevemente tu situación y qué necesitas resolver.</p>
+      </li>
+
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">02</span>
+        <h3 class="home-process__step-title">Revisamos juntos tu caso</h3>
+        <p class="home-process__step-desc">Agendamos una videollamada para entender a fondo tu situación actual.</p>
+      </li>
+
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">03</span>
+        <h3 class="home-process__step-title">Defino el plan de trabajo</h3>
+        <p class="home-process__step-desc">Te presento qué vamos a hacer, en qué plazos y con qué entregables.</p>
+      </li>
+
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">04</span>
+        <h3 class="home-process__step-title">Empezamos</h3>
+        <p class="home-process__step-desc">Comienzo a trabajar en tu caso con acompañamiento continuo.</p>
+      </li>
+
+
+    </ol>
+  </div>
+</section>
+
+{{!-- 6. IDENTIFICADORES DE SITUACIÓN --}}
+<section class="home-situations section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿En cuál de estas situaciones estás?</h2>
+    </div>
+    <div class="grid-2 home-situations__grid">
+
+      <div class="situation-card">
+        <p class="situation-card__question">Tengo una empresa activa y necesito llevar la contabilidad al día.</p>
+        <a href="/gestion-contable-pymes/" class="situation-card__route" data-gtm="click_desvio_pymes">
+          Ver Gestión Contable para Pymes →
+        </a>
+      </div>
+
+      <div class="situation-card">
+        <p class="situation-card__question">Necesito resolver un trámite tributario o una asesoría puntual.</p>
+        <a href="/servicios-contables-tributarios/" class="situation-card__route" data-gtm="click_desvio_especializados">
+          Ver Servicios Especializados →
+        </a>
+      </div>
+
+      <div class="situation-card">
+        <p class="situation-card__question">Estoy empezando mi negocio y quiero hacerlo bien desde el inicio.</p>
+        <a href="/asesoria-contable-emprendedores/" class="situation-card__route" data-gtm="click_desvio_emprendedores">
+          Ver Asesoría para Emprendedores →
+        </a>
+      </div>
+
+      <div class="situation-card">
+        <p class="situation-card__question">Quiero entender mejor mis finanzas antes de tomar decisiones importantes.</p>
+        <a href="/servicios-contables-tributarios/" class="situation-card__route" data-gtm="click_desvio_especializados">
+          Ver Diagnóstico Financiero →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- 7. SEÑALES DE CONFIANZA --}}
+<section class="home-trust section">
+  <div class="container">
+    {{!--
+      Ficha de credenciales, no tarjetas: split editorial asimétrico con el
+      encabezado a la izquierda y las credenciales como filas de registro
+      separadas por filetes. Cada fila la marca el punto terracota, que el
+      manual define como viñeta de marca (brand-identity §7). Sin cajas, sin
+      glass y sin iconos: el peso lo llevan la tipografía y el filete.
+    --}}
+    <div class="home-trust__inner">
+      <div class="home-trust__intro">
+        <h2 class="home-trust__title">Por qué confiar en este trabajo</h2>
+        <p class="home-trust__lead">
+          Cada caso lo reviso según su alcance, la información disponible y lo que necesita cada persona o empresa. Mi compromiso es que entiendas qué se está revisando y cuáles son los siguientes pasos.
+        </p>
+        <a href="/katerinn-romero/" class="home-trust__link" data-gtm="about_services_click">
+          Conoce a Katerinn Romero →
+        </a>
+      </div>
+
+      <dl class="trust-record" data-reveal>
+        <div class="trust-record__row">
+          <dt class="trust-record__label">Contadora Pública titulada</dt>
+          <dd class="trust-record__value">Con formación académica en ciencias contables y tributarias.</dd>
+        </div>
+
+        <div class="trust-record__row">
+          <dt class="trust-record__label">Experiencia práctica</dt>
+          <dd class="trust-record__value">Trabajo con empresas y emprendedores en sectores variados de la economía colombiana.</dd>
+        </div>
+
+        <div class="trust-record__row">
+          <dt class="trust-record__label">Actualización permanente</dt>
+          <dd class="trust-record__value">Me mantengo al día con los cambios tributarios y normativos de Colombia.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+{{!-- 8. FAQs --}}
+<section class="home-faqs section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-accordion" data-gtm-category="faq_open">
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-1"
+                  id="faq-home-btn-1">
+            ¿Trabajas con empresas de cualquier sector?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-1" role="region" aria-labelledby="faq-home-btn-1" aria-hidden="true">
+          <div class="accordion__body">
+            Sí. Trabajo con empresas de servicios, comercio y otros sectores de la economía colombiana. Durante la revisión inicial identificamos si tu actividad económica tiene particularidades tributarias especiales.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-2"
+                  id="faq-home-btn-2">
+            ¿Ofreces servicios en línea o solo presenciales?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-2" role="region" aria-labelledby="faq-home-btn-2" aria-hidden="true">
+          <div class="accordion__body">
+            Trabajo de forma completamente en línea. La comunicación se hace por WhatsApp y videollamadas, y los documentos se comparten por medios digitales seguros. Esto me permite atender clientes en cualquier ciudad de Colombia.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-3"
+                  id="faq-home-btn-3">
+            ¿Cuánto tiempo tarda en atenderse una consulta?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-3" role="region" aria-labelledby="faq-home-btn-3" aria-hidden="true">
+          <div class="accordion__body">
+            El tiempo depende del tipo de servicio. Las asesorías puntuales suelen agendarse dentro de los primeros días hábiles. Los servicios de gestión contable mensual se organizan desde el inicio con un cronograma claro.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-4"
+                  id="faq-home-btn-4">
+            ¿Manejas información de clientes con confidencialidad?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-4" role="region" aria-labelledby="faq-home-btn-4" aria-hidden="true">
+          <div class="accordion__body">
+            Sí. Toda la información financiera de mis clientes se trata con total discreción y confidencialidad. El manejo de datos personales se realiza conforme a la normativa colombiana de protección de datos (Ley 1581 de 2012).
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-5"
+                  id="faq-home-btn-5">
+            ¿Puedo contratar un servicio puntual sin compromiso mensual?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-5" role="region" aria-labelledby="faq-home-btn-5" aria-hidden="true">
+          <div class="accordion__body">
+            Sí. Los Servicios Especializados están diseñados para necesidades puntuales sin necesidad de un contrato mensual. Puedes contratar exactamente lo que necesitas en el momento que lo necesitas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-6"
+                  id="faq-home-btn-6">
+            ¿Cuál es la diferencia entre la Gestión Contable para Pymes y los Servicios Especializados?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-6" role="region" aria-labelledby="faq-home-btn-6" aria-hidden="true">
+          <div class="accordion__body">
+            La Gestión Contable para Pymes es un servicio de acompañamiento continuo que cubre la contabilidad mensual, liquidación de impuestos y reportes financieros. Los Servicios Especializados son intervenciones puntuales para resolver trámites o necesidades específicas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-7"
+                  id="faq-home-btn-7">
+            ¿Atiendes a personas naturales o solo empresas?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-7" role="region" aria-labelledby="faq-home-btn-7" aria-hidden="true">
+          <div class="accordion__body">
+            Atiendo tanto personas naturales como personas jurídicas. Si eres persona natural con obligaciones tributarias (declarante de renta, responsable de IVA, etc.), también puedo orientarte.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-home-8"
+                  id="faq-home-btn-8">
+            ¿Tienes un blog con información contable actualizada?
+            <span class="accordion__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-home-8" role="region" aria-labelledby="faq-home-btn-8" aria-hidden="true">
+          <div class="accordion__body">
+            Sí. En el blog publico artículos sobre contabilidad para pymes, impuestos y obligaciones tributarias, finanzas para negocios y emprendimiento. Todo con lenguaje claro y referencias actualizadas.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- 9. CTA DE CIERRE --}}
+<section class="home-cta section">
+  <div class="container">
+    <div class="home-cta__inner">
+      <h2 class="home-cta__title">¿Listo para poner tu contabilidad en orden?</h2>
+      <p class="home-cta__text">
+        Cuéntame tu situación por WhatsApp y encontramos juntos el mejor punto de partida.
+      </p>
+      {{> whatsapp-link class="btn btn--primary btn--lg" gtm="click_whatsapp_cierre"}}
+    </div>
+  </div>
+</section>

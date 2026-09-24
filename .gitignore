@@ -1,0 +1,22 @@
+# Dependencias de build (se reinstalan con npm install)
+node_modules/
+
+# Paquete generado por `npm run zip`
+*.zip
+
+# Source map del CSS compilado (se regenera con npm run build).
+# assets/built/screen.css SÍ se versiona: default.hbs lo carga y el tema
+# debe funcionar recién clonado sin tener que compilar.
+assets/built/*.map
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.log
+
+
+# Archivos de trabajo de diseño y versiones viejas (no los usa el sitio)
+assets/images/_old_*
+assets/images/Propuesta*

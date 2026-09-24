@@ -1,0 +1,70 @@
+{{!--
+  BREADCRUMBS — Migas de pan semánticas
+  Spec: kb/docs/structured-data-master.md
+  Formato: Inicio > [Nivel 2] > [Nivel 3] > [Título actual (no enlazable)]
+  El JSON-LD de BreadcrumbList se inyecta en cada parcial de structured-data
+--}}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+    {{!-- Siempre: Inicio --}}
+    <li class="breadcrumbs__item"
+        itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="{{@site.url}}/" class="breadcrumbs__link" itemprop="item">
+        <span itemprop="name">Inicio</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+
+    {{!-- Nivel Blog (si es post o tag) --}}
+    {{#is "post, tag"}}
+      <li class="breadcrumbs__item"
+          itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{@site.url}}/blog/" class="breadcrumbs__link" itemprop="item">
+          <span itemprop="name">Blog</span>
+        </a>
+        <meta itemprop="position" content="2">
+      </li>
+    {{/is}}
+
+    {{!-- Nivel Categoría (si es post con tag primario) --}}
+    {{#is "post"}}
+      {{#primary_tag}}
+        <li class="breadcrumbs__item"
+            itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="{{url}}" class="breadcrumbs__link" itemprop="item">
+            <span itemprop="name">{{name}}</span>
+          </a>
+          <meta itemprop="position" content="3">
+        </li>
+      {{/primary_tag}}
+    {{/is}}
+
+    {{!-- Último elemento: página actual (no enlazable) --}}
+    {{#is "post"}}
+      <li class="breadcrumbs__item"
+          itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span class="breadcrumbs__current" itemprop="name" aria-current="page">{{title}}</span>
+        <meta itemprop="position" content="4">
+      </li>
+    {{/is}}
+
+    {{#is "tag"}}
+      <li class="breadcrumbs__item"
+          itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span class="breadcrumbs__current" itemprop="name" aria-current="page">{{name}}</span>
+        <meta itemprop="position" content="3">
+      </li>
+    {{/is}}
+
+    {{!-- Página estática (service landings, katerinn, legal) --}}
+    {{#is "page"}}
+      <li class="breadcrumbs__item"
+          itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span class="breadcrumbs__current" itemprop="name" aria-current="page">{{title}}</span>
+        <meta itemprop="position" content="2">
+      </li>
+    {{/is}}
+
+  </ol>
+</nav>

@@ -1,0 +1,29 @@
+{{!--
+  JSON-LD: CollectionPage + BreadcrumbList para páginas de categoría
+  Spec: kb/docs/structured-data-master.md §6.3
+  Inyectado desde default.hbs con guard {{#is "tag"}}
+--}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "{{url absolute="true"}}#collection",
+      "name": {{json name}},
+      "url": "{{url absolute="true"}}",
+      {{#if description}}
+      "description": {{json description}},
+      {{/if}}
+      "isPartOf": {
+        "@id": "{{@site.url}}/#website"
+      },
+      "breadcrumb": {
+        "@id": "{{url absolute="true"}}#breadcrumb"
+      },
+      "inLanguage": "es-CO"
+    },
+    {{> structured-data-breadcrumbs}}
+  ]
+}
+</script>

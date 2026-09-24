@@ -1,0 +1,89 @@
+{{!--
+  JSON-LD: WebPage + Service + Person + BreadcrumbList para las landings de servicio
+  Spec: kb/docs/structured-data-master.md §5
+  Inyectado en el <head> desde page-<servicio>.hbs con {{#contentFor "head"}}
+
+  REGLA: NO Offer, NO AggregateRating, NO LocalBusiness, NO Corporation en fase 1.
+
+  Cada landing pasa sus datos como parámetros en vez de leer el título y el
+  extracto de la página de Ghost: el nombre del servicio es el que fija la
+  spec, no depende de que alguien edite el título en el panel, y todo string
+  pasa por {{json}} para que una comilla no rompa el bloque.
+
+  "inLanguage" va en el WebPage: no es una propiedad válida de Service y el
+  validador de Schema.org la marca como advertencia.
+
+  Parámetros:
+    service_name         Nombre del servicio (spec §5)
+    service_type         Categoría del servicio
+    service_description  Resumen fiel al texto visible del hero
+    audience             A quién va dirigido
+    crumb_name           Etiqueta del nivel 2 de las migas (spec §5)
+    crumb_path           Ruta canónica con barra final, p. ej. "/gestion-contable-pymes/"
+
+  Uso:
+    {{#contentFor "head"}}
+      {{> structured-data-service
+          service_name="Gestión contable para pymes"
+          service_type="Gestión contable mensual"
+          service_description="..."
+          audience="Pequeñas y medianas empresas en Colombia"
+          crumb_name="Gestión contable para pymes"
+          crumb_path="/gestion-contable-pymes/"}}
+    {{/contentFor}}
+--}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{@site.url}}{{crumb_path}}#webpage",
+      "url": "{{@site.url}}{{crumb_path}}",
+      "name": {{json service_name}},
+      "description": {{json service_description}},
+      "isPartOf": {
+        "@id": "{{@site.url}}/#website"
+      },
+      "about": {
+        "@id": "{{@site.url}}{{crumb_path}}#service"
+      },
+      "breadcrumb": {
+        "@id": "{{@site.url}}{{crumb_path}}#breadcrumb"
+      },
+      "inLanguage": "es-CO"
+    },
+    {
+      "@type": "Service",
+      "@id": "{{@site.url}}{{crumb_path}}#service",
+      "name": {{json service_name}},
+      "serviceType": {{json service_type}},
+      "description": {{json service_description}},
+      "url": "{{@site.url}}{{crumb_path}}",
+      "provider": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Colombia"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": {{json audience}},
+        "geographicArea": {
+          "@type": "Country",
+          "name": "Colombia"
+        }
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "name": "WhatsApp",
+        "serviceUrl": "https://wa.me/{{#if @custom.whatsapp_number}}{{@custom.whatsapp_number}}{{else}}573238325800{{/if}}",
+        "availableLanguage": "es"
+      }
+    },
+    {{> schema-person}},
+    {{> structured-data-breadcrumbs crumb_name=crumb_name crumb_path=crumb_path}}
+  ]
+}
+</script>

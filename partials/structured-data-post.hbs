@@ -1,0 +1,57 @@
+{{!--
+  JSON-LD: BlogPosting + Person + BreadcrumbList
+  Spec: kb/docs/structured-data-master.md §6.2
+  Inyectado solo en el <head> desde default.hbs (contexto "post"). Antes
+  post.hbs lo volvía a incluir al final del artículo y cada post salía con
+  dos BlogPosting idénticos.
+  REGLA: dateModified solo en actualizaciones reales, no auto-refresh
+
+  La Person va en el mismo grafo para que author/publisher se resuelvan en la
+  página. La imagen es una URL simple: el ImageObject anterior declaraba
+  1200x675 para un archivo servido a 2000 px de ancho.
+--}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "{{url absolute="true"}}#article",
+      "mainEntityOfPage": "{{url absolute="true"}}",
+      "headline": {{json title}},
+      "url": "{{url absolute="true"}}",
+      "datePublished": "{{date format="YYYY-MM-DDTHH:mm:ssZ"}}",
+      {{#if updated_at}}
+      "dateModified": "{{date updated_at format="YYYY-MM-DDTHH:mm:ssZ"}}",
+      {{/if}}
+      "author": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      },
+      "publisher": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      },
+      "isPartOf": {
+        "@id": "{{@site.url}}/#website"
+      },
+      "breadcrumb": {
+        "@id": "{{url absolute="true"}}#breadcrumb"
+      },
+      "inLanguage": "es-CO"
+      {{#if feature_image}},
+      "image": "{{img_url feature_image size="xl" absolute="true"}}"
+      {{/if}}
+      {{#primary_tag}},
+      "articleSection": {{json name}},
+      "keywords": {{json name}}
+      {{/primary_tag}}
+      {{#if custom_excerpt}},
+      "description": {{json custom_excerpt}}
+      {{else if excerpt}},
+      "description": {{json excerpt}}
+      {{/if}}
+    },
+    {{> schema-person}},
+    {{> structured-data-breadcrumbs}}
+  ]
+}
+</script>

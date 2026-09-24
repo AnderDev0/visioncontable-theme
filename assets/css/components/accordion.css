@@ -1,0 +1,189 @@
+/* ==========================================================================
+   ACCORDION — FAQs accesibles
+   ========================================================================== */
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.accordion__item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  /* Borde de 1px siempre presente: al abrir, el estado cambia sólo de color y
+     no de grosor, así no hay desplazamiento de 1px en el layout. */
+  border: 1px solid rgba(107, 124, 133, 0.12);
+  border-radius: var(--border-radius-base);
+  box-shadow: none;
+  overflow: hidden;
+  transition: background var(--transition-base), border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+/* Barra sólida en el canto izquierdo, alineada con la línea de la pregunta
+   (no centrada) para que quede en el mismo sitio con el ítem abierto o cerrado.
+   Verde profundo de marca (#2F5D5A = rgb 47 93 90). */
+.accordion__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: var(--space-5);
+  z-index: 2;
+  width: 3px;
+  height: 0;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-action-web);
+  transition: height var(--transition-base);
+}
+
+/* Sombreado que nace de los cantos superior e inferior y muere antes de la
+   mitad, más las líneas nítidas de 1px y un tinte plano. Todo en un solo
+   pseudo-elemento que se atenúa con opacity: los degradados no interpolan en
+   transiciones, así que puestos como background del ítem entrarían de golpe. */
+.accordion__item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  background-image:
+    /* líneas de 1px en los cantos */
+    linear-gradient(to bottom, rgba(47, 93, 90, 0.28) 0px, rgba(47, 93, 90, 0.28) 1px, rgba(47, 93, 90, 0) 1px),
+    linear-gradient(to top,    rgba(47, 93, 90, 0.28) 0px, rgba(47, 93, 90, 0.28) 1px, rgba(47, 93, 90, 0) 1px),
+    /* sombreado que se apaga al 46% */
+    linear-gradient(to bottom, rgba(47, 93, 90, 0.11), rgba(47, 93, 90, 0) 46%),
+    linear-gradient(to top,    rgba(47, 93, 90, 0.11), rgba(47, 93, 90, 0) 46%),
+    /* tinte plano de base */
+    linear-gradient(rgba(47, 93, 90, 0.055), rgba(47, 93, 90, 0.055));
+}
+
+/* El contenido se eleva sobre el sombreado para no perder contraste. */
+.accordion__trigger,
+.accordion__panel {
+  position: relative;
+  z-index: 1;
+}
+
+/* :has(:focus-visible) —no :focus-within— para que el teclado reciba la misma
+   respuesta SIN que el estado se quede pegado al hacer clic: al pulsar, el
+   botón conserva el foco y :focus-within seguiría activo tras salir el mouse. */
+.accordion__item:hover::before,
+.accordion__item:has(:focus-visible)::before {
+  height: 26px;
+}
+
+.accordion__item:hover::after,
+.accordion__item:has(:focus-visible)::after {
+  opacity: 1;
+}
+
+/* Glass al expandir — :has() moderno */
+.accordion__item:has(.accordion__panel[aria-hidden="false"]) {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(47, 93, 90, 0.12);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* Fallback para browsers sin :has() — clase añadida por JS */
+.accordion__item.is-open {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(47, 93, 90, 0.12);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* El <h3> existe sólo para el outline del documento: permite saltar de pregunta
+   en pregunta con la navegación por encabezados de un lector de pantalla
+   (patrón de acordeón de WAI-ARIA). Visualmente es neutro — el estilo lo
+   sigue llevando el botón — así que se anula la escala heredada del h3. */
+.accordion__heading {
+  margin: 0;
+  font: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-5) var(--space-6);
+  text-align: left;
+  font-size: var(--text-btn);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-height: 44px;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Sin fondo propio: el tratamiento visual del hover vive en el ítem
+   (barra + sombreado). Un fondo aquí lo taparía, porque el botón se pinta
+   por encima del pseudo-elemento. */
+.accordion__trigger:hover {
+  background-color: transparent;
+  color: var(--color-action-web);
+}
+
+.accordion__trigger[aria-expanded="true"] {
+  color: var(--color-action-web);
+}
+
+/* Ícono +/- */
+.accordion__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-bg-light);
+  transition: transform var(--transition-base), background-color var(--transition-base);
+  color: var(--color-action-web);
+}
+
+.accordion__trigger[aria-expanded="true"] .accordion__icon {
+  transform: rotate(45deg);
+  background-color: var(--color-action-web);
+  color: var(--color-surface);
+}
+
+/* Panel de respuesta */
+.accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow);
+}
+
+.accordion__panel[aria-hidden="false"] {
+  /* max-height se establece dinámicamente por JS */
+}
+
+.accordion__body {
+  padding: 0 var(--space-6) var(--space-5);
+  font-size: var(--text-body-desktop);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-sub);
+}
+
+/* Fondo alternativo (sobre secciones oscuras) */
+.section--bg-warm .accordion__item {
+  background: rgba(255, 255, 255, 0.75);
+}

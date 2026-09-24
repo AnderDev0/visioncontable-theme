@@ -1,0 +1,277 @@
+{{!< default}}
+{{!--
+  PAGE-TERMINOS-Y-CONDICIONES.HBS — /terminos-y-condiciones/
+  Fuente del texto: kb/docs/términos-condiciones-uso.md (13 apartados).
+  OJO: existe también kb/docs/terms-and-conditions.md, una versión anterior de
+  16 apartados que difiere. Se tomó la primera por ser la pareja del documento
+  vigente de política de privacidad (mismo formato, misma fecha, mismos
+  marcadores). Ver nota al desarrollador en el cierre de la conversación.
+
+  Schema: WebPage (NO Article ni BlogPosting)
+  El texto va en la plantilla y no en el editor de Ghost para garantizar que se
+  publique exactamente el aprobado. Los datos de contacto salen de los ajustes
+  del tema (legal_email / legal_phone).
+--}}
+
+<article class="legal-page">
+  <div class="container">
+
+    <header class="legal-page__header">
+      <h1 class="legal-page__title">Términos y condiciones de uso</h1>
+      <p class="legal-page__intro">
+        Estos términos y condiciones regulan el acceso, la navegación y el uso del sitio web visioncontable.co. El acceso y uso del sitio implica su aceptación; si no estás de acuerdo con ellos, deberás abstenerte de utilizarlo.
+      </p>
+      <dl class="legal-dates">
+        <div class="legal-dates__pair">
+          <dt>Última actualización</dt>
+          <dd><time datetime="2026-07-21">21 de julio de 2026</time></dd>
+        </div>
+      </dl>
+    </header>
+
+    <div class="legal-layout">
+
+      <nav class="legal-toc" aria-labelledby="legal-toc-title">
+        <p class="legal-toc__title" id="legal-toc-title">Contenido</p>
+        {{!-- Solo móvil: legal-toc.js lo activa y pliega el índice para no empujar el contenido. --}}
+        <button type="button" class="legal-toc__toggle" aria-expanded="true" aria-controls="legal-toc-list">Contenido</button>
+        <ol class="legal-toc__list" id="legal-toc-list">
+          <li><a href="#general">Información general</a></li>
+          <li><a href="#finalidad">Finalidad y alcance del sitio</a></li>
+          <li><a href="#informativo">Carácter informativo de los contenidos</a></li>
+          <li><a href="#vigencia">Vigencia y actualización</a></li>
+          <li><a href="#contratacion">Contacto y contratación</a></li>
+          <li><a href="#uso">Uso adecuado del sitio</a></li>
+          <li><a href="#propiedad">Propiedad intelectual</a></li>
+          <li><a href="#enlaces">Enlaces y servicios externos</a></li>
+          <li><a href="#disponibilidad">Disponibilidad y funcionamiento</a></li>
+          <li><a href="#responsabilidad">Limitación de responsabilidad</a></li>
+          <li><a href="#datos">Protección de datos personales</a></li>
+          <li><a href="#modificaciones">Modificaciones de los términos</a></li>
+          <li><a href="#legislacion">Legislación aplicable y contacto</a></li>
+        </ol>
+      </nav>
+
+      <div class="legal-body">
+
+        <section class="legal-section" id="general">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">1</span>Información general</h2>
+          <p>Estos términos y condiciones regulan el acceso, la navegación y el uso del sitio web <strong>visioncontable.co</strong>, en adelante, el “sitio web”. El sitio web es administrado por:</p>
+          <dl class="legal-data">
+            <div class="legal-data__row">
+              <dt>Responsable</dt>
+              <dd>Katerinn Romero</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Actividad profesional</dt>
+              <dd>Asesoría contable, tributaria y financiera</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Domicilio</dt>
+              <dd>Bogotá D. C., Colombia</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Sitio web</dt>
+              <dd>visioncontable.co</dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Correo electrónico</dt>
+              <dd>
+                {{> legal-email}}
+              </dd>
+            </div>
+            <div class="legal-data__row">
+              <dt>Teléfono comercial</dt>
+              <dd>
+                {{> legal-phone}}
+              </dd>
+            </div>
+          </dl>
+          <p>El acceso y uso del sitio implica la aceptación de estos términos y condiciones. Si la persona usuaria no está de acuerdo con ellos, deberá abstenerse de utilizar el sitio.</p>
+        </section>
+
+        <section class="legal-section" id="finalidad">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">2</span>Finalidad y alcance del sitio web</h2>
+          <p>El sitio tiene como finalidad presentar información sobre Katerinn Romero, sus servicios de asesoría contable, tributaria y financiera y contenidos educativos relacionados con estas áreas.</p>
+          <p>Los servicios y contenidos se orientan principalmente a personas, emprendedores y empresas con necesidades contables, tributarias o financieras relacionadas con Colombia.</p>
+          <p>La información publicada permite conocer de manera general los servicios disponibles y comunicarse con Katerinn Romero para solicitar información u orientación inicial.</p>
+        </section>
+
+        {{!-- Advertencia central del documento: se destaca porque es la que
+             delimita la responsabilidad de quien lee el blog. --}}
+        <section class="legal-section" id="informativo">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">3</span>Carácter informativo de los contenidos</h2>
+          <p>Los artículos, textos, guías, ejemplos y demás contenidos publicados en el sitio tienen fines informativos y educativos.</p>
+          <div class="legal-callout">
+            <p class="legal-callout__lead">Esta información no sustituye una asesoría contable, tributaria, financiera o jurídica personalizada. Cada situación requiere revisar sus antecedentes, documentos, obligaciones y condiciones particulares.</p>
+            <p>Las decisiones adoptadas únicamente con base en información general publicada en el sitio son responsabilidad de quien las toma.</p>
+          </div>
+        </section>
+
+        <section class="legal-section" id="vigencia">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">4</span>Vigencia y actualización de la información</h2>
+          <p>Los contenidos se elaboran con base en la información y la normativa colombiana vigentes al momento de su publicación.</p>
+          <p>Las disposiciones legales, los criterios institucionales, los calendarios tributarios y los procedimientos de las entidades públicas pueden cambiar. Por esta razón, algunos contenidos pueden requerir actualizaciones posteriores.</p>
+          <p>Katerinn Romero podrá corregir, actualizar, modificar, suspender o retirar contenidos cuando sea necesario.</p>
+          <p>Antes de aplicar la información a una situación concreta, se recomienda confirmar su vigencia y pertinencia mediante orientación profesional.</p>
+        </section>
+
+        <section class="legal-section" id="contratacion">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">5</span>Contacto y contratación de servicios</h2>
+          <p>Los botones y enlaces de contacto del sitio permiten enviar consultas iniciales y solicitudes de información mediante WhatsApp, correo electrónico u otros canales habilitados.</p>
+          <p>El envío de una consulta no constituye por sí mismo:</p>
+          <ul class="legal-list">
+            <li>La contratación de un servicio.</li>
+            <li>La aceptación de una propuesta o cotización.</li>
+            <li>El inicio de una relación contractual.</li>
+            <li>Una asesoría profesional completa.</li>
+            <li>Una garantía de disponibilidad o aceptación del caso.</li>
+          </ul>
+          <p>Antes de prestar un servicio podrá realizarse una reunión inicial para conocer la necesidad y determinar su alcance.</p>
+          <p>Cuando las partes decidan avanzar, el alcance, valor, plazo, entregables y demás condiciones se establecerán en la propuesta, cotización o contrato correspondiente.</p>
+          <p>La prestación del servicio comenzará cuando se cumplan las condiciones establecidas en el documento aceptado por las partes, según corresponda.</p>
+        </section>
+
+        <section class="legal-section" id="uso">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">6</span>Uso adecuado del sitio web</h2>
+          <p>La persona usuaria se compromete a utilizar el sitio de manera lícita, responsable y respetuosa.</p>
+          <p>No está permitido:</p>
+          <ul class="legal-list">
+            <li>Utilizar el sitio para realizar actos contrarios a la legislación colombiana.</li>
+            <li>Intentar acceder sin autorización a sus sistemas, servidores o áreas administrativas.</li>
+            <li>Introducir virus, programas maliciosos u otros mecanismos que puedan afectar su funcionamiento.</li>
+            <li>Reproducir, modificar o distribuir contenidos fuera de los usos permitidos en estos términos o sin la autorización correspondiente.</li>
+            <li>Utilizar la información para suplantar a Katerinn Romero o atribuirle afirmaciones que no haya realizado.</li>
+            <li>Realizar acciones que afecten la disponibilidad, seguridad o funcionamiento del sitio.</li>
+          </ul>
+          <p>Katerinn Romero podrá restringir el acceso cuando detecte un uso abusivo, fraudulento o contrario a estos términos.</p>
+        </section>
+
+        <section class="legal-section" id="propiedad">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">7</span>Propiedad intelectual</h2>
+          <p>Los textos, fotografías, elementos gráficos, identidad visual, documentos y demás contenidos creados por Katerinn Romero o utilizados con autorización están protegidos por las normas aplicables sobre propiedad intelectual.</p>
+          <p>Se permite compartir enlaces al sitio y citar fragmentos breves de sus contenidos siempre que:</p>
+          <ul class="legal-list">
+            <li>Se reconozca claramente la autoría correspondiente.</li>
+            <li>Se incluya un enlace directo al contenido original.</li>
+            <li>No se altere el sentido de la información.</li>
+            <li>No se presente el contenido como propio.</li>
+            <li>No se utilice con fines engañosos o ilícitos.</li>
+          </ul>
+          <p>No se autoriza la reproducción total, modificación, venta, distribución o explotación comercial de los contenidos sin autorización previa y expresa.</p>
+          <p>Los nombres, marcas, fotografías, tipografías, materiales o recursos pertenecientes a terceros conservan los derechos de sus respectivos titulares.</p>
+        </section>
+
+        <section class="legal-section" id="enlaces">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">8</span>Enlaces y servicios externos</h2>
+          <p>El sitio puede incluir enlaces a páginas y servicios externos, como WhatsApp, redes sociales, entidades públicas y herramientas digitales relacionadas.</p>
+          <p>Estos enlaces se proporcionan para facilitar el acceso a información o canales externos. Katerinn Romero no administra ni controla dichas plataformas y no garantiza:</p>
+          <ul class="legal-list">
+            <li>Su disponibilidad permanente.</li>
+            <li>La exactitud o actualización de sus contenidos.</li>
+            <li>Sus medidas de seguridad.</li>
+            <li>Sus prácticas de privacidad.</li>
+            <li>Las modificaciones realizadas por sus administradores.</li>
+          </ul>
+          <p>El acceso a estas plataformas se rige por sus propios términos, condiciones y políticas. La persona usuaria debe revisarlos antes de utilizar sus servicios o proporcionar información personal.</p>
+          <p>La inclusión de un enlace externo no implica necesariamente una relación comercial, afiliación o respaldo.</p>
+        </section>
+
+        <section class="legal-section" id="disponibilidad">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">9</span>Disponibilidad y funcionamiento del sitio</h2>
+          <p>Se procurará mantener el sitio disponible y en condiciones adecuadas de funcionamiento.</p>
+          <p>Sin embargo, pueden presentarse interrupciones debido a mantenimiento, actualizaciones, fallas técnicas, servicios de terceros o circunstancias fuera del control razonable de Katerinn Romero.</p>
+          <p>No se garantiza que el acceso sea permanente, ininterrumpido o completamente libre de errores. Cuando sea posible, se corregirán los problemas técnicos o de contenido identificados.</p>
+        </section>
+
+        <section class="legal-section" id="responsabilidad">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">10</span>Limitación razonable de responsabilidad</h2>
+          <p>Katerinn Romero procura que la información publicada sea clara, útil y correcta. Sin embargo, no garantiza que todos los contenidos estén actualizados en todo momento ni que resulten aplicables a cada situación particular.</p>
+          <p>Katerinn Romero no será responsable por decisiones tomadas sin una revisión profesional individual ni por actuaciones realizadas a partir de una interpretación parcial o desactualizada de los contenidos.</p>
+          <p>Tampoco será responsable por fallas, interrupciones, modificaciones o contenidos de plataformas externas que no estén bajo su administración.</p>
+          <p>Estos términos no limitan los derechos reconocidos por la legislación colombiana ni excluyen responsabilidades que legalmente no puedan excluirse.</p>
+        </section>
+
+        <section class="legal-section" id="datos">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">11</span>Protección de datos personales</h2>
+          <p>El tratamiento de los datos personales recopilados mediante el sitio y sus canales de contacto se rige por la <a href="/politica-de-privacidad/">Política de privacidad y tratamiento de datos personales</a>.</p>
+          <p>Esta política explica qué información puede recopilarse, para qué se utiliza y cómo pueden ejercer sus derechos los titulares.</p>
+        </section>
+
+        <section class="legal-section" id="modificaciones">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">12</span>Modificaciones de los términos</h2>
+          <p>Katerinn Romero podrá actualizar estos términos cuando cambien:</p>
+          <ul class="legal-list">
+            <li>Las funciones del sitio.</li>
+            <li>Los servicios presentados.</li>
+            <li>Las herramientas tecnológicas utilizadas.</li>
+            <li>Las normas aplicables.</li>
+            <li>Las condiciones de acceso o navegación.</li>
+          </ul>
+          <p>La versión vigente será la publicada en esta página e indicará su fecha de actualización.</p>
+          <p>Los cambios no afectarán de forma retroactiva las relaciones contractuales ya formalizadas, salvo que la ley o un acuerdo entre las partes establezca algo diferente.</p>
+        </section>
+
+        <section class="legal-section" id="legislacion">
+          <h2 class="legal-section__title"><span class="legal-section__num" aria-hidden="true">13</span>Legislación aplicable y contacto</h2>
+          <p>Estos términos se interpretarán de acuerdo con la legislación de la República de Colombia.</p>
+          <p>Las diferencias relacionadas con el uso del sitio se procurarán resolver inicialmente mediante comunicación directa y de buena fe. Esto no limita el derecho de las personas a acudir ante las autoridades administrativas o judiciales competentes.</p>
+          <div class="legal-callout">
+            <p class="legal-callout__lead">Las consultas relacionadas con estos términos pueden enviarse a:</p>
+            <dl class="legal-data legal-data--tight">
+              <div class="legal-data__row">
+                <dt>Responsable</dt>
+                <dd>Katerinn Romero</dd>
+              </div>
+              <div class="legal-data__row">
+                <dt>Correo electrónico</dt>
+                <dd>
+                  {{> legal-email subject="Consulta%20sobre%20t%C3%A9rminos%20y%20condiciones"}}
+                </dd>
+              </div>
+              <div class="legal-data__row">
+                <dt>Teléfono comercial</dt>
+                <dd>
+                  {{> legal-phone}}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</article>
+
+{{!-- JSON-LD: WebPage + BreadcrumbList.
+     La miga visual se retiró por diseño, pero ambos documentos legales la
+     exigen ("Inicio > ..."), así que la ruta se conserva aquí para Google. --}}
+{{!-- title y url del JSON-LD vienen de la página de Ghost ("page"). --}}
+{{#page}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{url absolute="true"}}#webpage",
+      "url": "{{url absolute="true"}}",
+      "name": {{json title}},
+      "isPartOf": { "@id": "{{@site.url}}/#website" },
+      "breadcrumb": { "@id": "{{url absolute="true"}}#breadcrumb" },
+      "inLanguage": "es-CO"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{url absolute="true"}}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "{{@site.url}}/" },
+        { "@type": "ListItem", "position": 2, "name": {{json title}} }
+      ]
+    }
+  ]
+}
+</script>
+{{/page}}

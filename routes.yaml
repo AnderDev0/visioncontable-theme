@@ -1,0 +1,54 @@
+# Enrutamiento dinámico de Visión Contable
+#
+# Ghost NO lee este archivo desde el tema: lo lee de content/settings/routes.yaml.
+# Este es la fuente de verdad versionada; al cambiarlo hay que copiarlo allí
+# (o subirlo en Ghost Admin → Settings → Labs → Routes) y reiniciar Ghost.
+#
+# Las plantillas apuntan a los archivos page-<slug>.hbs, que son los que mantiene
+# el equipo. Antes apuntaban a un juego paralelo de plantillas obsoletas y, en el
+# caso de /katerinn-romero/, a un stub de depuración.
+#
+# Regla de orden: las rutas estáticas van antes que las colecciones.
+
+routes:
+  /:
+    template: home
+
+  /katerinn-romero/:
+    template: page-katerinn-romero
+    data: page.katerinn-romero
+
+  /servicios-contables-tributarios/:
+    template: page-servicios-contables-tributarios
+    data: page.servicios-contables-tributarios
+
+  /gestion-contable-pymes/:
+    template: page-gestion-contable-pymes
+    data: page.gestion-contable-pymes
+
+  /asesoria-contable-emprendedores/:
+    template: page-asesoria-contable-emprendedores
+    data: page.asesoria-contable-emprendedores
+
+  /terminos-y-condiciones/:
+    template: page-terminos-y-condiciones
+    data: page.terminos-y-condiciones
+
+  /politica-de-privacidad/:
+    template: page-politica-de-privacidad
+    data: page.politica-de-privacidad
+
+  /politica-de-cookies/:
+    template: page-politica-de-cookies
+    data: page.politica-de-cookies
+
+collections:
+  /blog/:
+    permalink: /blog/{slug}/
+    template: index
+    # Sin "filter: page:false": en Ghost 5+ la columna posts.page ya no existe
+    # (ahora es posts.type) y ese filtro tumbaba /blog/ con un 400 SQLITE_ERROR.
+    # Las colecciones solo incluyen posts, así que no hace falta filtrar páginas.
+
+taxonomies:
+  tag: /blog/{slug}/

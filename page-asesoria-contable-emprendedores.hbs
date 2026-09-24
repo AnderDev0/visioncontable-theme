@@ -1,0 +1,402 @@
+{{!< default}}
+{{!--
+  PAGE-ASESORIA-CONTABLE-EMPRENDEDORES.HBS — /asesoria-contable-emprendedores/
+  Spec: kb/docs/services-entrepreneurs.md
+  H1: "Asesoría contable para tu emprendimiento desde el primer paso"
+  11 secciones en el orden del doc: hero | intro | temas | señales | alcance |
+  proceso 5 pasos | info inicial | valor | cross-links | FAQs | CTA
+--}}
+
+{{!--
+  Migas de pan retiradas por decisión de diseño.
+  El JSON-LD de BreadcrumbList sigue vigente en {{> structured-data-service}},
+  así que Google conserva la ruta en resultados.
+--}}
+
+{{!-- 1. HERO — con imagen de fondo.
+     La imagen se pasa por variable CSS para poder usar el helper {{asset}};
+     cambiar la foto definitiva es cambiar sólo el nombre del archivo aquí. --}}
+<section class="landing-hero landing-hero--media section--lg">
+  {{!-- Dos fotos en fundido cruzado, decorativas: el significado lo carga el
+       H1, por eso van con alt vacio y el bloque aria-hidden. Solo la primera
+       se carga de inmediato; la segunda va diferida. --}}
+  <div class="landing-hero__media" aria-hidden="true">
+    <img class="landing-hero__photo" src="{{asset "images/Asesoria_emprendedor.webp"}}"
+         srcset="{{asset "images/Asesoria_emprendedor-1200.webp"}} 1200w, {{asset "images/Asesoria_emprendedor.webp"}} 2000w"
+         sizes="(max-width: 767px) 400px, 2000px" alt=""
+         width="2000" height="1500" loading="eager" fetchpriority="high">
+    <img class="landing-hero__photo" src="{{asset "images/acompanamiento_emprendedor.webp"}}"
+         srcset="{{asset "images/acompanamiento_emprendedor-1200.webp"}} 1200w, {{asset "images/acompanamiento_emprendedor.webp"}} 2000w"
+         sizes="(max-width: 767px) 400px, 2000px" alt=""
+         width="2000" height="1335" loading="lazy" decoding="async">
+  </div>
+  <div class="container">
+    <div class="landing-hero__inner">
+      <div class="landing-hero__text">
+        <h1 class="landing-hero__title">Asesoría contable para tu emprendimiento desde el primer paso</h1>
+        <p class="landing-hero__subtitle text-lead">
+          Te acompaño a entender qué necesita tu emprendimiento en temas contables y tributarios, organizar la información básica y tomar decisiones con más claridad desde el inicio.
+        </p>
+        {{> whatsapp-link
+            message="Hola%2C%20Katerinn.%20Quiero%20recibir%20orientaci%C3%B3n%20para%20mi%20emprendimiento..."
+            class="btn btn--primary btn--lg"
+            label="Consultar asesoría para emprendedores con Katerinn por WhatsApp (abre en nueva pestaña)"
+            gtm="click_whatsapp_hero"}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- 2. INTRODUCCIÓN AL SERVICIO (spec §3.2) --}}
+<section class="landing-intro section section--bg-surface">
+  <div class="container container--narrow">
+    <h2 class="landing-intro__title">Empieza con una base más clara para tu negocio</h2>
+    <p class="landing-intro__text">
+      Cuando estás comenzando, es normal tener dudas sobre registros, documentos, impuestos o facturación. Recibir orientación desde el inicio te ayuda a entender qué necesitas, organizar la información y evitar decisiones improvisadas.
+    </p>
+  </div>
+</section>
+
+{{!-- 3. TEMAS INICIALES (spec §3.3)
+     Agenda de la sesión en dos columnas: los 8 temas se leen como el temario de
+     la videollamada, que es lo que el emprendedor quiere saber. La numeración
+     es discreta a propósito — indica un orden sugerido de revisión, no una
+     obligación (el doc pide expresiones condicionales, no imperativas).
+     Bloques informativos, sin enlaces ni cursor de enlace. --}}
+<section class="landing-services section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Los primeros temas que conviene organizar</h2>
+      <p>La asesoría se ajusta al tipo de actividad, al momento del emprendimiento y a la información disponible. Según tu caso, puedes revisar los siguientes temas.</p>
+    </div>
+
+    <ol class="agenda" role="list" data-reveal>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">01</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">Situación actual del emprendimiento</h3>
+          <p class="agenda__desc">Revisión inicial para entender cómo funciona el negocio, qué actividad desarrolla y qué decisiones ya se han tomado.</p>
+        </div>
+      </li>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">02</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">Obligaciones contables y tributarias</h3>
+          <p class="agenda__desc">Orientación sobre las responsabilidades que pueden aplicar de acuerdo con la actividad, la forma de operación y las características del emprendimiento.</p>
+        </div>
+      </li>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">03</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">RUT y responsabilidades registradas</h3>
+          <p class="agenda__desc">Revisión de la información básica del RUT y de las responsabilidades asociadas al emprendimiento.</p>
+        </div>
+      </li>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">04</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">Facturación electrónica</h3>
+          <p class="agenda__desc">Orientación para saber si el negocio debe facturar electrónicamente y qué pasos básicos requiere el proceso.</p>
+        </div>
+      </li>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">05</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">Registro de ingresos y gastos</h3>
+          <p class="agenda__desc">Definición de una base sencilla para organizar los movimientos del emprendimiento y conservar sus soportes.</p>
+        </div>
+      </li>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">06</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">Documentos y soportes</h3>
+          <p class="agenda__desc">Identificación de los documentos que conviene guardar y organizar para respaldar ingresos, gastos y operaciones.</p>
+        </div>
+      </li>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">07</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">Separación de las finanzas</h3>
+          <p class="agenda__desc">Orientación para diferenciar la información del negocio de los movimientos personales y mantener un mayor orden desde el comienzo.</p>
+        </div>
+      </li>
+      <li class="agenda__item">
+        <span class="agenda__num" aria-hidden="true">08</span>
+        <div class="agenda__body">
+          <h3 class="agenda__title">Próximos pasos</h3>
+          <p class="agenda__desc">Definición de prioridades y acciones iniciales según el momento y las necesidades del emprendimiento.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+{{!-- 4. SEÑALES DE NECESIDAD (spec §3.4)
+     Viñeta de punto terracota (brand-identity §7), no palomita: son situaciones
+     en las que el usuario se reconoce, no cosas que deba preparar. --}}
+<section class="landing-signals section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>Esta asesoría puede ayudarte si</h2>
+    </div>
+    <ul class="signals" role="list" data-reveal>
+      <li class="signals__item">Estás pensando en iniciar un negocio y no sabes qué debes revisar.</li>
+      <li class="signals__item">Ya comenzaste a vender, pero no tienes organizada la información básica.</li>
+      <li class="signals__item">No tienes claro si debes actualizar el RUT o qué responsabilidades tiene.</li>
+      <li class="signals__item">Tienes dudas sobre si te aplica la facturación electrónica.</li>
+      <li class="signals__item">Mezclas los ingresos y gastos de tu emprendimiento con tus finanzas personales.</li>
+      <li class="signals__item">No sabes qué documentos o soportes contables debes guardar.</li>
+      <li class="signals__item">Quieres entender tus obligaciones sin explicaciones técnicas enredadas.</li>
+      <li class="signals__item">Necesitas organizar una base administrativa antes de contratar una gestión contable recurrente.</li>
+      <li class="signals__item">Estás formalizando el negocio y necesitas definir prioridades de acción.</li>
+      <li class="signals__item">Quieres tomar decisiones iniciales con mayor claridad y tranquilidad.</li>
+    </ul>
+    <p class="signals__closing">
+      No todos los emprendimientos tienen las mismas responsabilidades ni necesitan el mismo nivel de acompañamiento. La asesoría parte de tu situación real para definir qué conviene revisar primero.
+    </p>
+  </div>
+</section>
+
+{{!-- 5. ALCANCE DELIMITADO (spec §3.5)
+     Un solo contenedor con borde lateral institucional, como pide el doc, en vez
+     de tarjetas con encabezado propio. El encuadre es constructivo: primero lo
+     que sí permite la asesoría y luego el límite. --}}
+<section class="landing-scope section">
+  <div class="container container--narrow">
+    <div class="section-header">
+      <h2>Una orientación inicial con un alcance definido</h2>
+      <p>Esta asesoría permite revisar la situación del emprendimiento, aclarar dudas y organizar los primeros pasos. No reemplaza una gestión contable mensual cuando el negocio ya tiene una operación recurrente que requiere seguimiento continuo.</p>
+    </div>
+    <div class="scope-note">
+      <p class="scope-note__label">Lo que no corresponde a esta ruta</p>
+      <ul class="scope-note__list" role="list">
+        <li>Llevar de forma mensual la contabilidad completa del negocio.</li>
+        <li>Gestionar de manera recurrente todas las obligaciones tributarias ante la DIAN.</li>
+        <li>Preparar informes financieros periódicos de una empresa en operación avanzada.</li>
+        <li>Resolver trámites que requieren un servicio especializado independiente.</li>
+        <li>Garantizar de forma absoluta que el negocio no tendrá errores o dificultades futuras.</li>
+        <li>Tomar decisiones comerciales, operativas o financieras en nombre del emprendedor.</li>
+      </ul>
+      <p class="scope-note__route">
+        Si necesitas acompañamiento recurrente, la ruta es la <a href="/gestion-contable-pymes/" data-gtm="click_desvio_pymes">Gestión Contable para Pymes</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+{{!-- 6. PROCESO DE ACOMPAÑAMIENTO — 5 pasos (spec §3.6) --}}
+<section class="landing-process section section--bg-warm roadmap-pin">
+  <div class="container">
+    <div class="section-header">
+      <h2>Cómo empezamos a organizar tu emprendimiento</h2>
+      <p>El proceso comienza por entender el negocio y las dudas que tienes. A partir de esa información, identifico los temas prioritarios y te explico qué debes organizar.</p>
+    </div>
+    <ol class="landing-process__steps roadmap roadmap--5" role="list" data-reveal>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">01</span>
+        <h3 class="home-process__step-title">Cuéntame sobre tu emprendimiento</h3>
+        <p class="home-process__step-desc">Comparte qué actividad realizas, en qué etapa estás y cuáles son las dudas que necesitas resolver.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">02</span>
+        <h3 class="home-process__step-title">Revisamos tu situación</h3>
+        <p class="home-process__step-desc">Verifico la información disponible, las decisiones que ya tomaste y los temas que conviene revisar.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">03</span>
+        <h3 class="home-process__step-title">Definimos prioridades</h3>
+        <p class="home-process__step-desc">Se organizan las necesidades según su importancia y el momento del emprendimiento.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">04</span>
+        <h3 class="home-process__step-title">Aclaramos los siguientes pasos</h3>
+        <p class="home-process__step-desc">Recibes una explicación clara sobre lo que debes organizar, revisar o gestionar después de la asesoría.</p>
+      </li>
+      <li class="home-process__step">
+        <span class="home-process__number" aria-hidden="true">05</span>
+        <h3 class="home-process__step-title">Definimos si necesitas otro servicio</h3>
+        <p class="home-process__step-desc">Si el caso requiere un trámite específico o un acompañamiento recurrente, te oriento hacia la ruta correspondiente.</p>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+{{!-- 7. INFORMACIÓN INICIAL RECOMENDADA (spec §3.7)
+     Palomitas dibujadas en CSS, no un SVG repetido por ítem. El doc pide que
+     NO se lea como formulario ni como requisito previo obligatorio. --}}
+<section class="landing-checklist section">
+  <div class="container container--narrow">
+    <div class="section-header">
+      <h2>Información básica que puede ayudar a revisar tu caso</h2>
+      <p>No necesitas tener toda la documentación organizada antes de escribir. Sin embargo, algunos datos pueden ayudar a entender mejor la situación del emprendimiento.</p>
+    </div>
+    <ul class="checklist" role="list" data-reveal>
+      <li class="checklist__item">Actividad principal del negocio.</li>
+      <li class="checklist__item">Tiempo que lleva funcionando en el mercado.</li>
+      <li class="checklist__item">Forma o canal en que recibes pagos de tus clientes.</li>
+      <li class="checklist__item">Si ya cuentas con RUT activo.</li>
+      <li class="checklist__item">Si expides facturas electrónicas o documentos equivalentes.</li>
+      <li class="checklist__item">Tipo de clientes a los que vendes.</li>
+      <li class="checklist__item">Forma en que registras ingresos y gastos actualmente.</li>
+      <li class="checklist__item">Dudas principales que necesitas resolver.</li>
+      <li class="checklist__item">Documentos o registros previos que ya tengas disponibles.</li>
+    </ul>
+  </div>
+</section>
+
+{{!-- 8. PROPUESTA DE VALOR (spec §3.8) --}}
+<section class="landing-value section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>Entiende qué necesitas antes de tomar decisiones</h2>
+      <p>Te acompaño a convertir dudas iniciales en una ruta más clara. Esta asesoría no busca llenarte de términos técnicos, sino ayudarte a entender qué aplica a tu emprendimiento, qué debes organizar y cuál es el siguiente paso.</p>
+    </div>
+    <div class="grid-4 landing-value__grid" data-reveal>
+      <div class="landing-value__item">
+        <h3>Claridad desde el inicio</h3>
+        <p>Explicaciones comprensibles y directas sobre los temas contables y tributarios que pueden aplicar en tu fase actual.</p>
+      </div>
+      <div class="landing-value__item">
+        <h3>Prioridades definidas</h3>
+        <p>Organización de los temas según la etapa exacta y las necesidades reales del negocio.</p>
+      </div>
+      <div class="landing-value__item">
+        <h3>Acompañamiento cercano</h3>
+        <p>Un espacio para plantear dudas sin temor a equivocarse y recibir orientación sin sentirte juzgado.</p>
+      </div>
+      <div class="landing-value__item">
+        <h3>Base para avanzar</h3>
+        <p>Información inicial que ayuda a decidir con criterio y a reconocer cuándo se requiere un servicio adicional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- 9. CONEXIÓN CON OTRAS RUTAS (spec §3.9) --}}
+<section class="landing-crosslinks section">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Tu negocio necesita otro tipo de acompañamiento?</h2>
+    </div>
+    <div class="grid-2">
+      <a href="/servicios-contables-tributarios/" class="service-route-card" data-gtm="click_desvio_especializados">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="8" width="32" height="32" rx="4"/>
+          <path d="M16 24h16M16 32h10M16 16h16"/>
+        </svg>
+        <h3 class="service-route-card__title">Servicios Especializados</h3>
+        <p class="service-route-card__desc">Para trámites, declaraciones, diagnósticos o asesorías específicas que deben resolverse de manera puntual.</p>
+        <span class="service-route-card__cta">Ver servicios</span>
+      </a>
+      <a href="/gestion-contable-pymes/" class="service-route-card" data-gtm="click_desvio_pymes">
+        <svg class="service-route-card__icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 40V20l16-12 16 12v20"/>
+          <rect x="18" y="28" width="12" height="12"/>
+        </svg>
+        <h3 class="service-route-card__title">Gestión Contable para Pymes</h3>
+        <p class="service-route-card__desc">Para negocios en operación que necesitan gestión contable recurrente, liquidación de impuestos e informes financieros.</p>
+        <span class="service-route-card__cta">Ver servicio</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{!-- 10. FAQs (spec §3.10) --}}
+<section class="landing-faqs section section--bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <h2>Preguntas frecuentes sobre asesoría contable para emprendedores</h2>
+    </div>
+    <div class="faq-accordion" data-gtm-category="faq_open">
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-emp-1" id="faq-emp-btn-1">
+            ¿Necesito tener la empresa ya creada para solicitar esta asesoría?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-emp-1" role="region" aria-labelledby="faq-emp-btn-1" aria-hidden="true">
+          <div class="accordion__body">No. Puedes buscarme incluso antes de formalizar tu negocio. De hecho, es mejor recibir orientación antes para evitar errores desde el inicio.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-emp-2" id="faq-emp-btn-2">
+            ¿Esta asesoría sirve para cualquier tipo de negocio?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-emp-2" role="region" aria-labelledby="faq-emp-btn-2" aria-hidden="true">
+          <div class="accordion__body">Sí. Trabajo con emprendedores de diferentes sectores: servicios, comercio, tecnología, artesanías, entre otros. Lo importante es que tu negocio esté en Colombia y tenga obligaciones tributarias.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-emp-3" id="faq-emp-btn-3">
+            ¿La asesoría se hace por videollamada?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-emp-3" role="region" aria-labelledby="faq-emp-btn-3" aria-hidden="true">
+          <div class="accordion__body">Sí. El trabajo es completamente en línea. Nos comunicamos por WhatsApp y hacemos la sesión de asesoría por videollamada.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-emp-4" id="faq-emp-btn-4">
+            ¿Recibiré algo por escrito después de la asesoría?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-emp-4" role="region" aria-labelledby="faq-emp-btn-4" aria-hidden="true">
+          <div class="accordion__body">Sí. Recibirás un resumen con los puntos clave tratados y los próximos pasos que debes seguir, para que tengas todo claro después de la sesión.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-emp-5" id="faq-emp-btn-5">
+            ¿Puedo hacer preguntas adicionales después de la asesoría?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-emp-5" role="region" aria-labelledby="faq-emp-btn-5" aria-hidden="true">
+          <div class="accordion__body">Las condiciones de seguimiento posterior dependen del acuerdo específico. Consultas adicionales fuera del alcance de la sesión pueden tener un costo adicional, lo que queda claro desde el inicio.</div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <h3 class="accordion__heading">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="faq-emp-6" id="faq-emp-btn-6">
+            ¿Qué pasa si después de la asesoría quiero continuar con contabilidad mensual?
+            <span class="accordion__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="faq-emp-6" role="region" aria-labelledby="faq-emp-btn-6" aria-hidden="true">
+          <div class="accordion__body">Es perfectamente posible. Cuando tu negocio crezca y necesites una gestión contable mensual, podemos hablar sobre el servicio de Gestión Contable para Pymes y hacer la transición de forma ordenada.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{!-- 11. CIERRE DE CONVERSIÓN (spec §3.11) --}}
+{{> service-cta whatsapp_message="Hola%2C%20Katerinn.%20Quiero%20recibir%20orientaci%C3%B3n%20para%20mi%20emprendimiento..." cta_title="Empieza por entender qué necesita tu emprendimiento" cta_desc="Cuéntame en qué etapa estás y buscamos juntos el punto de partida."}}
+
+{{!-- JSON-LD del servicio, al <head> vía el bloque "head" de default.hbs.
+     Nombre y migas según kb/docs/structured-data-master.md §5.3. --}}
+{{#contentFor "head"}}
+  {{> structured-data-service
+      service_name="Asesoría contable para emprendedores"
+      service_type="Orientación contable y tributaria inicial"
+      service_description="Asesoría contable y tributaria para emprendimientos en Colombia desde el primer paso: obligaciones ante la DIAN, RUT y responsabilidades, facturación electrónica, registro de ingresos y gastos, soportes contables, separación de finanzas y definición de prioridades."
+      audience="Emprendedores en Colombia"
+      crumb_name="Asesoría para emprendedores"
+      crumb_path="/asesoria-contable-emprendedores/"}}
+{{/contentFor}}

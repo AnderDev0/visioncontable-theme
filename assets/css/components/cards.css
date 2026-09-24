@@ -1,0 +1,286 @@
+/* ==========================================================================
+   CARDS — Tarjetas de servicio, blog y categorías
+   ========================================================================== */
+
+/* --- Tarjeta base --- */
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--border-radius-base);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-rest);
+  overflow: hidden;
+  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+}
+
+.card:hover {
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* --- Tarjeta de ruta de servicio (Home + Katerinn) --- */
+
+.service-route-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  border-radius: var(--border-radius-base);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-rest);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+}
+
+.service-route-card:hover,
+.service-route-card:focus-visible {
+  box-shadow: var(--glass-shadow-hover-warm);
+  transform: translateY(-4px);
+  text-decoration: none;
+}
+
+.service-route-card__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-accent-warm);
+  margin-bottom: var(--space-4);
+  transition: transform var(--transition-base);
+}
+
+/* El icono acompaña el levante de la tarjeta: refuerza que TODA la tarjeta es
+   el objetivo clicable, no sólo el enlace del pie. */
+.service-route-card:hover .service-route-card__icon,
+.service-route-card:focus-visible .service-route-card__icon {
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Confirmación de pulsación: la tarjeta cede en vez de quedarse levantada. */
+.service-route-card:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+.service-route-card__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-3);
+}
+
+.service-route-card__desc {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-relaxed);
+  flex: 1;
+  margin-bottom: var(--space-6);
+}
+
+.service-route-card__cta {
+  font-size: var(--text-btn-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-action-web);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+
+.service-route-card__cta::after {
+  content: '→';
+  transition: transform var(--transition-base);
+}
+
+.service-route-card:hover .service-route-card__cta::after {
+  transform: translateX(4px);
+}
+
+@media (max-width: 767px) {
+  /* En móvil el título va en una sola línea: se anula el salto manual del
+     markup y se baja un punto la escala para que "Servicios Especializados"
+     entre completo sin desbordar. De paso la tarjeta gana algo de aire. */
+  .service-route-card__title br {
+    display: none;
+  }
+
+  .service-route-card__title {
+    font-size: 1.375rem;
+  }
+
+  .service-route-card {
+    padding: var(--space-6);
+  }
+
+  /* La descripción (18px, interlineado amplio) casi igualaba al título (22px).
+     Baja a la escala de cuerpo móvil para que el título mande. */
+  .service-route-card__desc {
+    font-size: var(--text-body-mobile);
+    line-height: var(--leading-normal);
+  }
+
+  /* 12.8px era demasiado pequeño para leer y pulsar en el celular. */
+  .service-route-card__cta {
+    font-size: var(--text-aux-mobile);
+    min-height: 44px;
+  }
+}
+
+/* --- Post card (blog listing) --- */
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius-base);
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-rest);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+}
+
+.post-card:hover {
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-4px);
+  text-decoration: none;
+}
+
+.post-card__image-wrapper {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--color-bg-warm);
+}
+
+.post-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.post-card:hover .post-card__image {
+  transform: scale(1.03);
+}
+
+.post-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-6);
+  gap: var(--space-3);
+}
+
+.post-card__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-text-main);
+}
+
+.post-card__excerpt {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-normal);
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-aux-desktop);
+  color: var(--color-text-sub);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(78, 110, 106, 0.1);
+  flex-wrap: wrap;
+}
+
+.post-card__meta-sep {
+  opacity: 0.4;
+}
+
+/* --- Tarjeta de categoría (blog index) --- */
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-6);
+  border-radius: var(--border-radius-base);
+  background-color: var(--color-bg-light);
+  border: 1px solid rgba(78, 110, 106, 0.12);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow var(--transition-slow), background-color var(--transition-slow);
+}
+
+.category-card:hover {
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-surface);
+  text-decoration: none;
+}
+
+.category-card__name {
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+}
+
+.category-card__count {
+  font-size: var(--text-aux-desktop);
+  color: var(--color-text-sub);
+}
+
+/* --- Tarjeta de situación (Home: identificadores) --- */
+
+.situation-card {
+  padding: var(--space-6);
+  border-radius: var(--border-radius-base);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-left: 4px solid var(--color-accent-warm);
+  box-shadow: var(--glass-shadow-rest);
+  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+}
+
+.situation-card:hover {
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.situation-card__question {
+  font-size: var(--text-highlight-desktop);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-3);
+}
+
+.situation-card__route {
+  font-size: var(--text-btn-sm);
+  color: var(--color-action-web);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+}
+
+.situation-card__route:hover {
+  text-decoration: underline;
+}

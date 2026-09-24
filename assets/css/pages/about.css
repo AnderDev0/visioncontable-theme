@@ -1,0 +1,199 @@
+/* ==========================================================================
+   ABOUT — Página de perfil profesional /katerinn-romero/
+   ========================================================================== */
+
+/* --- Hero --- */
+
+.about-hero {
+  background-color: var(--color-surface);
+}
+
+.about-hero__inner {
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.about-hero__title {
+  font-size: clamp(var(--text-h1-mobile), 4vw, var(--text-h1-desktop));
+  margin-bottom: var(--space-5);
+}
+
+.about-hero__subtitle {
+  margin-bottom: var(--space-8);
+  max-width: 520px;
+}
+
+.about-hero__image-wrapper {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  max-width: 480px;
+  background-color: var(--color-bg-warm);
+}
+
+.about-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .about-hero__image-wrapper {
+    order: -1;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* --- Bio --- */
+
+.about-bio__content p + p {
+  margin-top: var(--space-4);
+}
+
+/* --- Principios --- */
+
+.about-principles__grid {
+  gap: var(--space-5);
+}
+
+.about-principle {
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-base);
+  border-top: 3px solid var(--color-accent-warm);
+}
+
+.about-principle__number {
+  display: block;
+  font-family: var(--font-headings);
+  font-size: var(--text-decorative-number);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-warm);
+  margin-bottom: var(--space-3);
+}
+
+.about-principle__title {
+  font-family: var(--font-headings);
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-3);
+}
+
+.about-principle__desc {
+  font-size: var(--text-body-desktop);
+  color: var(--color-text-sub);
+  line-height: var(--leading-normal);
+}
+
+/* --- Blog autoridad --- */
+
+.about-blog__inner {
+  text-align: center;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.about-blog__text {
+  color: var(--color-text-sub);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+/* --- Credenciales --- */
+
+.about-credentials__list {
+  margin-bottom: var(--space-6);
+}
+
+.about-credentials__item {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid rgba(78, 110, 106, 0.1);
+}
+
+.about-credentials__label {
+  font-family: var(--font-headings);
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.about-credentials__value {
+  font-size: var(--text-aux-desktop);
+  color: var(--color-text-sub);
+}
+
+.about-credentials__note {
+  font-size: var(--text-aux-desktop);
+  font-style: italic;
+  margin-top: var(--space-4);
+}
+
+/* --- Redes sociales --- */
+
+.about-social__links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.about-social__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--border-radius-base);
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  border: 1px solid rgba(78, 110, 106, 0.2);
+  transition: box-shadow var(--transition-base), color var(--transition-base);
+  min-height: 44px;
+}
+
+.about-social__link:hover {
+  box-shadow: var(--shadow-md);
+  color: var(--color-action-web);
+  text-decoration: none;
+}
+
+/* --- Página legal --- */
+
+.legal-page {
+  padding-block: var(--space-12);
+}
+
+.legal-page__header {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid rgba(78, 110, 106, 0.1);
+}
+
+.legal-page__title {
+  margin-bottom: var(--space-3);
+}
+
+/* .legal-page__footer eliminado: repetía el copyright que ya pone el footer
+   global del sitio, así que salía dos veces en cada página legal. */
+
+/* --- Página genérica --- */
+
+.generic-page {
+  padding-block: var(--space-12);
+}
+
+.generic-page__header {
+  margin-bottom: var(--space-8);
+}
+
+.generic-page__hero-image {
+  margin-bottom: var(--space-8);
+  border-radius: var(--border-radius-base);
+  overflow: hidden;
+}
+
+.generic-page__image {
+  width: 100%;
+  height: auto;
+}

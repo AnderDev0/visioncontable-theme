@@ -1,0 +1,156 @@
+{{!--
+  HEADER — Navegación global
+  Spec: kb/docs/header-specifications.md
+  Desktop: Logo | Inicio | Servicios (dropdown) | Blog | WhatsApp CTA
+  Mobile: Logo + Hamburger → Drawer lateral
+--}}
+
+<header class="site-header" id="site-header" role="banner">
+  <div class="container site-header__inner">
+
+    {{!-- Logo: logotipo horizontal completo (isotipo + wordmark en un solo SVG,
+         fondo transparente), variante "positivo" fija. header-theme.js solo
+         cambia el fondo glass del header (data-theme), no el logo. --}}
+    <a href="{{@site.url}}/" class="site-header__logo" aria-label="Katerinn Romero — Página de inicio"
+       data-gtm="logo_click">
+      <img class="site-header__logo-img"
+           src="{{asset "images/logotipo%20horizontal%20katerinn%20romero%20positivo.svg"}}"
+           alt="Katerinn Romero — Asesoría contable, tributaria y financiera"
+           width="219" height="90" loading="eager">
+    </a>
+
+    {{!-- Navegación principal (desktop) --}}
+    <nav class="site-nav" aria-label="Navegación principal" id="site-nav">
+      <ul class="site-nav__list" role="list">
+
+        <li class="site-nav__item">
+          <a href="{{@site.url}}/"
+             class="site-nav__link nav-link"
+             {{#is "home"}}aria-current="page"{{/is}}
+             data-gtm="home_click">
+            Inicio
+          </a>
+        </li>
+
+        {{!-- Dropdown Servicios --}}
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__link site-nav__dropdown-trigger nav-link"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-servicios"
+                  data-gtm="services_open">
+            Servicios
+            <svg class="site-nav__arrow" aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="site-nav__dropdown" id="dropdown-servicios" role="list">
+            <li>
+              <a href="{{@site.url}}/servicios-contables-tributarios/"
+                 class="site-nav__dropdown-link"
+                 data-gtm="services_servicios_click">
+                Servicios Especializados
+              </a>
+            </li>
+            <li>
+              <a href="{{@site.url}}/gestion-contable-pymes/"
+                 class="site-nav__dropdown-link"
+                 data-gtm="services_pymes_click">
+                Gestión Contable Pymes
+              </a>
+            </li>
+            <li>
+              <a href="{{@site.url}}/asesoria-contable-emprendedores/"
+                 class="site-nav__dropdown-link"
+                 data-gtm="services_emprendedores_click">
+                Asesoría Emprendedores
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="site-nav__item">
+          <a href="{{@site.url}}/blog/"
+             class="site-nav__link nav-link"
+             {{!-- "index" cuando la colección vive en la raíz, "blog" cuando
+                   vive en /blog/: se cubren ambas para no depender del routing. --}}
+             {{#is "index, blog, tag, post"}}aria-current="page"{{/is}}
+             data-gtm="blog_click">
+            Blog
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    {{!-- CTA WhatsApp (desktop) --}}
+    {{> whatsapp-link class="btn btn--primary site-header__cta" gtm="whatsapp_click"}}
+
+    {{!-- Botón hamburguesa (mobile) --}}
+    <button class="site-header__menu-btn"
+            id="mobile-menu-btn"
+            aria-expanded="false"
+            aria-controls="mobile-drawer"
+            aria-label="Abrir menú de navegación"
+            data-gtm="mobile_menu_open">
+      <span class="site-header__hamburger" aria-hidden="true"></span>
+      <span class="site-header__hamburger" aria-hidden="true"></span>
+      <span class="site-header__hamburger" aria-hidden="true"></span>
+    </button>
+
+  </div>
+</header>
+
+{{!-- Overlay del drawer --}}
+<div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+
+{{!-- Drawer de navegación mobile --}}
+<nav class="mobile-drawer" id="mobile-drawer" aria-label="Menú móvil" aria-hidden="true" inert>
+  <div class="mobile-drawer__header">
+    <a href="{{@site.url}}/" aria-label="Katerinn Romero — Inicio" class="mobile-drawer__logo">
+      <img class="site-header__logo-img"
+           src="{{asset "images/logotipo%20horizontal%20katerinn%20romero%20positivo.svg"}}"
+           alt="Katerinn Romero — Asesoría contable, tributaria y financiera"
+           width="88" height="36" loading="lazy">
+    </a>
+    <button class="mobile-drawer__close"
+            id="mobile-drawer-close"
+            aria-label="Cerrar menú de navegación"
+            data-gtm="mobile_menu_close">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <ul class="mobile-drawer__list" role="list">
+    <li><a href="{{@site.url}}/" class="mobile-drawer__link" data-gtm="home_click">Inicio</a></li>
+    <li>
+      <span class="mobile-drawer__section-label">Servicios</span>
+      <ul role="list" class="mobile-drawer__sub-list">
+        <li>
+          <a href="{{@site.url}}/servicios-contables-tributarios/" class="mobile-drawer__link mobile-drawer__link--sub"
+             data-gtm="services_servicios_click">Servicios Especializados</a>
+        </li>
+        <li>
+          <a href="{{@site.url}}/gestion-contable-pymes/" class="mobile-drawer__link mobile-drawer__link--sub"
+             data-gtm="services_pymes_click">Gestión Contable Pymes</a>
+        </li>
+        <li>
+          <a href="{{@site.url}}/asesoria-contable-emprendedores/" class="mobile-drawer__link mobile-drawer__link--sub"
+             data-gtm="services_emprendedores_click">Asesoría Emprendedores</a>
+        </li>
+      </ul>
+    </li>
+    <li><a href="{{@site.url}}/blog/" class="mobile-drawer__link" data-gtm="blog_click">Blog</a></li>
+    <li><a href="{{@site.url}}/katerinn-romero/" class="mobile-drawer__link">Katerinn Romero</a></li>
+  </ul>
+
+  {{!-- CTA WhatsApp en drawer --}}
+  <div class="mobile-drawer__footer">
+    {{> whatsapp-link class="btn btn--primary btn--full" gtm="whatsapp_click" icon=true}}
+  </div>
+
+  {{!-- Redes sociales en drawer --}}
+  {{> social-links class="mobile-drawer__socials" linkClass="mobile-drawer__social-link" gtm_prefix="mobile_menu"}}
+</nav>

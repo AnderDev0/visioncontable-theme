@@ -1,0 +1,47 @@
+{{!--
+  JSON-LD: Home — WebSite + WebPage + Person
+  Spec: kb/docs/structured-data-master.md §4.2
+  Inyectado solo en contexto "home" desde default.hbs
+
+  REGLAS:
+    - NO SearchAction hasta que la búsqueda interna esté en producción.
+    - NO Organization/LocalBusiness: el publisher del sitio es la Person.
+    - Todo texto que venga del panel de Ghost pasa por {{json}}.
+    - Sin breadcrumb: una miga de un solo nivel no aporta nada a Google.
+--}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{@site.url}}/#website",
+      "url": "{{@site.url}}/",
+      "name": {{json @site.title}},
+      "alternateName": ["Visión Contable", "Katerinn Romero - Visión Contable"],
+      {{#if @site.description}}
+      "description": {{json @site.description}},
+      {{/if}}
+      "inLanguage": "es-CO",
+      "publisher": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{@site.url}}/#webpage",
+      "url": "{{@site.url}}/",
+      "name": "Servicios contables, tributarios y financieros | Katerinn Romero",
+      "description": "Acompañamiento contable, tributario y financiero para pymes, emprendedores y personas naturales en Colombia, con orientación clara y atención cercana.",
+      "isPartOf": {
+        "@id": "{{@site.url}}/#website"
+      },
+      "about": {
+        "@id": "{{@site.url}}/#katerinn-romero"
+      },
+      "inLanguage": "es-CO"
+    },
+    {{> schema-person}}
+  ]
+}
+</script>

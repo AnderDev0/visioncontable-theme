@@ -1,0 +1,146 @@
+{{!--
+  FOOTER — Pie de página global
+  Spec: kb/docs/footer-specifications.md
+  Desktop: 4 columnas (Marca | Navegación | Servicios | Contacto)
+  Mobile: Marca (+ redes) → Contacto (CTA) → Servicios → Navegación → Legales
+  Restricciones: No formularios, no mapas, no widgets pesados
+--}}
+
+<footer class="site-footer bg-dark" role="contentinfo">
+  <div class="container">
+    <div class="site-footer__grid">
+
+      {{!-- Columna 1: Marca --}}
+      <div class="site-footer__col site-footer__col--brand">
+        <a href="{{@site.url}}/" class="site-footer__logo-link" aria-label="Katerinn Romero — Ir al inicio"
+           data-gtm="footer_logo_click">
+          {{!-- Logotipo solo (sin isotipo), variante negativa para el fondo oscuro
+               del footer, en su copia con el viewBox recortado: el archivo
+               maestro trae el área de seguridad dentro del propio SVG y dejaba
+               el 56 % de la caja en blanco. El aire lo pone la maquetación. El descriptor "Asesoría contable, tributaria y financiera"
+               va dibujado dentro del SVG: el <p> que lo repetía debajo se eliminó
+               (spec footer §2.1 lo pide "solo si mantiene legibilidad", y aquí ya
+               es legible dentro del logotipo). El texto sigue en el alt, así que
+               los lectores de pantalla no pierden nada. --}}
+          <img src="{{asset "images/logotipo-katerinn-romero-negativo-recortado.svg"}}"
+               alt="Katerinn Romero — Asesoría contable, tributaria y financiera"
+               width="332" height="175" loading="lazy" decoding="async">
+        </a>
+        <p class="site-footer__about">
+          Acompaño a pymes, emprendedores y personas naturales a tomar decisiones con mayor claridad.
+        </p>
+        {{> social-links class="site-footer__socials" linkClass="site-footer__social-link" gtm_prefix="footer"}}
+      </div>
+
+      {{!-- Columna 2: Navegación general.
+           aria-current usa page.slug: en las rutas de routes.yaml la página
+           llega dentro de "page", no en la raíz (con "slug" a secas nunca coincidía). --}}
+      <nav class="site-footer__col site-footer__col--nav" aria-label="Navegación del pie de página">
+        <h2 class="site-footer__heading">Navegación</h2>
+        <ul class="site-footer__list" role="list">
+          <li>
+            <a href="{{@site.url}}/" class="site-footer__link"
+               {{#is "home"}}aria-current="page"{{/is}}>Inicio</a>
+          </li>
+          <li>
+            <a href="{{@site.url}}/katerinn-romero/" class="site-footer__link"
+               {{#match page.slug "katerinn-romero"}}aria-current="page"{{/match}}
+               data-gtm="footer_about_click">Sobre Katerinn</a>
+          </li>
+          <li>
+            <a href="{{@site.url}}/blog/" class="site-footer__link"
+               {{!-- "index" cuando la colección vive en la raíz, "blog" cuando
+                     vive en /blog/: se cubren ambas para no depender del routing. --}}
+               {{#is "index, blog, tag, post"}}aria-current="page"{{/is}}
+               data-gtm="footer_blog_click">Blog</a>
+          </li>
+        </ul>
+      </nav>
+
+      {{!-- Columna 3: Servicios.
+           Las descripciones se renderizan siempre (valor SEO) y se ocultan por
+           CSS en móvil para no alargar el scroll — spec §3 y §9. --}}
+      <nav class="site-footer__col site-footer__col--services" aria-label="Servicios">
+        <h2 class="site-footer__heading">Servicios</h2>
+        <ul class="site-footer__list site-footer__list--rich" role="list">
+          <li>
+            <a href="{{@site.url}}/servicios-contables-tributarios/" class="site-footer__link"
+               {{#match page.slug "servicios-contables-tributarios"}}aria-current="page"{{/match}}
+               data-gtm="footer_specialized_services_click">Servicios especializados</a>
+            <span class="site-footer__link-desc">Trámites y asesorías puntuales.</span>
+          </li>
+          <li>
+            <a href="{{@site.url}}/gestion-contable-pymes/" class="site-footer__link"
+               {{#match page.slug "gestion-contable-pymes"}}aria-current="page"{{/match}}
+               data-gtm="footer_pymes_click">Gestión contable para pymes</a>
+            <span class="site-footer__link-desc">Acompañamiento recurrente.</span>
+          </li>
+          <li>
+            <a href="{{@site.url}}/asesoria-contable-emprendedores/" class="site-footer__link"
+               {{#match page.slug "asesoria-contable-emprendedores"}}aria-current="page"{{/match}}
+               data-gtm="footer_entrepreneurs_click">Asesoría para emprendedores</a>
+            <span class="site-footer__link-desc">Orientación desde el inicio.</span>
+          </li>
+        </ul>
+      </nav>
+
+      {{!-- Columna 4: Contacto y CTA --}}
+      <div class="site-footer__col site-footer__col--contact">
+        <h2 class="site-footer__heading">Contacto</h2>
+        <p class="site-footer__contact-text">
+          Escríbeme por WhatsApp y te oriento sobre el siguiente paso.
+        </p>
+        {{> whatsapp-link
+            class="btn btn--outline-light site-footer__cta"
+            gtm="footer_whatsapp_click"
+            icon=true}}
+      </div>
+
+    </div>
+
+    {{!-- Barra inferior: copyright + legales --}}
+    <div class="site-footer__bottom">
+      {{!-- El primer argumento vacío fuerza "ahora": sin él, en un artículo el
+            helper tomaría published_at y el copyright mostraría el año del post. --}}
+      <p class="site-footer__copyright">
+        &copy; {{date "" format="YYYY"}} {{@site.title}}. Todos los derechos reservados.
+      </p>
+      <nav class="site-footer__legal-nav" aria-label="Páginas legales">
+        <ul role="list">
+          <li>
+            <a href="{{@site.url}}/politica-de-privacidad/" class="site-footer__legal-link"
+               {{#match page.slug "politica-de-privacidad"}}aria-current="page"{{/match}}
+               data-gtm="footer_privacy_click">Política de privacidad</a>
+          </li>
+          <li>
+            <a href="{{@site.url}}/terminos-y-condiciones/" class="site-footer__legal-link"
+               {{#match page.slug "terminos-y-condiciones"}}aria-current="page"{{/match}}
+               data-gtm="footer_terms_click">Términos y condiciones</a>
+          </li>
+          <li>
+            <a href="{{@site.url}}/politica-de-cookies/" class="site-footer__legal-link"
+               {{#match page.slug "politica-de-cookies"}}aria-current="page"{{/match}}
+               data-gtm="footer_cookies_click">Política de cookies</a>
+          </li>
+          {{!-- Ghost auto-añade /sitemap.xml --}}
+        </ul>
+      </nav>
+    </div>
+
+    {{!-- Crédito de desarrollo — kb/docs/terms-and-conditions.md §10.
+         La norma exige jerarquía "muy inferior" a la del copyright y a la de
+         los enlaces legales, pero footer-specifications §170 exige 4.5:1 en
+         TODO el texto del footer. Por eso la subordinación se logra con
+         tamaño y posición (línea aparte, al final, 12px) y NO bajando el
+         contraste, que es lo que se haría por instinto.
+         rel="nofollow": es un enlace comercial recíproco. Sin él, cada página
+         del sitio le pasaría autoridad a la agencia y Google puede leerlo
+         como intercambio de enlaces. --}}
+    <p class="site-footer__credit">
+      <small>Desarrollado por <a href="https://www.nyoholding.com/"
+         target="_blank"
+         rel="noopener noreferrer nofollow"
+         aria-label="N&amp;O, desarrollo del sitio web (abre en nueva pestaña)">N&amp;O</a></small>
+    </p>
+  </div>
+</footer>

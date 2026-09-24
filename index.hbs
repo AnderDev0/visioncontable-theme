@@ -1,0 +1,155 @@
+{{!< default}}
+{{!--
+  INDEX.HBS — Blog listing principal (/blog/)
+  Spec: kb/docs/blog-index.md
+  Secciones: Artículo destacado | Grid 6 recientes | Búsqueda condicional |
+             4 Cards de categoría | Banner Katerinn | Paginación | CTA WhatsApp
+--}}
+
+{{!-- Hero del blog --}}
+<section class="blog-hero section--sm">
+  <div class="container">
+    <h1 class="blog-hero__title">Blog de contabilidad, impuestos y finanzas</h1>
+    <p class="blog-hero__subtitle text-lead">
+      Artículos prácticos para que entiendas tu situación financiera y tomes mejores decisiones en tu empresa o emprendimiento.
+    </p>
+  </div>
+</section>
+
+{{!-- Artículo destacado (primer post de la colección) --}}
+{{#foreach posts limit="1"}}
+  <section class="blog-featured section--sm">
+    <div class="container">
+      <p class="blog-featured__label">Artículo destacado</p>
+      <article class="blog-featured__inner">
+        {{#if feature_image}}
+          <a href="{{url}}" class="blog-featured__image-link" tabindex="-1" aria-hidden="true">
+            <div class="blog-featured__image-wrapper">
+              <img src="{{img_url feature_image size="l"}}"
+                   alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}Imagen del artículo: {{title}}{{/if}}"
+                   width="780" height="440"
+                   loading="lazy"
+                   class="blog-featured__image">
+            </div>
+          </a>
+        {{/if}}
+        <div class="blog-featured__content">
+          {{#primary_tag}}
+            <a href="{{url}}" class="badge badge--primary" data-gtm="blog_category_click">{{name}}</a>
+          {{/primary_tag}}
+          <h2 class="blog-featured__title">
+            <a href="{{url}}" data-gtm="blog_featured_article_click">{{title}}</a>
+          </h2>
+          {{#if custom_excerpt}}
+            <p class="blog-featured__excerpt">{{custom_excerpt}}</p>
+          {{else if excerpt}}
+            <p class="blog-featured__excerpt">{{excerpt characters="200"}}</p>
+          {{/if}}
+          <div class="blog-featured__meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+            <span aria-hidden="true">·</span>
+            <span>{{reading_time minute="1 min" minutes="% min"}}</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+{{/foreach}}
+
+{{!-- Grid de artículos recientes --}}
+<section class="blog-grid section">
+  <div class="container">
+    <h2 class="blog-grid__heading">Artículos recientes</h2>
+    <div class="grid-3 blog-grid__posts">
+      {{#foreach posts from="2"}}
+        {{> post-card}}
+      {{/foreach}}
+    </div>
+
+    {{!-- Paginación --}}
+    {{> pagination}}
+  </div>
+</section>
+
+{{!-- Búsqueda condicional: visible solo si hay 10+ posts --}}
+{{!-- Ghost no expone el total directamente en index, usamos un bloque condicional via get --}}
+{{#get "posts" limit="10" count="true"}}
+  {{#if meta.pagination.total}}
+    {{#match meta.pagination.total ">=" 10}}
+      <section class="blog-search section--sm section--bg-light">
+        <div class="container container--narrow">
+          <h2 class="blog-search__heading">Buscar artículos</h2>
+          {{!-- Búsqueda nativa de Ghost (requiere activar en admin) --}}
+          <div class="gh-search-trigger-wrapper">
+            <button class="btn btn--outline blog-search__btn"
+                    data-ghost-search
+                    aria-label="Buscar artículos en el blog"
+                    data-gtm="blog_search_submit">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+              Buscar artículos
+            </button>
+          </div>
+        </div>
+      </section>
+    {{/match}}
+  {{/if}}
+{{/get}}
+
+{{!-- Cards de categorías.
+     Mientras una categoría sea interna (nombre con "#", menos de 3 artículos)
+     la Content API no la devuelve; si ninguna es pública todavía, la sección
+     entera no se pinta en vez de dejar un título sin tarjetas. --}}
+{{#get "tags" filter="slug:[contabilidad-pymes,impuestos-obligaciones,emprendimiento,finanzas-negocios]+visibility:public" include="count.posts" limit="4"}}
+  {{#if tags}}
+    <section class="blog-categories section section--bg-warm">
+      <div class="container">
+        <div class="section-header">
+          <h2>Explora por tema</h2>
+        </div>
+        <div class="grid-4 blog-categories__grid">
+          {{#foreach tags}}
+            <a href="{{url}}" class="category-card" data-gtm="blog_category_click">
+              <span class="category-card__name">{{name}}</span>
+              <span class="category-card__count">{{count.posts}} {{#match count.posts "=" 1}}artículo{{else}}artículos{{/match}}</span>
+            </a>
+          {{/foreach}}
+        </div>
+      </div>
+    </section>
+  {{/if}}
+{{/get}}
+
+{{!-- Banner de autoría --}}
+<section class="blog-author-banner section section--bg-surface">
+  <div class="container">
+    <div class="blog-author-banner__inner">
+      <div class="blog-author-banner__text">
+        <h2 class="blog-author-banner__title">Escrito por Katerinn Romero</h2>
+        <p class="blog-author-banner__desc">
+          Contadora pública con experiencia en asesoría contable, tributaria y financiera para empresas y emprendedores en Colombia. Cada artículo está escrito con referencias actualizadas y lenguaje claro.
+        </p>
+        <a href="/katerinn-romero/" class="btn btn--outline" data-gtm="blog_about_click">
+          Conocer a Katerinn →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- CTA WhatsApp (prioridad secundaria en blog) --}}
+<section class="section section--bg-warm">
+  <div class="container">
+    <div class="blog-cta">
+      <p class="blog-cta__text">
+        ¿Tienes preguntas después de leer? Puedes consultarme directamente.
+      </p>
+      {{> whatsapp-link
+          message="Hola%2C%20Katerinn.%20Estuve%20revisando%20el%20blog%20y%20quiero%20recibir%20orientaci%C3%B3n%20sobre..."
+          class="btn btn--primary"
+          text="Hablemos por WhatsApp"
+          gtm="blog_whatsapp_click"}}
+    </div>
+  </div>
+</section>

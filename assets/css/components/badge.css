@@ -1,0 +1,40 @@
+/* ==========================================================================
+   BADGE — Pills de categoría del blog
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-full);
+  font-size: var(--text-badge);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Variante primaria (tags de blog) */
+.badge--primary {
+  background-color: rgba(47, 93, 90, 0.1);
+  color: var(--color-action-web);
+}
+
+.badge--primary:hover {
+  background-color: var(--color-action-web);
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+/* Variante acento (destacado) */
+.badge--accent {
+  background-color: rgba(206, 127, 103, 0.15);
+  color: #8B4A36;
+}
+
+/* Badge sobre fondo oscuro */
+.bg-dark .badge--primary {
+  background-color: rgba(255,255,255,.15);
+  color: var(--color-surface);
+}

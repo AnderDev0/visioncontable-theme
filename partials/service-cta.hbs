@@ -1,0 +1,29 @@
+{{!--
+  SERVICE-CTA — Bloque CTA WhatsApp parametrizable
+  Spec: kb/docs/services-*.md
+  Uso: {{> service-cta whatsapp_message="..." cta_title="..." cta_desc="..."}}
+  Mensajes URL-encoded por página:
+    - Servicios: "Hola%2C%20Katerinn.%20Quiero%20consultar%20un%20tr%C3%A1mite%20o%20una%20asesor%C3%ADa..."
+    - Pymes:     "Hola%2C%20Katerinn.%20Quiero%20consultar%20el%20servicio%20de%20gesti%C3%B3n%20contable..."
+    - Emprendedores: "Hola%2C%20Katerinn.%20Quiero%20recibir%20orientaci%C3%B3n%20para%20mi%20emprendimiento..."
+--}}
+<section class="service-cta section">
+  <div class="container">
+    <div class="service-cta__inner">
+      {{#if cta_title}}
+        <h2 class="service-cta__title">{{cta_title}}</h2>
+      {{else}}
+        <h2 class="service-cta__title">¿Tienes preguntas? Hablemos</h2>
+      {{/if}}
+      {{#if cta_desc}}
+        <p class="service-cta__desc">{{cta_desc}}</p>
+      {{else}}
+        <p class="service-cta__desc">Cuéntame tu situación por WhatsApp y te orientaré sobre el siguiente paso.</p>
+      {{/if}}
+      {{> whatsapp-link
+          message=whatsapp_message
+          class="btn btn--primary btn--lg"
+          gtm="click_whatsapp_cierre"}}
+    </div>
+  </div>
+</section>

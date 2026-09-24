@@ -1,0 +1,9 @@
+{{!--
+  FAQ-ACCORDION — Parcial reutilizable de acordeón
+  Uso: {{> faq-accordion faqs=faqs_array gtm_category="faq_open"}}
+  Nota: En Ghost las FAQs se definen como contenido estático en cada plantilla.
+  Este parcial muestra la estructura; cada landing define sus propias preguntas inline.
+--}}
+<div class="faq-accordion" data-gtm-category="{{#if gtm_category}}{{gtm_category}}{{else}}faq_open{{/if}}">
+  {{yield}}
+</div>

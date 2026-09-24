@@ -1,0 +1,12 @@
+[
+  {
+    "from": "/author/katerinn-romero/",
+    "to": "/katerinn-romero/",
+    "permanent": true
+  },
+  {
+    "from": "/author/katerinn-romero",
+    "to": "/katerinn-romero/",
+    "permanent": true
+  }
+]

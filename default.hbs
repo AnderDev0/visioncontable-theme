@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es-CO" class="{{#is "home"}}is-home{{/is}}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {{!-- Google Tag Manager. El ID sale de Diseño → Custom → gtm_id.
+       dataLayer existe siempre para que analytics.js y el acordeón puedan
+       empujar eventos aunque GTM aún no esté configurado; el contenedor solo
+       se carga cuando el ID deja de ser el placeholder GTM-XXXXXX. --}}
+  <script>window.dataLayer = window.dataLayer || [];</script>
+  {{#if @custom.gtm_id}}{{#match @custom.gtm_id "!=" "GTM-XXXXXX"}}
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer',{{json @custom.gtm_id}});</script>
+  {{/match}}{{/if}}
+
+  {{!-- Preconnect para Google Fonts (Newsreader + Inter) --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap"
+        media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap">
+  </noscript>
+
+  {{!-- Stylesheet del tema --}}
+  <link rel="stylesheet" href="{{asset "built/screen.css"}}">
+
+  {{!-- main.js es un módulo ES: sus imports no se descubren hasta que el
+       navegador lo descarga y lo parsea, lo que encadena dos viajes de red.
+       Con modulepreload los pide en paralelo desde el primer momento. --}}
+  <link rel="modulepreload" href="{{asset "js/mobile-menu.js"}}">
+  <link rel="modulepreload" href="{{asset "js/faq-accordion.js"}}">
+  <link rel="modulepreload" href="{{asset "js/header-theme.js"}}">
+  <link rel="modulepreload" href="{{asset "js/reveal.js"}}">
+  <link rel="modulepreload" href="{{asset "js/analytics.js"}}">
+  <link rel="modulepreload" href="{{asset "js/nav-dropdown.js"}}">
+
+  {{!-- Color de la barra del navegador en móvil --}}
+  <meta name="theme-color" content="#2F5D5A">
+
+  {{!-- Ghost inyecta: título, descripción, canónicos, OG, favicon, RSS, memberships.
+       exclude="schema" apaga el JSON-LD nativo de Ghost: declara como publisher
+       una Organization (prohibida en fase 1, spec structured-data §8) y
+       duplicaba el WebSite/BlogPosting del tema. El grafo lo emiten los
+       partials structured-data-* de abajo y los {{#contentFor "head"}}. --}}
+  {{ghost_head exclude="schema"}}
+
+  {{!-- Favicon del tema (isotipo KR). Va después de ghost_head para que el
+       navegador lo prefiera sobre el favicon genérico que inyecta Ghost. --}}
+  <link rel="icon" type="image/svg+xml" sizes="any" href="{{asset "images/favicon.svg"}}">
+  <link rel="mask-icon" href="{{asset "images/favicon.svg"}}" color="#1E3431">
+
+  {{!-- JSON-LD custom según contexto (evita duplicar lo que Ghost ya genera) --}}
+  {{#is "home"}}
+    {{> structured-data-home}}
+  {{/is}}
+  {{!-- Los datos del artículo/etiqueta viven en "post" / "tag", no en la raíz:
+       el partial se ejecuta dentro de ese bloque o title/name salen null. --}}
+  {{#is "post"}}
+    {{#post}}{{> structured-data-post}}{{/post}}
+  {{/is}}
+  {{#is "tag"}}
+    {{#tag}}{{> structured-data-tag}}{{/tag}}
+  {{/is}}
+
+  {{!-- Bloque que cada plantilla llena con {{#contentFor "head"}}: directivas
+       robots (noindex en 404 y categorías delgadas) y el JSON-LD de las
+       páginas de perfil y servicios. Así nada de eso termina en el <body>. --}}
+  {{{block "head"}}}
+</head>
+<body class="{{body_class}}">
+
+  {{!-- Google Tag Manager (noscript) — mismo guard que el script del <head> --}}
+  {{#if @custom.gtm_id}}{{#match @custom.gtm_id "!=" "GTM-XXXXXX"}}
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{@custom.gtm_id}}"
+    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+  {{/match}}{{/if}}
+
+  {{!-- Skip link para navegación por teclado --}}
+  <a href="#site-main" class="skip-link">Ir al contenido principal</a>
+
+  {{!-- Header global --}}
+  {{> header}}
+
+  {{!-- Contenido principal de cada plantilla --}}
+  <main id="site-main">
+    {{{body}}}
+  </main>
+
+  {{!-- Footer global --}}
+  {{> footer}}
+
+  {{!-- Scripts del tema (defer = no bloquean renderizado) --}}
+  <script type="module" src="{{asset "js/main.js"}}"></script>
+
+  {{!-- Ghost inyecta: scripts de memberships, portal, search --}}
+  {{ghost_foot}}
+
+</body>
+</html>

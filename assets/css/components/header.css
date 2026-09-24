@@ -1,0 +1,408 @@
+/* ==========================================================================
+   HEADER — Navegación global
+   Spec: kb/docs/header-specifications.md
+   ========================================================================== */
+
+/* --- Contenedor del header --- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--glass-bg-warm);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  height: var(--header-height);
+  transition: box-shadow var(--transition-slow), background var(--transition-slow);
+}
+
+.site-header.is-scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Temas adaptativos (data-theme inyectado por header-theme.js) --- */
+
+/* Sección cálida / beige */
+.site-header[data-theme="warm"] {
+  background: rgba(239, 232, 224, 0.90);
+  border-bottom-color: rgba(107, 124, 133, 0.18);
+}
+
+/* Sección oscura (footer teal) */
+.site-header[data-theme="dark"] {
+  background: rgba(30, 52, 49, 0.92);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.site-header[data-theme="dark"] .site-nav__link {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.site-header[data-theme="dark"] .site-nav__link:hover,
+.site-header[data-theme="dark"] .site-nav__link[aria-current="page"] {
+  color: var(--color-surface);
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+.site-header[data-theme="dark"] .site-header__hamburger {
+  background-color: var(--color-surface);
+}
+
+/* El SVG ya tiene fondo transparente (sin rect de fondo), así que no hace
+   falta mix-blend-mode — header-theme.js simplemente cambia de archivo
+   (positivo/negativo/etc.) según la sección. */
+.site-header__logo-img {
+  transition: opacity var(--transition-base);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  height: 100%;
+}
+
+/* --- Logo --- */
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+/* aspect-ratio real del SVG: sin esto, height/width:auto colapsa a 0 (el
+   archivo no trae width/height propios, solo viewBox). Debe ser el viewBox
+   EXACTO del logotipo horizontal (1680/688). Con el valor anterior
+   (2005/1005, el del isotipo cuadrado) la caja quedaba un 18 % mas angosta
+   que el dibujo, y preserveAspectRatio encogia el logo hasta caber: se veia
+   pequeno y con aire muerto arriba y abajo. */
+.site-header__logo-img {
+  height: var(--logo-icon-height-header);
+  width: auto;
+  max-width: 240px;
+  aspect-ratio: 1680 / 688;
+}
+
+/* --- Navegación desktop --- */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-main);
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  transition: color var(--transition-base), background-color var(--transition-base);
+  white-space: nowrap;
+  border: none;
+  background: none;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.site-nav__link:hover,
+.site-nav__link[aria-current="page"],
+.site-nav__link[aria-expanded="true"] {
+  color: var(--color-action-web);
+  background-color: rgba(47, 93, 90, 0.06);
+}
+
+.site-nav__link[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Flecha del dropdown */
+.site-nav__arrow {
+  transition: transform var(--transition-base);
+}
+
+.site-nav__dropdown-trigger[aria-expanded="true"] .site-nav__arrow {
+  transform: rotate(180deg);
+}
+
+/* --- Dropdown de servicios --- */
+
+.site-nav__item--dropdown {
+  position: relative;
+}
+
+.site-nav__dropdown {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  min-width: 240px;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(78, 110, 106, 0.1);
+  padding: var(--space-2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+  pointer-events: none;
+}
+
+/* Sin JS: :hover / :focus-within. Con JS (.has-js, nav-dropdown.js) manda
+   aria-expanded, para que el estado anunciado coincida con el visible. */
+.site-nav__item--dropdown:not(.has-js):hover .site-nav__dropdown,
+.site-nav__item--dropdown:not(.has-js):focus-within .site-nav__dropdown,
+.site-nav__dropdown-trigger[aria-expanded="true"] + .site-nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.site-nav__dropdown-link {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-nav);
+  color: var(--color-text-main);
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-base), color var(--transition-base);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.site-nav__dropdown-link:hover {
+  background-color: var(--color-bg-light);
+  color: var(--color-action-web);
+}
+
+/* --- CTA WhatsApp desktop --- */
+
+.site-header__cta {
+  flex-shrink: 0;
+  margin-left: var(--space-4);
+  white-space: nowrap;
+}
+
+/* --- Botón hamburguesa (mobile only) --- */
+
+.site-header__menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: var(--space-2);
+  margin-left: auto;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-base);
+}
+
+.site-header__menu-btn:hover {
+  background-color: var(--color-bg-light);
+}
+
+.site-header__hamburger {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-text-main);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+/* Estado abierto del hamburguesa */
+.site-header__menu-btn[aria-expanded="true"] .site-header__hamburger:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.site-header__menu-btn[aria-expanded="true"] .site-header__hamburger:nth-child(2) {
+  opacity: 0;
+}
+.site-header__menu-btn[aria-expanded="true"] .site-header__hamburger:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Overlay del drawer --- */
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: calc(var(--z-drawer) - 1);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+.mobile-overlay.is-visible {
+  display: block;
+  opacity: 1;
+}
+
+/* --- Drawer mobile --- */
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(320px, 85vw);
+  background-color: var(--color-surface);
+  z-index: var(--z-drawer);
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+  overflow-y: auto;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.mobile-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-drawer__logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.mobile-drawer__logo .site-header__logo-img {
+  height: var(--logo-icon-height-mobile);
+}
+
+.mobile-drawer__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-main);
+  transition: background-color var(--transition-base);
+}
+
+.mobile-drawer__close:hover {
+  background-color: var(--color-bg-light);
+}
+
+.mobile-drawer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.mobile-drawer__link {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-main);
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  transition: background-color var(--transition-base);
+}
+
+.mobile-drawer__link:hover {
+  background-color: var(--color-bg-light);
+  color: var(--color-action-web);
+}
+
+.mobile-drawer__section-label {
+  display: block;
+  padding: var(--space-3) var(--space-4) var(--space-1);
+  font-size: var(--text-badge);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-sub);
+}
+
+.mobile-drawer__sub-list {
+  padding-left: var(--space-4);
+}
+
+.mobile-drawer__link--sub {
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-regular);
+}
+
+.mobile-drawer__footer {
+  margin-top: auto;
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(78,110,106,.1);
+}
+
+.mobile-drawer__socials {
+  display: flex;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+}
+
+.mobile-drawer__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-text-sub);
+  border-radius: var(--border-radius-sm);
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+.mobile-drawer__socials a:hover {
+  color: var(--color-action-web);
+  background-color: var(--color-bg-light);
+}
+
+/* --- Responsive: ocultar nav desktop / mostrar hamburguesa en mobile --- */
+
+@media (max-width: 1023px) {
+  /* Barra más baja en móvil: 112px de header fijo se comen demasiado alto de
+     pantalla. El logo baja con ella, y además usa una fracción menor: en una
+     barra corta el aire de los lados pesa más que en una alta. */
+  :root {
+    --header-height: 76px;
+    --logo-scale: 0.70;
+  }
+
+  /* a.site-header__cta: accessibility.css declara `a.btn { display: inline-flex }`
+     (0,1,1), que ganaba a una clase sola y dejaba el CTA visible en móvil,
+     empujando la hamburguesa fuera de pantalla y creando scroll horizontal. */
+  .site-nav,
+  a.site-header__cta,
+  .site-header__cta {
+    display: none;
+  }
+
+  .site-header__menu-btn {
+    display: flex;
+  }
+}

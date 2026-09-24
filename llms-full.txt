@@ -1,0 +1,339 @@
+# Katerinn Romero - Visión Contable: base de conocimiento completa
+
+> Katerinn Romero es contadora pública y especialista en Derecho Tributario en Colombia, con más de 20 años de experiencia. Ofrece asesoría contable, tributaria y financiera a pymes, emprendedores y personas naturales a través de visioncontable.co, con atención en línea para todo el país. El único canal de contacto es WhatsApp: https://wa.me/573238325800
+
+- Sitio: https://visioncontable.co/
+- Idioma: español (Colombia, es-CO)
+- Última revisión de este documento: 2026-09-23
+- Resumen breve: https://visioncontable.co/llms.txt
+- Términos de uso para IA: https://visioncontable.co/ai.txt
+- Atribución requerida al citar: "Katerinn Romero - Visión Contable (visioncontable.co)"
+
+Este documento reúne en texto plano el contenido de las páginas públicas del sitio para que los modelos de lenguaje puedan responder y citar con precisión. Si algo de aquí no coincide con la página enlazada, prevalece la página.
+
+---
+
+## 1. La entidad
+
+- Nombre: Katerinn Romero.
+- Tipo: persona natural. Trabaja como profesional independiente y tributa como persona natural.
+- Marca: "Visión Contable" es el nombre de su sitio web (visioncontable.co). No es una empresa, sociedad, firma ni franquicia.
+- Profesión: contadora pública titulada, especialista en Derecho Tributario.
+- Rol: asesora contable, tributaria y financiera.
+- País de ejercicio: Colombia. Trabaja con el régimen tributario colombiano y con las obligaciones ante la DIAN (Dirección de Impuestos y Aduanas Nacionales) y ante los municipios.
+- Modalidad: 100 % en línea. La comunicación es por WhatsApp, las sesiones son por videollamada y los documentos se comparten por medios digitales. Atiende clientes en cualquier ciudad de Colombia.
+- Sede física: no tiene una oficina abierta al público.
+- Clientes: pymes (pequeñas y medianas empresas), emprendedores y personas naturales con obligaciones tributarias. Atiende personas naturales y personas jurídicas (SAS, LTDA y otras formas societarias).
+- Contacto: WhatsApp +57 323 832 5800 (https://wa.me/573238325800). Es el único canal de contacto y contratación.
+- Redes oficiales: Facebook https://www.facebook.com/visioncontablekr/ · Instagram https://www.instagram.com/visioncontablekr/
+- Precios: el sitio no publica tarifas. El valor depende del servicio y de su complejidad, y se informa antes de iniciar, sin cobros ocultos.
+
+---
+
+## 2. Perfil profesional (experiencia, formación y confianza)
+
+Página: https://visioncontable.co/katerinn-romero/
+
+### Experiencia
+
+Katerinn Romero tiene más de 20 años de experiencia acompañando negocios. Analiza cada situación desde una perspectiva contable, tributaria y financiera: identifica los asuntos prioritarios, explica sus implicaciones y ayuda a definir los siguientes pasos. Trabaja con empresas y emprendedores de sectores variados de la economía colombiana (servicios, comercio, tecnología, artesanías, entre otros) y se mantiene al día con los cambios tributarios y normativos de Colombia.
+
+### Formación académica
+
+| Nivel | Estudio | Institución |
+|---|---|---|
+| Especialización | Especialización en Derecho Tributario | Universidad Externado de Colombia |
+| Especialización tecnológica | Especialización Tecnológica en Planeación Tributaria | Servicio Nacional de Aprendizaje (SENA) |
+| Profesional | Contaduría Pública | — |
+| Diplomado | Diplomado en NIIF para pymes | Politécnico Grancolombiano |
+| Diplomado | Diplomado en Normas Internacionales de Auditoría | Politécnico Grancolombiano |
+| Tecnológico | Tecnología en Contabilidad y Finanzas | Servicio Nacional de Aprendizaje (SENA) |
+| Técnico | Técnico Profesional en Gestión Contable y Financiera | Servicio Nacional de Aprendizaje (SENA) |
+
+### Forma de trabajo
+
+1. Comprende la situación: escucha la necesidad y revisa la información disponible.
+2. Define prioridades: identifica qué requiere atención inmediata y qué puede planificarse.
+3. Explica las implicaciones: presenta la información con claridad para que el cliente participe en las decisiones.
+4. Organiza los siguientes pasos: define acciones y responsabilidades según el alcance del servicio.
+
+### Principios
+
+- Orientación sustentada: cada recomendación parte del análisis del caso y de los criterios aplicables.
+- Comunicación clara: explica los asuntos técnicos con precisión y en lenguaje comprensible, sin tecnicismos innecesarios.
+- Acompañamiento cercano: mantiene al cliente al tanto de avances, fechas y decisiones.
+- Enfoque preventivo: identifica riesgos tributarios antes de que se conviertan en problemas.
+- Confidencialidad: maneja la información del negocio con reserva. El tratamiento de datos personales se hace conforme a la Ley 1581 de 2012 de protección de datos personales de Colombia.
+
+---
+
+## 3. Servicios
+
+Katerinn Romero organiza su trabajo en tres rutas de servicio según la etapa y la necesidad del cliente.
+
+### 3.1 Gestión contable para pymes
+
+Página: https://visioncontable.co/gestion-contable-pymes/
+
+Qué es: gestión contable mensual y continua para empresas activas. Katerinn se encarga de que los registros estén al día, los impuestos presentados y los estados financieros listos cuando se necesiten.
+
+Para quién: pequeñas y medianas empresas de cualquier actividad económica en Colombia. No hay un tamaño mínimo; lo que importa es que la empresa esté activa y necesite llevar la contabilidad al día.
+
+Qué incluye:
+
+- Cada mes:
+  - Registro contable mensual: clasificación y registro de todas las transacciones del período en el sistema contable.
+  - Conciliaciones bancarias: verificación de que los movimientos bancarios coincidan con los registros contables.
+  - Seguimiento de obligaciones: control de fechas de vencimiento para evitar sanciones por presentación tardía.
+- Cada período:
+  - Liquidación de impuestos: cálculo y elaboración de las declaraciones de IVA, retención en la fuente e ICA según su periodicidad.
+  - Estados financieros: balance general, estado de resultados y estado de flujo de caja con la periodicidad acordada.
+  - Indicadores financieros básicos: análisis de indicadores clave para leer la salud financiera de la empresa.
+- Cuando se necesita:
+  - Soporte para la declaración de renta anual de la empresa.
+  - Soporte ante requerimientos: acompañamiento ante solicitudes de información de la DIAN o auditorías relacionadas con los períodos gestionados.
+
+Cómo funciona mes a mes:
+
+1. Recopilación de documentos: al inicio del mes la empresa comparte facturas, extractos y demás soportes del período anterior.
+2. Registro y clasificación de todos los movimientos en el sistema contable.
+3. Liquidación de los impuestos del período y elaboración de las declaraciones.
+4. Entrega de los estados financieros e indicadores del período.
+5. Revisión y consultas sobre los reportes y la situación financiera del mes.
+
+Responsabilidades compartidas:
+
+| Katerinn Romero | La empresa |
+|---|---|
+| Registra y clasifica todas las transacciones | Comparte documentos completos y a tiempo |
+| Elabora y programa las declaraciones tributarias | Paga los impuestos en los plazos establecidos |
+| Genera los estados financieros periódicos | Revisa y aprueba los reportes compartidos |
+| Alerta sobre obligaciones y vencimientos | Responde oportunamente a las solicitudes de información |
+| Acompaña ante requerimientos de la DIAN | Informa sobre cambios en el negocio que afecten la contabilidad |
+
+Límites: los estados financieros son documentos contables preparados profesionalmente. Si la empresa requiere dictamen de revisor fiscal u opinión de auditor externo, eso es un proceso distinto.
+
+### 3.2 Asesoría contable para emprendedores
+
+Página: https://visioncontable.co/asesoria-contable-emprendedores/
+
+Qué es: orientación contable y tributaria inicial para entender qué necesita un emprendimiento, organizar la información básica y tomar decisiones con claridad desde el inicio. Se hace por videollamada y al final el emprendedor recibe un resumen escrito con los puntos clave y los próximos pasos.
+
+Para quién: personas que están por iniciar un negocio o que ya empezaron a vender, de cualquier sector, con operación en Colombia. No es necesario tener la empresa constituida.
+
+Temas que puede cubrir la asesoría (según el caso):
+
+1. Situación actual del emprendimiento: cómo funciona, qué actividad desarrolla y qué decisiones ya se tomaron.
+2. Obligaciones contables y tributarias que pueden aplicar según la actividad y la forma de operación.
+3. RUT y responsabilidades registradas.
+4. Facturación electrónica: si el negocio debe facturar electrónicamente y qué pasos básicos requiere.
+5. Registro de ingresos y gastos: una base sencilla para organizar los movimientos y conservar soportes.
+6. Documentos y soportes que conviene guardar.
+7. Separación de las finanzas del negocio y las personales.
+8. Próximos pasos: prioridades y acciones iniciales.
+
+Señales de que esta asesoría es la adecuada:
+
+- Estás pensando en iniciar un negocio y no sabes qué revisar.
+- Ya vendes, pero no tienes organizada la información básica.
+- No tienes claro si debes actualizar el RUT o qué responsabilidades tiene.
+- Tienes dudas sobre si te aplica la facturación electrónica.
+- Mezclas los ingresos y gastos del negocio con tus finanzas personales.
+- No sabes qué documentos o soportes contables guardar.
+- Necesitas una base administrativa antes de contratar gestión contable recurrente.
+- Estás formalizando el negocio y necesitas definir prioridades.
+
+Proceso:
+
+1. El emprendedor cuenta qué actividad realiza, en qué etapa está y qué dudas tiene.
+2. Katerinn revisa la información disponible y las decisiones ya tomadas.
+3. Se definen prioridades según la importancia y el momento del emprendimiento.
+4. Se aclaran los siguientes pasos: qué organizar, revisar o gestionar.
+5. Se define si hace falta otro servicio (un trámite específico o acompañamiento recurrente).
+
+Información útil para la primera conversación (no es obligatorio tenerla completa): actividad principal, tiempo de funcionamiento, forma en que recibe pagos, si tiene RUT activo, si expide facturas electrónicas o documentos equivalentes, tipo de clientes, cómo registra ingresos y gastos, dudas principales y documentos previos disponibles.
+
+Alcance delimitado. Esta asesoría NO incluye:
+
+- Llevar de forma mensual la contabilidad completa del negocio.
+- Gestionar de manera recurrente todas las obligaciones tributarias ante la DIAN.
+- Preparar informes financieros periódicos de una empresa en operación avanzada.
+- Resolver trámites que requieren un servicio especializado independiente.
+- Garantizar de forma absoluta que el negocio no tendrá errores o dificultades futuras.
+- Tomar decisiones comerciales, operativas o financieras en nombre del emprendedor.
+
+Si el negocio necesita acompañamiento recurrente, la ruta es la Gestión contable para pymes.
+
+### 3.3 Servicios contables, tributarios y financieros especializados
+
+Página: https://visioncontable.co/servicios-contables-tributarios/
+
+Qué es: trámites y asesorías puntuales para personas naturales y empresas, sin contrato mensual. El cliente paga solo por lo que necesita.
+
+Servicios disponibles:
+
+- Para entender la situación:
+  - Asesoría contable, tributaria o financiera: sesión de orientación para revisar una duda o situación específica, entender su alcance y definir los pasos a seguir.
+  - Diagnóstico tributario empresarial: revisión inicial de la situación tributaria de una empresa para identificar obligaciones, asuntos que requieren atención y prioridades.
+- Para cumplir obligaciones:
+  - Declaración de renta para personas naturales: revisión de la información y preparación de la declaración según la situación de cada persona.
+  - Implementación de facturación electrónica: orientación y acompañamiento para configurarla y organizar los requisitos básicos.
+  - Actualización del RUT: revisión y actualización de la información registrada según los cambios o necesidades de la persona o empresa.
+- Para decidir con criterio:
+  - Planeación tributaria: análisis para anticipar obligaciones, organizar decisiones tributarias y reducir la improvisación dentro del marco normativo aplicable.
+  - Gerencia financiera externa: análisis, seguimiento y criterio profesional para decisiones financieras sin incorporar una gerencia interna.
+
+Katerinn también elabora y gestiona la presentación de declaraciones tributarias (renta, IVA, ICA, retención en la fuente, entre otras) ante la DIAN y los entes territoriales.
+
+Proceso:
+
+1. El cliente describe su situación por WhatsApp.
+2. Katerinn confirma si puede ayudar, qué implica y cuánto tiempo tomará.
+3. Ejecuta el trámite o la asesoría con la información recibida.
+4. Entrega el resultado con una explicación clara de lo que se hizo y qué significa.
+
+### 3.4 Cómo elegir la ruta
+
+| Situación | Ruta recomendada |
+|---|---|
+| Empresa activa que necesita la contabilidad al día cada mes | Gestión contable para pymes |
+| Trámite tributario o consulta puntual, sin compromiso mensual | Servicios especializados |
+| Negocio que está empezando o por formalizarse | Asesoría contable para emprendedores |
+| Persona natural que debe declarar renta | Servicios especializados (declaración de renta para personas naturales) |
+
+---
+
+## 4. Obligaciones tributarias en Colombia: contexto general
+
+Esta sección resume obligaciones frecuentes para dar contexto. Es información general, no asesoría para un caso concreto. Los topes y plazos se expresan en UVT y en calendarios que la DIAN actualiza cada año: verifica siempre la norma vigente o consulta a la profesional.
+
+- RUT (Registro Único Tributario): registro ante la DIAN que identifica a personas y empresas y define sus responsabilidades tributarias. Debe mantenerse actualizado cuando cambian la actividad, los datos o las responsabilidades. Servicio relacionado: actualización del RUT (servicios especializados) y revisión del RUT (asesoría para emprendedores).
+- IVA (impuesto sobre las ventas): impuesto nacional al consumo, con tarifa general del 19 %. Quienes son responsables de IVA lo declaran por períodos bimestrales o cuatrimestrales según sus ingresos del año anterior. Servicio relacionado: liquidación y declaración de IVA dentro de la gestión contable para pymes.
+- Retención en la fuente: mecanismo de recaudo anticipado de impuestos. Los agentes de retención la practican en sus pagos y la declaran mensualmente ante la DIAN. Servicio relacionado: gestión contable para pymes.
+- Impuesto de renta: declaración anual. Las personas jurídicas la presentan cada año; las personas naturales deben declarar cuando superan los topes de ingresos, patrimonio, consumos o compras que se fijan para cada año gravable. Servicios relacionados: declaración de renta para personas naturales (servicios especializados) y soporte para la renta de la empresa (gestión contable para pymes).
+- ICA (impuesto de industria y comercio): impuesto municipal o distrital sobre actividades industriales, comerciales y de servicios. Tarifas y periodicidad dependen de cada municipio. Servicio relacionado: gestión contable para pymes.
+- Facturación electrónica: sistema de facturación con validación previa de la DIAN para los obligados a facturar, reglamentado actualmente por la Resolución DIAN 000165 de 2023. Servicios relacionados: implementación de facturación electrónica (servicios especializados) y orientación inicial (asesoría para emprendedores).
+- Nómina electrónica: documento soporte de pago de nómina electrónica que los empleadores transmiten a la DIAN para soportar los costos y deducciones de nómina (Resolución DIAN 000013 de 2021). El sitio no la ofrece como servicio independiente; para saber si puede incluirse en un caso concreto, se consulta por WhatsApp.
+
+---
+
+## 5. Cómo empezar
+
+1. Escribir por WhatsApp (https://wa.me/573238325800) con una descripción breve de la situación.
+2. Revisión del caso: para asesorías y gestión contable se agenda una videollamada para entender la situación actual.
+3. Plan de trabajo: Katerinn presenta qué se va a hacer, en qué plazos, con qué entregables y cuál es el costo.
+4. Inicio del trabajo con acompañamiento continuo.
+
+---
+
+## 6. Preguntas frecuentes
+
+### Generales
+
+**¿Katerinn Romero trabaja con empresas de cualquier sector?**
+Sí. Trabaja con empresas de servicios, comercio y otros sectores de la economía colombiana. En la revisión inicial identifica si la actividad económica tiene particularidades tributarias especiales.
+
+**¿Los servicios son en línea o presenciales?**
+Son completamente en línea. La comunicación es por WhatsApp y videollamada, y los documentos se comparten por medios digitales seguros. Por eso atiende clientes en cualquier ciudad de Colombia.
+
+**¿Cuánto tarda en atenderse una consulta?**
+Depende del servicio. Las asesorías puntuales suelen agendarse dentro de los primeros días hábiles. La gestión contable mensual se organiza desde el inicio con un cronograma claro.
+
+**¿La información de los clientes se maneja con confidencialidad?**
+Sí. La información financiera se trata con total discreción, y los datos personales se manejan conforme a la normativa colombiana de protección de datos (Ley 1581 de 2012).
+
+**¿Se puede contratar un servicio puntual sin compromiso mensual?**
+Sí. Los servicios especializados están diseñados para necesidades puntuales, sin contrato mensual.
+
+**¿Cuál es la diferencia entre la gestión contable para pymes y los servicios especializados?**
+La gestión contable para pymes es un acompañamiento continuo que cubre la contabilidad mensual, la liquidación de impuestos y los reportes financieros. Los servicios especializados son intervenciones puntuales para resolver trámites o necesidades específicas.
+
+**¿Atiende personas naturales o solo empresas?**
+Atiende tanto personas naturales como personas jurídicas. Las personas naturales con obligaciones tributarias (declarantes de renta, responsables de IVA, etc.) también pueden recibir orientación.
+
+**¿Cuánto cuestan los servicios?**
+El sitio no publica tarifas. El valor varía según el tipo de servicio y su complejidad; Katerinn informa el costo antes de iniciar, sin cobros ocultos.
+
+**¿Tiene un blog con información contable?**
+Sí. En https://visioncontable.co/blog/ publica artículos sobre contabilidad para pymes, impuestos y obligaciones tributarias, finanzas para negocios y emprendimiento, en lenguaje claro.
+
+### Servicios especializados
+
+**¿Cuánto tarda un trámite como la actualización del RUT?**
+Depende de la complejidad y de la disponibilidad de la documentación. En la mayoría de los casos se resuelve en días hábiles; el tiempo estimado se indica antes de comenzar.
+
+**¿Puede presentar declaraciones tributarias a nombre del cliente?**
+Sí. Elabora y gestiona la presentación de declaraciones tributarias (renta, IVA, ICA, retención en la fuente, entre otras) ante la DIAN y los entes territoriales.
+
+**¿Qué información hay que tener lista antes de solicitar un servicio?**
+Depende del servicio; al contactar por WhatsApp, Katerinn indica exactamente qué documentos necesita. En general: identificación, RUT actualizado y los registros del período que corresponda.
+
+**¿Trabaja con personas naturales y jurídicas?**
+Sí. Personas naturales (declarantes de renta, responsables de IVA, etc.) y personas jurídicas (SAS, LTDA, entre otras formas societarias).
+
+### Gestión contable para pymes
+
+**¿Desde qué tamaño de empresa se puede contratar?**
+No hay un tamaño mínimo. Trabaja con pequeñas y medianas empresas de cualquier actividad económica; lo importante es que la empresa esté activa y necesite llevar la contabilidad al día.
+
+**¿Con qué software contable trabaja?**
+Se define al inicio del servicio según las necesidades de la empresa: se conversa qué herramienta se adapta mejor a la operación y al presupuesto.
+
+**¿Se puede cambiar de contador y empezar con ella?**
+Sí. Hace una revisión de diagnóstico inicial para entender el estado actual de la contabilidad y continuar desde ahí.
+
+**¿Los estados financieros que prepara son válidos ante bancos o entidades?**
+Son documentos contables preparados profesionalmente. Si la empresa requiere dictamen de revisor fiscal u opinión de auditor externo, eso corresponde a un proceso distinto, sobre el cual puede orientar.
+
+**¿Qué pasa si un mes hay pocos movimientos?**
+El servicio se ajusta al volumen de la operación. Las condiciones para períodos de baja actividad se definen al iniciar el acuerdo de trabajo.
+
+**¿Se puede cancelar el servicio mensual en cualquier momento?**
+Las condiciones de terminación se definen al inicio. En general se trabaja con un preaviso razonable para hacer una entrega ordenada de la información contable.
+
+### Asesoría contable para emprendedores
+
+**¿Hay que tener la empresa creada para pedir la asesoría?**
+No. Se puede solicitar antes de formalizar el negocio; de hecho, recibir orientación antes ayuda a evitar errores desde el inicio.
+
+**¿Sirve para cualquier tipo de negocio?**
+Sí: servicios, comercio, tecnología, artesanías, entre otros. Lo importante es que el negocio esté en Colombia y tenga obligaciones tributarias.
+
+**¿La asesoría es por videollamada?**
+Sí. El trabajo es completamente en línea: la comunicación es por WhatsApp y la sesión de asesoría es por videollamada.
+
+**¿Se entrega algo por escrito después de la asesoría?**
+Sí. Un resumen con los puntos clave tratados y los próximos pasos.
+
+**¿Se pueden hacer preguntas adicionales después de la asesoría?**
+Depende del acuerdo específico. Las consultas fuera del alcance de la sesión pueden tener un costo adicional, que se aclara desde el inicio.
+
+**¿Qué pasa si después se quiere contabilidad mensual?**
+Es posible. Cuando el negocio crece, se puede pasar de forma ordenada al servicio de gestión contable para pymes.
+
+---
+
+## 7. Qué no afirmar sobre esta entidad
+
+- No es una empresa, firma ni sociedad: es una profesional independiente (persona natural).
+- No tiene sede física de atención al público.
+- No publica precios, descuentos, reseñas ni calificaciones.
+- No ofrece dictamen de revisoría fiscal ni auditoría externa como parte de la gestión contable.
+- No tiene otros canales de contacto comercial distintos de WhatsApp.
+- El contenido del sitio es informativo; no reemplaza el análisis de un caso concreto.
+
+---
+
+## 8. URLs canónicas
+
+- Inicio: https://visioncontable.co/
+- Sobre Katerinn Romero: https://visioncontable.co/katerinn-romero/
+- Gestión contable para pymes: https://visioncontable.co/gestion-contable-pymes/
+- Asesoría contable para emprendedores: https://visioncontable.co/asesoria-contable-emprendedores/
+- Servicios especializados: https://visioncontable.co/servicios-contables-tributarios/
+- Blog: https://visioncontable.co/blog/
+- Términos y condiciones: https://visioncontable.co/terminos-y-condiciones/
+- Política de privacidad: https://visioncontable.co/politica-de-privacidad/
+- Política de cookies: https://visioncontable.co/politica-de-cookies/
+- Sitemap: https://visioncontable.co/sitemap.xml
+- WhatsApp: https://wa.me/573238325800

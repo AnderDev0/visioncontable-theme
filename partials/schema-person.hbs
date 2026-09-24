@@ -1,0 +1,129 @@
+{{!--
+  SCHEMA-PERSON — Nodo Person central del grafo (fragmento, sin <script>)
+  Spec: kb/docs/structured-data-master.md §3.6 y §4.1
+
+  Única definición de Katerinn Romero en todo el sitio. Cada partial de
+  structured-data la incluye dentro de su "@graph" para que el @id se resuelva
+  en la misma página (Rich Results Test no sigue referencias entre URLs).
+  Tenerla en un solo archivo evita que el nodo diga cosas distintas según la
+  página en la que aparece.
+
+  REGLA fase 1: sin worksFor/Organization. Katerinn tributa como persona
+  natural; "Visión Contable" es el nombre del sitio (WebSite), no una empresa.
+
+  La formación (alumniOf / hasCredential) solo se expande en /katerinn-romero/,
+  que es la página donde esos datos son visibles (spec §3.3: nada de datos
+  ocultos). Contaduría Pública no lleva institución porque el sitio no la
+  publica.
+
+  Uso, como un elemento más del arreglo "@graph":
+      {{> schema-person}}                → nodo base (home, servicios, posts)
+      {{> schema-person expanded=true}}  → nodo ampliado (perfil)
+--}}
+{
+  "@type": "Person",
+  "@id": "{{@site.url}}/#katerinn-romero",
+  "name": "Katerinn Romero",
+  "givenName": "Katerinn",
+  "familyName": "Romero",
+  "url": "{{@site.url}}/katerinn-romero/",
+  "image": "{{@site.url}}{{asset "images/retrato-katerinn-romero.webp"}}",
+  "jobTitle": "Asesora contable, tributaria y financiera",
+  "description": "Contadora pública y especialista en Derecho Tributario con más de 20 años de experiencia. Acompaña a pymes, emprendedores y personas naturales en Colombia en contabilidad, obligaciones tributarias ante la DIAN y decisiones financieras.",
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Contadora pública",
+    "occupationLocation": {
+      "@type": "Country",
+      "name": "Colombia"
+    }
+  },
+  "knowsAbout": [
+    "Contabilidad para pymes",
+    "Derecho tributario colombiano",
+    "Planeación tributaria",
+    "Declaración de renta de personas naturales",
+    "Impuesto sobre las ventas (IVA)",
+    "Retención en la fuente",
+    "Impuesto de industria y comercio (ICA)",
+    "Facturación electrónica DIAN",
+    "Registro Único Tributario (RUT)",
+    "NIIF para pymes",
+    "Gerencia financiera",
+    "Asesoría contable para emprendedores"
+  ],
+  "knowsLanguage": "es",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Atención a clientes por WhatsApp",
+    "url": "https://wa.me/{{#if @custom.whatsapp_number}}{{@custom.whatsapp_number}}{{else}}573238325800{{/if}}",
+    "availableLanguage": "es",
+    "areaServed": "CO"
+  },
+  {{#if expanded}}
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "{{@site.url}}/katerinn-romero/#edu-externado",
+      "name": "Universidad Externado de Colombia",
+      "url": "https://www.uexternado.edu.co/"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "@id": "{{@site.url}}/katerinn-romero/#edu-sena",
+      "name": "Servicio Nacional de Aprendizaje (SENA)",
+      "url": "https://www.sena.edu.co/"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "@id": "{{@site.url}}/katerinn-romero/#edu-poli",
+      "name": "Politécnico Grancolombiano",
+      "url": "https://www.poli.edu.co/"
+    }
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Especialización en Derecho Tributario",
+      "credentialCategory": "Especialización",
+      "recognizedBy": { "@id": "{{@site.url}}/katerinn-romero/#edu-externado" }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Especialización Tecnológica en Planeación Tributaria",
+      "credentialCategory": "Especialización tecnológica",
+      "recognizedBy": { "@id": "{{@site.url}}/katerinn-romero/#edu-sena" }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Contaduría Pública",
+      "credentialCategory": "Título profesional"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Diplomado en NIIF para pymes",
+      "credentialCategory": "Diplomado",
+      "recognizedBy": { "@id": "{{@site.url}}/katerinn-romero/#edu-poli" }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Diplomado en Normas Internacionales de Auditoría",
+      "credentialCategory": "Diplomado",
+      "recognizedBy": { "@id": "{{@site.url}}/katerinn-romero/#edu-poli" }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Tecnología en Contabilidad y Finanzas",
+      "credentialCategory": "Tecnólogo",
+      "recognizedBy": { "@id": "{{@site.url}}/katerinn-romero/#edu-sena" }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Técnico Profesional en Gestión Contable y Financiera",
+      "credentialCategory": "Técnico profesional",
+      "recognizedBy": { "@id": "{{@site.url}}/katerinn-romero/#edu-sena" }
+    }
+  ],
+  {{/if}}
+  {{> social-sameas}}
+}
