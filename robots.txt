@@ -1,4 +1,4 @@
-# robots.txt — https://visioncontable.co
+# robots.txt — https://visioncontable.com
 # Katerinn Romero · Visión Contable
 # Asesoría contable, tributaria y financiera en Colombia
 #
@@ -10,9 +10,9 @@
 # por defecto. Spec: kb/docs/sitemap-and-seo-master.md §7
 #
 # Recursos para modelos de lenguaje:
-#   https://visioncontable.co/llms.txt       Manifiesto resumido (Markdown)
-#   https://visioncontable.co/llms-full.txt  Base de conocimiento completa (Markdown)
-#   https://visioncontable.co/ai.txt         Términos de uso y atribución para IA
+#   https://visioncontable.com/llms.txt       Manifiesto resumido (Markdown)
+#   https://visioncontable.com/llms-full.txt  Base de conocimiento completa (Markdown)
+#   https://visioncontable.com/ai.txt         Términos de uso y atribución para IA
 #
 # Nota: un rastreador que encuentra un grupo con su nombre IGNORA el grupo "*".
 # Por eso cada grupo repite los mismos bloqueos.
@@ -55,4 +55,4 @@ Disallow: /author/
 Disallow: /search/
 Allow: /
 
-Sitemap: https://visioncontable.co/sitemap.xml
+Sitemap: https://visioncontable.com/sitemap.xml

@@ -1,13 +1,13 @@
 # Katerinn Romero - Visión Contable: base de conocimiento completa
 
-> Katerinn Romero es contadora pública y especialista en Derecho Tributario en Colombia, con más de 20 años de experiencia. Ofrece asesoría contable, tributaria y financiera a pymes, emprendedores y personas naturales a través de visioncontable.co, con atención en línea para todo el país. El único canal de contacto es WhatsApp: https://wa.me/573238325800
+> Katerinn Romero es contadora pública y especialista en Derecho Tributario en Colombia, con más de 20 años de experiencia. Ofrece asesoría contable, tributaria y financiera a pymes, emprendedores y personas naturales a través de visioncontable.com, con atención en línea para todo el país. El único canal de contacto es WhatsApp: https://wa.me/573238325800
 
-- Sitio: https://visioncontable.co/
+- Sitio: https://visioncontable.com/
 - Idioma: español (Colombia, es-CO)
 - Última revisión de este documento: 2026-09-23
-- Resumen breve: https://visioncontable.co/llms.txt
-- Términos de uso para IA: https://visioncontable.co/ai.txt
-- Atribución requerida al citar: "Katerinn Romero - Visión Contable (visioncontable.co)"
+- Resumen breve: https://visioncontable.com/llms.txt
+- Términos de uso para IA: https://visioncontable.com/ai.txt
+- Atribución requerida al citar: "Katerinn Romero - Visión Contable (visioncontable.com)"
 
 Este documento reúne en texto plano el contenido de las páginas públicas del sitio para que los modelos de lenguaje puedan responder y citar con precisión. Si algo de aquí no coincide con la página enlazada, prevalece la página.
 
@@ -17,7 +17,7 @@ Este documento reúne en texto plano el contenido de las páginas públicas del 
 
 - Nombre: Katerinn Romero.
 - Tipo: persona natural. Trabaja como profesional independiente y tributa como persona natural.
-- Marca: "Visión Contable" es el nombre de su sitio web (visioncontable.co). No es una empresa, sociedad, firma ni franquicia.
+- Marca: "Visión Contable" es el nombre de su sitio web (visioncontable.com). No es una empresa, sociedad, firma ni franquicia.
 - Profesión: contadora pública titulada, especialista en Derecho Tributario.
 - Rol: asesora contable, tributaria y financiera.
 - País de ejercicio: Colombia. Trabaja con el régimen tributario colombiano y con las obligaciones ante la DIAN (Dirección de Impuestos y Aduanas Nacionales) y ante los municipios.
@@ -32,7 +32,7 @@ Este documento reúne en texto plano el contenido de las páginas públicas del 
 
 ## 2. Perfil profesional (experiencia, formación y confianza)
 
-Página: https://visioncontable.co/katerinn-romero/
+Página: https://visioncontable.com/katerinn-romero/
 
 ### Experiencia
 
@@ -73,7 +73,7 @@ Katerinn Romero organiza su trabajo en tres rutas de servicio según la etapa y 
 
 ### 3.1 Gestión contable para pymes
 
-Página: https://visioncontable.co/gestion-contable-pymes/
+Página: https://visioncontable.com/gestion-contable-pymes/
 
 Qué es: gestión contable mensual y continua para empresas activas. Katerinn se encarga de que los registros estén al día, los impuestos presentados y los estados financieros listos cuando se necesiten.
 
@@ -115,7 +115,7 @@ Límites: los estados financieros son documentos contables preparados profesiona
 
 ### 3.2 Asesoría contable para emprendedores
 
-Página: https://visioncontable.co/asesoria-contable-emprendedores/
+Página: https://visioncontable.com/asesoria-contable-emprendedores/
 
 Qué es: orientación contable y tributaria inicial para entender qué necesita un emprendimiento, organizar la información básica y tomar decisiones con claridad desde el inicio. Se hace por videollamada y al final el emprendedor recibe un resumen escrito con los puntos clave y los próximos pasos.
 
@@ -166,7 +166,7 @@ Si el negocio necesita acompañamiento recurrente, la ruta es la Gestión contab
 
 ### 3.3 Servicios contables, tributarios y financieros especializados
 
-Página: https://visioncontable.co/servicios-contables-tributarios/
+Página: https://visioncontable.com/servicios-contables-tributarios/
 
 Qué es: trámites y asesorías puntuales para personas naturales y empresas, sin contrato mensual. El cliente paga solo por lo que necesita.
 
@@ -255,7 +255,7 @@ Atiende tanto personas naturales como personas jurídicas. Las personas naturale
 El sitio no publica tarifas. El valor varía según el tipo de servicio y su complejidad; Katerinn informa el costo antes de iniciar, sin cobros ocultos.
 
 **¿Tiene un blog con información contable?**
-Sí. En https://visioncontable.co/blog/ publica artículos sobre contabilidad para pymes, impuestos y obligaciones tributarias, finanzas para negocios y emprendimiento, en lenguaje claro.
+Sí. En https://visioncontable.com/blog/ publica artículos sobre contabilidad para pymes, impuestos y obligaciones tributarias, finanzas para negocios y emprendimiento, en lenguaje claro.
 
 ### Servicios especializados
 
@@ -326,14 +326,14 @@ Es posible. Cuando el negocio crece, se puede pasar de forma ordenada al servici
 
 ## 8. URLs canónicas
 
-- Inicio: https://visioncontable.co/
-- Sobre Katerinn Romero: https://visioncontable.co/katerinn-romero/
-- Gestión contable para pymes: https://visioncontable.co/gestion-contable-pymes/
-- Asesoría contable para emprendedores: https://visioncontable.co/asesoria-contable-emprendedores/
-- Servicios especializados: https://visioncontable.co/servicios-contables-tributarios/
-- Blog: https://visioncontable.co/blog/
-- Términos y condiciones: https://visioncontable.co/terminos-y-condiciones/
-- Política de privacidad: https://visioncontable.co/politica-de-privacidad/
-- Política de cookies: https://visioncontable.co/politica-de-cookies/
-- Sitemap: https://visioncontable.co/sitemap.xml
+- Inicio: https://visioncontable.com/
+- Sobre Katerinn Romero: https://visioncontable.com/katerinn-romero/
+- Gestión contable para pymes: https://visioncontable.com/gestion-contable-pymes/
+- Asesoría contable para emprendedores: https://visioncontable.com/asesoria-contable-emprendedores/
+- Servicios especializados: https://visioncontable.com/servicios-contables-tributarios/
+- Blog: https://visioncontable.com/blog/
+- Términos y condiciones: https://visioncontable.com/terminos-y-condiciones/
+- Política de privacidad: https://visioncontable.com/politica-de-privacidad/
+- Política de cookies: https://visioncontable.com/politica-de-cookies/
+- Sitemap: https://visioncontable.com/sitemap.xml
 - WhatsApp: https://wa.me/573238325800
