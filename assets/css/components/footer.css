@@ -223,7 +223,20 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-/* Subrayado siempre visible: el enlace no debe distinguirse sólo por color. */
+/* Nombre de marca solo para lectores de pantalla y buscadores. Va aquí y no
+   solo en nyo-credit.js para que el texto no se vea si el JS no carga. */
+.nyo-credit__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Subrayado visible si nyo-credit.js no carga. Con el JS, sus estilos
+   (inyectados después) lo quitan: el crédito ocupa su propia línea y todo
+   es enlace, así que no hay texto vecino del que distinguirlo por color. */
 .site-footer__credit a {
   color: inherit;
   text-decoration: underline;

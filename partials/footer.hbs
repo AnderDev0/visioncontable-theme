@@ -135,12 +135,17 @@
          contraste, que es lo que se haría por instinto.
          rel="nofollow": es un enlace comercial recíproco. Sin él, cada página
          del sitio le pasaría autoridad a la agencia y Google puede leerlo
-         como intercambio de enlaces. --}}
+         como intercambio de enlaces.
+         <nyo-credit> (assets/js/nyo-credit.js) dibuja el isotipo animado N&O;
+         el <a> va aquí en el HTML del servidor para que el enlace exista
+         aunque el JS no cargue. Variante mono: hereda el color del footer, así
+         no suma un color nuevo que compita con el copyright. Sin aria-label:
+         el nombre accesible sale del texto + el span oculto ("… N&O Holding"),
+         porque el isotipo es aria-hidden. --}}
     <p class="site-footer__credit">
-      <small>Desarrollado por <a href="https://www.nyoholding.com/"
-         target="_blank"
-         rel="noopener noreferrer nofollow"
-         aria-label="N&amp;O, desarrollo del sitio web (abre en nueva pestaña)">N&amp;O</a></small>
+      <small><nyo-credit variant="mono">
+        <a href="https://nyoholding.com" rel="nofollow">Desarrollado por<span class="nyo-credit__sr"> N&amp;O Holding</span></a>
+      </nyo-credit></small>
     </p>
   </div>
 </footer>

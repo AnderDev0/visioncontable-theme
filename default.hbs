@@ -101,6 +101,9 @@
 
   {{!-- Scripts del tema (defer = no bloquean renderizado) --}}
   <script type="module" src="{{asset "js/main.js"}}"></script>
+  {{!-- Crédito N&O del footer: script clásico aparte (no módulo de main.js)
+       porque es el paquete de la agencia y se reemplaza tal cual al actualizarlo. --}}
+  <script src="{{asset "js/nyo-credit.js"}}" defer></script>
 
   {{!-- Ghost inyecta: scripts de memberships, portal, search --}}
   {{ghost_foot}}
