@@ -144,19 +144,37 @@
 }
 
 .home-hero__image {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Anclada al borde derecho: el recorte nunca le come el costado derecho, así
-     que Katerinn se ve completa. Lo que se recorta es el lado izquierdo, que
-     es justo donde vive el difuminado. */
-  object-position: 100% 28%;
+  /* contain, no cover: la foto se ve COMPLETA, sin el acercamiento que hacía
+     falta para tapar el marco. El resto del marco lo llena .home-hero__backdrop,
+     así que el bloque sigue lleno de borde a borde. */
+  object-fit: contain;
+  object-position: center;
   display: block;
   /* La escala va en la imagen, no en el contenedor: si se animara el
      contenedor, la máscara escalaría con él y el difuminado se movería.
      El origen a la derecha mantiene su posición fija durante la entrada. */
   transform-origin: right center;
   animation: home-hero-settle 1400ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Relleno: la misma foto ampliada y desenfocada, por debajo del retrato.
+   La escala extra evita que el desenfoque deje los cantos transparentes.
+   No se le pone animación de entrada: acompaña a la foto, no compite con ella. */
+.home-hero__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 28%;
+  transform: scale(1.16);
+  filter: blur(30px) saturate(0.86);
+  animation: home-hero-fade 900ms 100ms ease-out both;
 }
 
 @keyframes home-hero-rise {
@@ -238,8 +256,15 @@
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 16%);
   }
 
+  /* La foto es apaisada y el marco de móvil es vertical: con la foto entera
+     centrada, el desenfoque se comería más de la mitad del bloque. Se agranda
+     un poco, así que se recorta algo por los costados pero se sigue viendo
+     mucho más foto que antes (77% del ancho frente al 46% del encuadre previo).
+     Va en `scale` y no en `transform`: la animación de entrada usa transform y
+     lo pisaría. */
   .home-hero__image {
-    object-position: 100% 24%;
+    object-position: center;
+    scale: 1.32;
   }
 }
 

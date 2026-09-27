@@ -53,24 +53,48 @@
            pantalla. --}}
       <figure class="about-stage__media">
         <div class="about-stage__frame">
+          {{!-- Copia desenfocada de la MISMA foto: rellena el marco mientras la
+               foto de arriba se ve completa, sin recorte. Decorativa. --}}
+          <img src="{{asset "images/retrato-katerinn-romero.webp"}}"
+               alt="" aria-hidden="true"
+               width="1080" height="1620"
+               loading="eager"
+               decoding="async"
+               class="about-stage__backdrop about-stage__backdrop--1">
           <img src="{{asset "images/retrato-katerinn-romero.webp"}}"
                alt="Katerinn Romero, contadora pública y especialista en Derecho Tributario"
                width="1080" height="1620"
                loading="eager"
                fetchpriority="high"
-               class="about-stage__image">
+               class="about-stage__image about-stage__image--1">
+          {{!-- Copia desenfocada de la MISMA foto: rellena el marco mientras la
+               foto de arriba se ve completa, sin recorte. Decorativa. --}}
+          <img src="{{asset "images/katerinn-romero-especialista-tributaria.webp"}}"
+               alt="" aria-hidden="true"
+               width="1080" height="1620"
+               loading="lazy"
+               decoding="async"
+               class="about-stage__backdrop about-stage__backdrop--2">
           <img src="{{asset "images/katerinn-romero-especialista-tributaria.webp"}}"
                alt=""
                width="1080" height="1620"
                loading="lazy"
                decoding="async"
-               class="about-stage__image">
+               class="about-stage__image about-stage__image--2">
+          {{!-- Copia desenfocada de la MISMA foto: rellena el marco mientras la
+               foto de arriba se ve completa, sin recorte. Decorativa. --}}
+          <img src="{{asset "images/contacto-katerinn-romero.webp"}}"
+               alt="" aria-hidden="true"
+               width="1080" height="1620"
+               loading="lazy"
+               decoding="async"
+               class="about-stage__backdrop about-stage__backdrop--3">
           <img src="{{asset "images/contacto-katerinn-romero.webp"}}"
                alt=""
                width="1080" height="1620"
                loading="lazy"
                decoding="async"
-               class="about-stage__image">
+               class="about-stage__image about-stage__image--3">
         </div>
       </figure>
 

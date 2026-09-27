@@ -25,6 +25,14 @@
            dimensiones intrínsecas para evitar CLS. Se desvanece hacia el
            texto con una máscara en degradado (hacia arriba en móvil). --}}
       <div class="home-hero__photo">
+        {{!-- Copia desenfocada de la misma foto: rellena el marco mientras la
+             foto de arriba se ve completa, sin recorte. Decorativa. --}}
+        <img src="{{asset "images/katerinn-romero-asesora.webp"}}"
+             alt="" aria-hidden="true"
+             width="1920" height="1111"
+             loading="eager"
+             decoding="async"
+             class="home-hero__backdrop">
         <img src="{{asset "images/katerinn-romero-asesora.webp"}}"
              alt="Katerinn Romero, asesora contable, tributaria y financiera, en su espacio de trabajo"
              width="1920" height="1111"

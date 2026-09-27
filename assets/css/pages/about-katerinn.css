@@ -107,22 +107,46 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  /* contain, no cover: el retrato se ve COMPLETO, sin el acercamiento que
+     hacía falta para tapar el marco. Lo que sobra del marco lo llena la copia
+     desenfocada de abajo, así que el bloque sigue lleno de borde a borde. */
+  object-fit: contain;
+  object-position: center;
+  z-index: 1;
+}
+
+/* Copia de la misma foto, ampliada y desenfocada, como relleno del marco.
+   Va por debajo del retrato y se mueve con el mismo ciclo de fundido, para que
+   el fondo corresponda siempre a la foto que se está viendo.
+   La escala extra evita que el desenfoque deje los cantos transparentes. */
+.about-stage__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  /* Las fotos son 2:3 y el hueco es más ancho en proporción, así que el
-     recorte es sólo vertical: por eso lo que importa es el segundo valor.
-     22% mantiene el rostro dentro del encuadre en las tres. */
   object-position: center 22%;
+  transform: scale(1.14);
+  filter: blur(26px) saturate(0.88);
+  z-index: 0;
 }
 
 /* Fundido cruzado de 18s: cada retrato se ve unos 5s con transiciones de ~1s.
    Los retardos son NEGATIVOS para que el ciclo arranque ya en curso; con
    retardos positivos habría un instante inicial sin ninguna foto visible. */
-.about-stage__image {
+/* Retrato y relleno comparten ciclo y retardo. Los retardos van por clase y no
+   por :nth-child: al intercalar el relleno antes de cada retrato, la posición
+   de cada imagen entre sus hermanos ya no coincide con su número de foto. */
+.about-stage__image,
+.about-stage__backdrop {
   animation: about-photo-cycle 18s linear infinite both;
 }
 
-.about-stage__image:nth-child(2) { animation-delay: -12s; }
-.about-stage__image:nth-child(3) { animation-delay: -6s; }
+.about-stage__image--2,
+.about-stage__backdrop--2 { animation-delay: -12s; }
+
+.about-stage__image--3,
+.about-stage__backdrop--3 { animation-delay: -6s; }
 
 @keyframes about-photo-cycle {
   0%, 27%  { opacity: 1; }
@@ -132,12 +156,14 @@
 
 /* Con movimiento reducido se queda fija la primera. */
 @media (prefers-reduced-motion: reduce) {
-  .about-stage__image {
+  .about-stage__image,
+  .about-stage__backdrop {
     animation: none !important;
     opacity: 0;
   }
 
-  .about-stage__image:first-child {
+  .about-stage__image--1,
+  .about-stage__backdrop--1 {
     opacity: 1;
   }
 }
@@ -233,7 +259,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-stage__image {
+  .about-stage__image,
+  .about-stage__backdrop {
     animation: none !important;
     translate: none !important;
   }
